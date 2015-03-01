@@ -1,0 +1,56 @@
+#ifndef SETTINGS_H
+#define SETTINGS_H
+
+#include <QObject>
+#include <QSettings>
+#include <QRect>
+#include <QTranslator>
+
+
+
+class Widget;
+
+class Settings : public QObject
+{
+    Q_OBJECT
+
+
+public:
+    explicit Settings(Widget *parent = 0);
+    ~Settings();
+    void Init();
+    void Update(QString str, QVariant val);
+    void applicationLanguageChange();
+
+    QString LANG_FROM;
+    QString LANG_TO;
+    QString APP_THEME;
+    QString APP_HOTKEY;
+    QString APP_AUTORUN;
+    QString APP_GEOMETRY;
+    QString LASTLIST_FROM;
+    QString LASTLIST_TO;
+
+
+private:
+    QString   getUserLang();
+
+    Widget    *w;
+    QSettings *s;
+    QString   from,
+              to,
+              hotkey,
+              themeName;
+    bool      isAutorun;
+    QRect     geometry;
+    QTranslator *translator;
+
+
+
+signals:
+
+public slots:
+
+};
+
+#endif // SETTINGS_H

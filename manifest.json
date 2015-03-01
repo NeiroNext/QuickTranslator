@@ -1,0 +1,15 @@
+{
+    "architecture": "all",
+    "description": "description of QuickTranslator",
+    "framework": "ubuntu-sdk-13.10",
+    "hooks": {
+        "QuickTranslator": {
+            "apparmor": "QuickTranslator.json",
+            "desktop": "QuickTranslator.desktop"
+        }
+    },
+    "maintainer": "",
+    "name": "com.ubuntu.developer.username.quicktranslator",
+    "title": "QuickTranslator",
+    "version": "0.1"
+}

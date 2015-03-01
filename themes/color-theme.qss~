@@ -1,0 +1,95 @@
+ QWidget[objectName="MainWidget"] {
+	background-repeat: no-repeat; 
+	background-image: url(:/files/imgs/planet-background.png);
+	background-position: right bottom;
+}
+
+QLabel, QCheckBox, QToolButton {
+	background-color: rgba(255, 255, 255, 150);
+}
+
+
+QLineEdit {
+	border-radius: 0px;
+	border: 1px solid lightgray;
+}
+
+QListWidget {
+	background-color: rgba(255, 255, 255, 210);
+	border-radius: 0px;
+	border: none;
+}
+
+
+QComboBox  {
+	border: 1px solid lightgray;
+}
+
+
+QFrame[objectName=header] {
+	border: none;
+	border-bottom: 1px solid #e3dcd4;
+}
+
+QFrame[objectName=footer] {
+	background-color: #eeeeee;
+	border: none;
+	border-top: 1px solid #e3dcd4;
+}
+
+QLineEdit {
+	border-radius: 0px;
+	border: 1px solid #ddddee;
+}
+
+QComboBox, QLineEdit  {
+	border: 1px solid #efefef;
+	background-color: white;
+}
+
+QComboBox::drop-down {
+	background-color: white;
+}
+
+QComboBox::item {
+	selection-background-color: gray;
+}
+
+QScrollBar {
+	border:  none;
+	width:  4px;
+	background:  transparent;
+}
+
+QScrollBar::handle {
+	background-color:  lightgray;
+}
+
+QScrollBar::handle:HOVER {
+	background-color:  gray;
+}
+
+
+QDialog[objectName=Box] {
+	border: 1px solid black;
+	background:  white;
+}
+
+QToolButton {
+	border: 1px solid black;
+}
+
+QToolButton:HOVER {
+	background-color: lightgray;
+}
+
+
+QTextEdit {
+	background: white;
+	border: 1px solid black;
+	border-right: 1px solid transparent;
+	border-top: 1px solid transparent;
+	border-radius: 0px;
+}
+
+

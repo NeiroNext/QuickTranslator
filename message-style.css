@@ -1,0 +1,8 @@
+body {
+	color: gray;
+}
+
+ul * {
+	padding-left: 20px;
+	color: gray;
+}
