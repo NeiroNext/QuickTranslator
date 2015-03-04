@@ -3,12 +3,13 @@
 #include <QDir>
 #include <QTextStream>
 #include <QDebug>
+#include <QSettings>
 #include "autorun.h"
-
 
 
 // Constructor
 Autorun::Autorun(){
+#ifdef Q_OS_UNIX
     userPath = QDir::homePath();
     nowDistr = distFinder();
 
@@ -18,6 +19,7 @@ Autorun::Autorun(){
                     "Type=Application\n"
                     "X-KDE-StartupNotify=false\n"
                     "X-GNOME-Autostart-enabled=true";
+#endif
 }
 
 
@@ -53,16 +55,17 @@ bool Autorun::setAutorun(bool status){
 
 
 #ifdef Q_OS_WIN
-    qDebug() << "Windows now not supported!";
+    winAutorun(status);
 #endif // Q_O_WIN
 
-    return false;
+    return true;
 }
 
 
 
 
 
+#ifdef Q_OS_UNIX
 // Find linux distributive
 int Autorun::distFinder(){
     QDir proc("/proc/");
@@ -127,3 +130,24 @@ void Autorun::setAutorunFile(QString url, bool create){
     }
 
 }
+#endif
+
+
+
+
+
+#ifdef Q_OS_WIN
+// Add or remove program from autostart in win registry
+void Autorun::winAutorun(bool stat){
+    QSettings *reg = new QSettings("HKEY_CURRENT_USER\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", QSettings::NativeFormat);
+
+    if(stat) {
+        reg->setValue(QCoreApplication::applicationName(), QDir::toNativeSeparators(QCoreApplication::applicationFilePath() +" --hide"));
+        reg->sync();
+    } else {
+        reg->remove(QCoreApplication::applicationName());
+    }
+
+    delete reg;
+}
+#endif

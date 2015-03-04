@@ -10,9 +10,10 @@ CONFIG  += qxt
 QXT     += core gui
 
 
-
 TARGET   =  QuickTranslator
 TEMPLATE =  app
+
+
 
 SOURCES  +=  main.cpp           \
              widget.cpp         \
@@ -33,3 +34,8 @@ FORMS    +=  widget.ui          \
              box.ui
 
 RESOURCES += main.qrc
+
+win32 {
+    LIBS += -L"../QuickTranslator/libs/win32"   \
+
+}

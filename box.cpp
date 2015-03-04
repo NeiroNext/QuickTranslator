@@ -18,18 +18,19 @@ Box::Box(QWidget *parent) :
 #ifdef Q_OS_LINUX
     // Qt::X11BypassWindowManagerHint for hide dialog (Box class) icon in the KDE panel
     setWindowFlags(Qt::WindowStaysOnTopHint | Qt::X11BypassWindowManagerHint);
-#elif Q_OS_WIN
-    setWindowFlags(Qt::WindowStaysOnTopHint);
+#endif
+#ifdef Q_OS_WIN
+    setWindowFlags(Qt::WindowStaysOnTopHint | Qt::FramelessWindowHint | Qt::Tool);
 #endif
     timerShow   = new QBasicTimer();
     timerHide   = new QBasicTimer();
 
     menu    = new QMenu(this);
-    copyAll = new QAction(tr("Copy All"), 0);
     copySel = new QAction(tr("Copy Selected"), 0);
+    copyAll = new QAction(tr("Copy All"), 0);
 
-    menu->addAction(copyAll);
     menu->addAction(copySel);
+    menu->addAction(copyAll);
 
     connect(menu,      SIGNAL(triggered(QAction*)), SLOT(copyToBuffer(QAction*)));
     connect(ui->close, SIGNAL(clicked()),           SLOT(hide()));
@@ -71,7 +72,7 @@ void Box::showTranslate(QString str){
 
     if(!timerShow->isActive() && !timerHide->isActive() && this->isHidden()){
         defY = rect.y();
-        nowY = rect.y() + height() + 30;
+        nowY = rect.y() + height() + 60;
     }
 
     setGeometry(rect);
@@ -144,7 +145,7 @@ void Box::timerEvent(QTimerEvent *ev){
     } else if (ev->timerId() == timerIdHide) {
         nowY += 9;
 
-        if(nowY >= defY+height()*2+30){
+        if(nowY >= defY+height()*2+60){
             timerHide->stop();
             QWidget::hide();
         }

@@ -39,7 +39,7 @@ void Settings::Init(){
 
    from        = s->value(LANG_FROM, "auto").toString();
    to          = s->value(LANG_TO, userLng).toString();
-   themeName   = s->value(APP_THEME, "Default::color").toString();
+   themeName   = s->value(APP_THEME, "Default").toString();
    hotkey      = s->value(APP_HOTKEY, "Alt+Meta+Z").toString();
    isAutorun   = s->value(APP_AUTORUN, true).toBool();
    geometry    = s->value(APP_GEOMETRY, w->geometry()).toRect();

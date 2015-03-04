@@ -24,7 +24,13 @@ Widget::Widget(QMainWindow *parent) :
    box      = new Box();
    trans    = new Translate(this);
    lineEdit = new GrabLineEdit();
+#ifdef Q_OS_UNIX
    setWindowFlags(Qt::Tool);
+#endif
+#ifdef Q_OS_WIN
+   setWindowFlags(Qt::WindowCloseButtonHint);
+#endif
+   move(200, 200);
 
    // Init some objects
    trayMenuInit();
@@ -68,7 +74,12 @@ Widget::~Widget(){
 
 // Start "get selected text" process
 void Widget::startProcess(){
+#ifdef Q_OS_UNIX
    process.start("xsel");
+#endif
+#ifdef Q_OS_WIN
+   process.start("xsel.exe");
+#endif
 }
 
 
@@ -77,14 +88,15 @@ void Widget::startProcess(){
 
 // Process error
 void Widget::errorProcess(QProcess::ProcessError err){
-        qDebug() << "Error run process \"xsel\"\nMessage: " << process.errorString();
-        if(err == QProcess::NotOpen){
-            QMessageBox::critical(this, tr("Critical error!"),
-            "<font color="+getTTColor()+">"+
-                tr("Unable to run the utility <b>xsel</b>, maybe it is not exists."
-                   "<br>The program work is not possible without it!")+
-            "</font>");
-        }
+    qDebug() << "Error run process \"xsel\"\nMessage: " << process.errorString();
+    if(err == QProcess::NotOpen){
+        QMessageBox::critical(this, tr("Critical error!"),
+        "<font color="+getTTColor()+">"+
+            tr("Unable to run the utility <b>xsel</b>, maybe it is not exists."
+               "<br>The program work is not possible without it!<br>"
+               "Maybe you can reinstall program for normal it work!")+
+        "</font>");
+    }
 }
 
 
