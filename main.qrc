@@ -4,7 +4,9 @@
         <file>imgs/icon-color.svg</file>
         <file>imgs/icon-white.svg</file>
         <file>imgs/icon-black.svg</file>
-        <file>lngList.json</file>
         <file>themes/Default{color}.qss</file>
+    </qresource>
+    <qresource prefix="/">
+        <file>langs/lngList.json</file>
     </qresource>
 </RCC>

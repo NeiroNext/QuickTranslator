@@ -137,7 +137,7 @@ void Widget::trayMenuInit(){
 
 // Init languages list
 void Widget::langListInit(){
-    langListInit(":/files/lngList.json");
+    langListInit(":/langs/lngList.json");
 }
 
 
