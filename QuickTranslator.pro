@@ -39,3 +39,6 @@ win32 {
     LIBS += -L"../QuickTranslator/libs/win32"   \
 
 }
+
+TRANSLATIONS += RU_lngApp.ts    \
+                UK_lngApp.ts

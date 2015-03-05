@@ -84,11 +84,6 @@ QLineEdit {
 	border: 1px solid transparent;
 }
 
-QLineEdit {
-	border-radius: 0px;
-	border: 1px solid transparent;
-}
-
 QComboBox  {
 	border: 1px solid transparent;
 }

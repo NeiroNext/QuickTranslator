@@ -94,7 +94,7 @@ void Widget::errorProcess(QProcess::ProcessError err){
         "<font color="+getTTColor()+">"+
             tr("Unable to run the utility <b>xsel</b>, maybe it is not exists."
                "<br>The program work is not possible without it!<br>"
-               "Maybe you can reinstall program for normal it work!")+
+               "Try reinstalling the program to its normal work!")+
         "</font>");
     }
 }

@@ -98,10 +98,6 @@ QDialog[objectName=Box] {
 	background:  rgba(242, 241, 240, 255);
 }
 
-QMessageBox {
-	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #3f3e3a, stop:1 #55534b);
-}
-
 
 QDialog QMenu {
 	color: white;
