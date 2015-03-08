@@ -40,5 +40,5 @@ win32 {
 
 }
 
-TRANSLATIONS += RU_lngApp.ts    \
-                UK_lngApp.ts
+TRANSLATIONS += langs/RU_lngApp.ts    \
+                langs/UK_lngApp.ts

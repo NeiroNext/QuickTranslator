@@ -228,7 +228,8 @@ void Widget::trayMenuSlot(QAction *act){
            "</ul>"
            "The program is absolutely free and allowed to free distribution.<br><br><br>"
            "Author: <a href='http://vk.com/rozshko'>Mihail Rozshko</a><br>"
-           "Email: <a href='mailto:mihail.rozshko@gmail.com'>mihail.rozshko@gmail.com</a>")
+           "Email: <a href='mailto:mihail.rozshko@gmail.com'>mihail.rozshko@gmail.com</a><br>"
+           "Site: <a href='http://sovasoft.zz.vc'>SovaSoft.zz.vc</a>")
            +"</font>");
     }
     if(act == trayActions[2]){                                        // Exit
