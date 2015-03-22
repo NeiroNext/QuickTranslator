@@ -5,9 +5,13 @@
 }
 
 
-QComboBox, QLineEdit {
+QComboBox {
 	background-color: rgba(255, 255, 255, 150);
 	padding: 0px 0px 0px 3px;
+}
+
+QLineEdit {
+	background-color: transparent;
 }
 
 QComboBox::item {
@@ -81,7 +85,7 @@ QComboBox  {
 }
 
 QDialog[objectName=Box] {
-	border: 1px solid black;
+	border: 1px solid gray;
 	background:  #f7f5f3;
 }
 
@@ -94,7 +98,9 @@ QDialog QMenu {
 }
 
 QToolButton {
-	border: 1px solid black;
+	border: 1px solid gray;
+	border-right: 1px solid transparent;
+	border-top: 1px solid transparent;
 }
 
 QToolButton:HOVER {
@@ -104,8 +110,6 @@ QToolButton:HOVER {
 QTextEdit {
 	background:  #f7f5f3;
 	selection-background-color:  #f07746;
-	border: 1px solid black;
-	border-right: 1px solid transparent;
-	border-top: 1px solid transparent;
+	border: 1px solid transparent;
 	border-radius: 0px;
 }

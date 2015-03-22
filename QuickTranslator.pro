@@ -35,8 +35,13 @@ FORMS    +=  widget.ui          \
 
 RESOURCES += main.qrc
 
+unix {
+    #LIBS += -Llib
+    #QMAKE_LFLAGS += '-Wl,-rpath,\'\$$ORIGIN/lib\''
+}
+
 win32 {
-    LIBS += -L"../QuickTranslator/libs/win32"   \
+    LIBS += -L"../QuickTranslator/libs/win32"
 
     RC_FILE = win_icon.rc
 }

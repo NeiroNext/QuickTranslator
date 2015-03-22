@@ -3,9 +3,7 @@
 #include <QDir>
 #include "widget.h"
 #include "ui_widget.h"
-
-
-
+#include <QScreen>
 
 
 // Constructor
@@ -17,6 +15,7 @@ Widget::Widget(QMainWindow *parent) :
    settings->applicationLanguageChange();
 
    themeTextColor << "#4c4c4c" << "#4c4c4c" << "#4c4c4c";
+   translateWindowType = TW_DEFAULT;
 
    ui->setupUi(this);
 
@@ -47,12 +46,14 @@ Widget::Widget(QMainWindow *parent) :
    connect(&process,      SIGNAL(error(QProcess::ProcessError)), SLOT(errorProcess(QProcess::ProcessError)));
    connect(&process,      SIGNAL(readyReadStandardOutput()),  SLOT(getSelected()));
    connect(trayMenu,      SIGNAL(triggered(QAction*)),        SLOT(trayMenuSlot(QAction*)));
-   connect(trans,         SIGNAL(showTranslate(QString)), box,SLOT(showTranslate(QString)));
+ //connect(trans,         SIGNAL(showTranslate(QString)), box,SLOT(showTranslate(QString)));
+   connect(trans,         SIGNAL(showTranslate(QString)),     SLOT(showTranslate(QString)));
    connect(ui->theme_cb,  SIGNAL(activated(QString)),         SLOT(changeTheme(QString)));
    connect(ui->from_list, SIGNAL(doubleClicked(QModelIndex)), SLOT(setFromLanguage(QModelIndex)));
    connect(ui->to_list,   SIGNAL(doubleClicked(QModelIndex)), SLOT(setToLanguage(QModelIndex)));
    connect(lineEdit,      SIGNAL(hotkeyChanged(QString)),     SLOT(changeHotkey(QString)));
    connect(ui->autorun_cb,SIGNAL(toggled(bool)),              SLOT(changeAutorun(bool)));
+   connect(ui->infoWin_ch,SIGNAL(activated(int)),             SLOT(changeInfoType(int)));
 }
 
 
@@ -75,7 +76,8 @@ Widget::~Widget(){
 // Start "get selected text" process
 void Widget::startProcess(){
 #ifdef Q_OS_UNIX
-   process.start("xsel");
+   //process.start(qApp->applicationDirPath()+"/xsel");
+    process.start("xsel");
 #endif
 #ifdef Q_OS_WIN
    process.start("xsel.exe");
@@ -223,19 +225,45 @@ void Widget::trayMenuSlot(QAction *act){
            "Features:"
            "<ul>"
            "<li> quick translation of selected text, a combination of keys that can be changed;</li>"
+           "<li> display similar words from the translated;</li>"
            "<li> translate not only words but also phrases;</li>"
            "<li> translation into 80 languages.</li>"
            "</ul>"
-           "The program is absolutely free and allowed to free distribution.<br><br><br>"
+           "The program is absolutely free and allowed to free distribution.<br><br>"
            "Author: <a href='http://vk.com/rozshko'>Mihail Rozshko</a><br>"
            "Email: <a href='mailto:mihail.rozshko@gmail.com'>mihail.rozshko@gmail.com</a><br>"
-           "Site: <a href='http://sovasoft.zz.vc'>SovaSoft.zz.vc</a>")
+           "Site: <a href='http://sovasoft.zz.vc'>SovaSoft.zz.vc</a><br><br>"
+           "Copyright &copy; SovaSoft 2014-2015")
            +"</font>");
     }
     if(act == trayActions[2]){                                        // Exit
         qApp->quit();
     }
 
+}
+
+
+
+
+
+// Show translate slot
+void Widget::showTranslate(QString str){
+    switch(translateWindowType){
+        case TW_DEFAULT:
+            box->setFly(false);
+            emit box->showTranslate(str);
+            break;
+        case TW_NOTIFIER:
+            box->setHidden(true);
+            trayIcon->showMessage(tr("Translate"), str, QSystemTrayIcon::NoIcon, 5000);
+            break;
+        case TW_CURSOR:
+            box->setFly(true);
+            QPoint wp = QCursor::pos() + QPoint(16, 16);
+            box->move(wp);
+            box->showTranslate(str);
+            break;
+    }
 }
 
 
@@ -359,6 +387,9 @@ void Widget::changeHotkey(QString key){
 }
 
 
+
+
+
 // Change application autorun status
 void Widget::changeAutorun(bool status){
     if(autorun->setAutorun(status)){
@@ -395,4 +426,15 @@ void Widget::moveEvent(QMoveEvent *ev){
 QString Widget::getTTColor(){
     int index = ui->theme_cb->currentIndex();
     return themeTextColor[index];
+}
+
+
+
+
+
+// Change info window type
+void Widget::changeInfoType(int index){
+    translateWindowType = index;
+    ui->infoWin_ch->setCurrentIndex(index);
+    settings->Update(settings->APP_INFOWINTYPE, index);
 }

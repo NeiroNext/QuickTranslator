@@ -24,16 +24,16 @@
     <number>0</number>
    </property>
    <property name="leftMargin">
-    <number>0</number>
+    <number>1</number>
    </property>
    <property name="topMargin">
-    <number>0</number>
+    <number>1</number>
    </property>
    <property name="rightMargin">
-    <number>0</number>
+    <number>1</number>
    </property>
    <property name="bottomMargin">
-    <number>0</number>
+    <number>1</number>
    </property>
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout">
@@ -48,7 +48,7 @@
        <property name="sizeHint" stdset="0">
         <size>
          <width>23</width>
-         <height>19</height>
+         <height>1</height>
         </size>
        </property>
       </spacer>
@@ -66,9 +66,6 @@
          <width>20</width>
          <height>20</height>
         </size>
-       </property>
-       <property name="styleSheet">
-        <string notr="true"/>
        </property>
        <property name="text">
         <string notr="true">X</string>

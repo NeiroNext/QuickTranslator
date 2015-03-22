@@ -41,6 +41,14 @@ public:
 
     QStringList      themeTextColor;
     QString          getTTColor(); // getThemeTextColor
+
+    // Translate window types
+    const static int TW_DEFAULT  = 0; // default
+    const static int TW_CURSOR   = 1; // window at the cursor
+    const static int TW_NOTIFIER = 2; // at the tray notifier
+
+
+    int translateWindowType;
    
 
    
@@ -81,6 +89,8 @@ public slots:
    void setToLanguage(QModelIndex index);
    void changeHotkey(QString key);
    void changeAutorun(bool status);
+   void showTranslate(QString str);
+   void changeInfoType(int index);
 };
 
 #endif // WIDGET_H

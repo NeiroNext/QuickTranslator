@@ -6,14 +6,15 @@
 
 // Constructor
 Settings::Settings(Widget *parent) : QObject() {
-    LANG_FROM    = "language/from";
-    LANG_TO      = "language/to";
-    APP_THEME    = "application/theme";
-    APP_HOTKEY   = "application/hotkey";
-    APP_AUTORUN  = "application/autorun";
-    APP_GEOMETRY = "application/geometry";
-    LASTLIST_FROM= "last_list/from";
-    LASTLIST_TO  = "last_list/to";
+    LANG_FROM       = "language/from";
+    LANG_TO         = "language/to";
+    APP_THEME       = "application/theme";
+    APP_HOTKEY      = "application/hotkey";
+    APP_AUTORUN     = "application/autorun";
+    APP_GEOMETRY    = "application/geometry";
+    APP_INFOWINTYPE = "application/translate_win_type";
+    LASTLIST_FROM   = "last_list/from";
+    LASTLIST_TO     = "last_list/to";
 
     this->w = parent;
     s = new QSettings("QuikTranslator", "config");
@@ -43,6 +44,7 @@ void Settings::Init(){
    hotkey      = s->value(APP_HOTKEY, "Alt+Meta+Z").toString();
    isAutorun   = s->value(APP_AUTORUN, true).toBool();
    geometry    = s->value(APP_GEOMETRY, w->geometry()).toRect();
+   infowintype = s->value(APP_INFOWINTYPE, 0).toInt();
 
    w->setFromLanguage(from);
    w->setToLanguage(to);
@@ -50,6 +52,7 @@ void Settings::Init(){
    w->changeHotkey(hotkey);
    w->changeAutorun(isAutorun);
    w->setGeometry(geometry);
+   w->changeInfoType(infowintype);
 
 }
 

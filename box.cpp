@@ -16,12 +16,14 @@ Box::Box(QWidget *parent) :
     ui->setupUi(this);
 
 #ifdef Q_OS_LINUX
-    // Qt::X11BypassWindowManagerHint for hide dialog (Box class) icon in the KDE panel
-    setWindowFlags(Qt::WindowStaysOnTopHint | Qt::X11BypassWindowManagerHint);
+    // Qt::SplashScreen for hide dialog (Box class) icon from the Unity panel | only for Unity
+    setWindowFlags(Qt::WindowStaysOnTopHint | Qt::SplashScreen/* | Qt::X11BypassWindowManagerHint*/);
 #endif
 #ifdef Q_OS_WIN
     setWindowFlags(Qt::WindowStaysOnTopHint | Qt::FramelessWindowHint | Qt::Tool);
 #endif
+    fly = false;
+
     timerShow   = new QBasicTimer();
     timerHide   = new QBasicTimer();
 
@@ -35,7 +37,7 @@ Box::Box(QWidget *parent) :
     connect(menu,      SIGNAL(triggered(QAction*)), SLOT(copyToBuffer(QAction*)));
     connect(ui->close, SIGNAL(clicked()),           SLOT(hide()));
 
-
+    defaultRect = rect();
 }
 
 
@@ -60,22 +62,32 @@ Box::~Box(){
 void Box::showTranslate(QString str){
     ui->textEdit->setText(str);
     QRect rect = QApplication::desktop()->screenGeometry();
-    QRect rect2 =QApplication::desktop()->availableGeometry();
+    if(!fly){
+        QRect rect2 =QApplication::desktop()->availableGeometry();
 
-    int heightDif = rect.height() - rect2.height();         // bottom panel size
-    int yDif =  rect2.y() - rect.y();                       // top    panel size
+        int heightDif = rect.height() - rect2.height();         // bottom panel size
+        int yDif =  rect2.y() - rect.y();                       // top    panel size
 
-    rect.setX(rect.width()  - width());
-    rect.setY(rect.height() - height() - heightDif + yDif);
-    rect.setWidth(width());
-    rect.setHeight(height());
+        rect.setX(rect.width()  - width());
+        rect.setY(rect.height() - height() - heightDif + yDif);
+        rect.setWidth(width());
+        rect.setHeight(height());
 
-    if(!timerShow->isActive() && !timerHide->isActive() && this->isHidden()){
-        defY = rect.y();
-        nowY = rect.y() + height() + 60;
+        if(!timerShow->isActive() && !timerHide->isActive() && this->isHidden()){
+            defY = rect.y();
+            nowY = rect.y() + height() + 60;
+        }
+
+        move(rect.x(), rect.y());
+    } else {
+        QPoint posBR    = this->pos() + QPoint(width(), height());  // Bottom-Right position
+        QPoint newPoint = this->pos();
+        if(posBR.x() >= rect.width())
+            newPoint.setX(rect.width() - width() - 1);
+        if(posBR.y() >= rect.height())
+            newPoint.setY(rect.height() - height() - 1);
+        move(newPoint);
     }
-
-    setGeometry(rect);
     show();
 }
 
@@ -96,6 +108,24 @@ void Box::copyToBuffer(QAction *act){
 
 
 
+// Set fly state
+void Box::setFly(bool isFly){
+    if(isFly != fly){
+        fly = isFly;
+        if(isFly) {
+            ui->close->hide();
+            setGeometry(0, 0, 240, 140);
+        } else {
+            ui->close->show();
+            setGeometry(defaultRect);
+        }
+    }
+}
+
+
+
+
+
 // Show menu by mouse right key pressdown
 void Box::mousePressEvent(QMouseEvent *ev){
     if(ev->button() & Qt::RightButton){
@@ -110,10 +140,15 @@ void Box::mousePressEvent(QMouseEvent *ev){
 // Show slot
 void Box::show(){
     if(!timerShow->isActive() && !timerHide->isActive() && this->isHidden()){
-        move(x(), nowY);
-        QWidget::show();
-        timerShow->start(10, this);
-        timerIdShow = timerShow->timerId();
+        if(!fly){
+            move(x(), nowY);
+            QWidget::show();
+            timerShow->start(10, this);
+            timerIdShow = timerShow->timerId();
+        } else {
+            QWidget::show();
+            activateWindow();
+        }
     }
 }
 
@@ -124,8 +159,12 @@ void Box::show(){
 // Hide slot
 void Box::hide(){
     if(!timerHide->isActive() && !timerShow->isActive()){
-        timerHide->start(10, this);
-        timerIdHide = timerHide->timerId();
+        if(!fly){
+            timerHide->start(10, this);
+            timerIdHide = timerHide->timerId();
+        } else {
+            QWidget::hide();
+        }
     }
 }
 
@@ -155,3 +194,12 @@ void Box::timerEvent(QTimerEvent *ev){
 }
 
 
+
+
+
+// Events
+bool Box::event(QEvent *ev){
+    if(ev->type() == QEvent::WindowDeactivate && fly)
+        hide();
+    return QWidget::event(ev);
+}

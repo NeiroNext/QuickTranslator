@@ -4,6 +4,7 @@
 #include <QDialog>
 #include <QMenu>
 #include <QTimer>
+#include <QRect>
 
 namespace Ui {
     class Box;
@@ -17,11 +18,16 @@ public:
     explicit Box(QWidget *parent = 0);
     ~Box();
 
+    void setFly(bool isFly);
+
+
 
 
 private:
     void mousePressEvent(QMouseEvent *ev);
     void timerEvent(QTimerEvent *ev);
+    bool event(QEvent *ev);
+
 
     QBasicTimer *timerShow,
                 *timerHide;
@@ -34,6 +40,9 @@ private:
     QMenu       *menu;
     QAction     *copyAll;
     QAction     *copySel;
+
+    bool         fly;
+    QRect        defaultRect;
 
 
 

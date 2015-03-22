@@ -28,6 +28,7 @@ public:
     QString APP_HOTKEY;
     QString APP_AUTORUN;
     QString APP_GEOMETRY;
+    QString APP_INFOWINTYPE;
     QString LASTLIST_FROM;
     QString LASTLIST_TO;
 
@@ -43,6 +44,7 @@ private:
               themeName;
     bool      isAutorun;
     QRect     geometry;
+    int       infowintype;
     QTranslator *translator;
 
 

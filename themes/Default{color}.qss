@@ -71,12 +71,14 @@ QScrollBar::handle:HOVER {
 
 
 QDialog[objectName=Box] {
-	border: 1px solid black;
+	border: 1px solid gray;
 	background:  white;
 }
 
 QToolButton {
-	border: 1px solid black;
+	border: 1px solid gray;
+	border-right: 1px solid transparent;
+	border-top: 1px solid transparent;
 }
 
 QToolButton:HOVER {
@@ -86,9 +88,7 @@ QToolButton:HOVER {
 
 QTextEdit {
 	background: white;
-	border: 1px solid black;
-	border-right: 1px solid transparent;
-	border-top: 1px solid transparent;
+	border: 1px solid transparent;
 	border-radius: 0px;
 }
 
