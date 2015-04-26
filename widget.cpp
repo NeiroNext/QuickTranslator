@@ -23,6 +23,7 @@ Widget::Widget(QMainWindow *parent) :
    box      = new Box();
    trans    = new Translate(this);
    lineEdit = new GrabLineEdit();
+   gsTimer  = new QBasicTimer();
 #ifdef Q_OS_UNIX
    setWindowFlags(Qt::Tool);
 #endif
@@ -406,7 +407,7 @@ void Widget::changeAutorun(bool status){
 
 // Main application's window resize
 void Widget::resizeEvent(QResizeEvent *ev){
-    settings->Update(settings->APP_GEOMETRY, geometry());
+    geometrySaveEvent();
 }
 
 
@@ -415,7 +416,34 @@ void Widget::resizeEvent(QResizeEvent *ev){
 
 // Main application's window move
 void Widget::moveEvent(QMoveEvent *ev){
-    settings->Update(settings->APP_GEOMETRY, geometry());
+    geometrySaveEvent();
+}
+
+
+
+
+
+
+// Geometry save event
+void Widget::geometrySaveEvent(){
+    if(gsTimer->isActive()){
+        gsTimer->stop();
+    }
+    gsTimer->start(1000, this);
+    gsTimerId = gsTimer->timerId();
+}
+
+
+
+
+
+
+// Timer events
+void Widget::timerEvent(QTimerEvent *ev){
+    if(ev->timerId() == gsTimerId){
+        settings->Update(settings->APP_GEOMETRY, geometry());
+        gsTimer->stop();
+    }
 }
 
 

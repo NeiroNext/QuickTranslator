@@ -49,5 +49,3 @@ win32 {
 TRANSLATIONS += langs/RU_lngApp.ts    \
                 langs/UK_lngApp.ts
 
-OTHER_FILES += \
-    win_icon.rc

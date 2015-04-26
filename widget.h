@@ -38,6 +38,7 @@ public:
     void langListInit(QString url, bool initList = true);
     void resizeEvent(QResizeEvent *ev);
     void moveEvent(QMoveEvent *ev);
+    void timerEvent(QTimerEvent *ev);
 
     QStringList      themeTextColor;
     QString          getTTColor(); // getThemeTextColor
@@ -56,6 +57,8 @@ private:
    void trayMenuInit();
    void langListInit();
    void themesInit();
+
+   void geometrySaveEvent();
 
    Ui::Widget        *ui;
    QProcess          process;
@@ -76,6 +79,9 @@ private:
    GrabLineEdit      *lineEdit;
    Settings          *settings;
    Autorun           *autorun;
+
+   QBasicTimer       *gsTimer;          // GeometrySaveTimer
+   int                gsTimerId;
 
 
 

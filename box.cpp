@@ -142,9 +142,9 @@ void Box::show(){
     if(!timerShow->isActive() && !timerHide->isActive() && this->isHidden()){
         if(!fly){
             move(x(), nowY);
-            QWidget::show();
             timerShow->start(10, this);
             timerIdShow = timerShow->timerId();
+            QWidget::show();
         } else {
             QWidget::show();
             activateWindow();
