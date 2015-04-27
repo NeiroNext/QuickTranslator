@@ -21,7 +21,7 @@ For Linux, just run make commant in the root folder, or download project to QtCr
 
 Windows:
 You must install the library libqxt: http://dev.libqxt.org/libqxt/wiki/Home and Qt version 4.8.6: http://download.qt.io/archive/qt/4.8/4.8.6/
-In Windows only possible until loading project QtCreator (or VisualStudio), will also need to use the utility xsel in additional folder (utility used C # / NetFramework 2.0).
+In Windows only possible until loading project QtCreator (or VisualStudio), will also need to compile the utility xsel folder in wsel (C # / NetFramework 2.0).
 
 
 # Contacts
