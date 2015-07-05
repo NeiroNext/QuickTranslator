@@ -25,12 +25,14 @@ public:
     QString LANG_FROM;
     QString LANG_TO;
     QString APP_THEME;
-    QString APP_HOTKEY;
     QString APP_AUTORUN;
     QString APP_GEOMETRY;
     QString APP_INFOWINTYPE;
     QString LASTLIST_FROM;
     QString LASTLIST_TO;
+    QString HOTKEY_MAIN;
+    QString HOTKEY_FIELD;
+    QString HOTKEY_SMART;
 
 
 private:
@@ -41,6 +43,8 @@ private:
     QString   from,
               to,
               hotkey,
+              hotkeyField,
+              hotkeySmart,
               themeName;
     bool      isAutorun;
     QRect     geometry;

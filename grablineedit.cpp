@@ -4,9 +4,14 @@
 
 
 // Empty Constructor
-GrabLineEdit::GrabLineEdit(QWidget *parent) :
+GrabLineEdit::GrabLineEdit(QLineEdit *parent) :
     QLineEdit(parent)
 {
+    this->setMinimumSize( parent->minimumSize() );
+    this->setMaximumSize( parent->maximumSize() );
+    this->setGeometry   ( parent->geometry()    );
+    this->setSizePolicy ( parent->sizePolicy()  );
+    this->setText       ( parent->text()        );
 }
 
 
@@ -89,5 +94,5 @@ void GrabLineEdit::keyPressEvent(QKeyEvent *ev){
 
 // Send signal when key released
 void GrabLineEdit::keyReleaseEvent(QKeyEvent *ev){
-    emit hotkeyChanged(key);
+    emit hotkeyChanged(this, key);
 }

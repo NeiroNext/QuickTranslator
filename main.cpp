@@ -9,8 +9,8 @@ int main(int argc, char *argv[])
    QtSingleApplication app(argc, argv);
    QtSingleApplication::setQuitOnLastWindowClosed(false);
 
-   if(app.sendMessage("Something"))
-       return 0;
+   if(app.isRunning())
+       return !app.sendMessage("Something");
 
    Widget w;
    app.setActivationWindow(&w);

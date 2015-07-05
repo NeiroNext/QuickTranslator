@@ -1,6 +1,3 @@
-#include <QMouseEvent>
-#include <QClipboard>
-#include <QDesktopWidget>
 #include "box.h"
 #include "ui_box.h"
 
@@ -14,14 +11,8 @@ Box::Box(QWidget *parent) :
     ui(new Ui::Box)
 {
     ui->setupUi(this);
+    setWindowFlags(Crossplatform::_WindowOnTopFrameIconHide());
 
-#ifdef Q_OS_LINUX
-    // Qt::SplashScreen for hide dialog (Box class) icon from the Unity panel | only for Unity
-    setWindowFlags(Qt::WindowStaysOnTopHint | Qt::SplashScreen/* | Qt::X11BypassWindowManagerHint*/);
-#endif
-#ifdef Q_OS_WIN
-    setWindowFlags(Qt::WindowStaysOnTopHint | Qt::FramelessWindowHint | Qt::Tool);
-#endif
     fly = false;
 
     timerShow   = new QBasicTimer();
@@ -148,6 +139,7 @@ void Box::show(){
         } else {
             QWidget::show();
             activateWindow();
+            Crossplatform::setFocus(this);
         }
     }
 }

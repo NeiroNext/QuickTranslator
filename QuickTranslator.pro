@@ -21,23 +21,31 @@ SOURCES  +=  main.cpp           \
              box.cpp            \
              grablineedit.cpp   \
              settings.cpp       \
-             autorun.cpp
+             autorun.cpp \
+    textfield.cpp \
+    smarttranslate.cpp \
+    crossplatform.cpp
 
 HEADERS  +=  widget.h           \
              translate.h        \
              box.h              \
              grablineedit.h     \
              settings.h         \
-             autorun.h
+             autorun.h \
+    textfield.h \
+    smarttranslate.h \
+    crossplatform.h
 
 FORMS    +=  widget.ui          \
-             box.ui
+             box.ui \
+    textfield.ui
 
 RESOURCES += main.qrc
 
 unix {
     #LIBS += -Llib
     #QMAKE_LFLAGS += '-Wl,-rpath,\'\$$ORIGIN/lib\''
+    CONFIG  += x11
 }
 
 win32 {
@@ -48,4 +56,6 @@ win32 {
 
 TRANSLATIONS += langs/RU_lngApp.ts    \
                 langs/UK_lngApp.ts
+
+OTHER_FILES +=
 

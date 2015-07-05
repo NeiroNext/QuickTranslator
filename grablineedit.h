@@ -7,7 +7,7 @@ class GrabLineEdit : public QLineEdit
 {
     Q_OBJECT
 public:
-    explicit GrabLineEdit(QWidget *parent = 0);
+    explicit GrabLineEdit(QLineEdit *parent = 0);
 
 
 
@@ -17,7 +17,7 @@ private:
     QString key;
 
 signals:
-    void hotkeyChanged(QString key);
+    void hotkeyChanged(GrabLineEdit *gle, QString key);
 
 public slots:
 

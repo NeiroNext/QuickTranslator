@@ -1,7 +1,10 @@
 #ifndef WIDGET_H
 #define WIDGET_H
 
+#include <QMessageBox>
+#include <QDir>
 #include <QWidget>
+#include <QDesktopWidget>
 #include <QMainWindow>
 #include <QProcess>
 #include <QxtGlobalShortcut>
@@ -12,12 +15,17 @@
 #include <QModelIndex>
 #include <QPair>
 #include <QListWidget>
+#include <QProgressBar>
+
 
 #include "translate.h"
 #include "box.h"
+#include "textfield.h"
+#include "smarttranslate.h"
 #include "grablineedit.h"
 #include "settings.h"
 #include "autorun.h"
+#include "crossplatform.h"
 
 
 namespace Ui {
@@ -59,14 +67,17 @@ private:
    void themesInit();
 
    void geometrySaveEvent();
+   void nextTranslateDate(QString str);
 
    Ui::Widget        *ui;
    QProcess          process;
-   QxtGlobalShortcut hotkey;
+   QProgressBar      *pb;
+   QxtGlobalShortcut hotkey,
+                     hotkeyField,
+                     hotkeySmart;
    QSystemTrayIcon   *trayIcon;
    QMenu             *trayMenu;
    QList<QAction*>   trayActions;
-   //QPair<QIcon,QString>             themeChangeItems[3];
    QPair<QStringList,QStringList>   lngs;
    QPair<QStringList,QStringList>   themeNames;
    QString           fromLang,
@@ -76,27 +87,50 @@ private:
 
    Translate         *trans;
    Box               *box;
+   TextField         *textfield;
+   SmartTranslate    *smarttranslate;
    GrabLineEdit      *lineEdit;
+   GrabLineEdit      *lineEditField;
+   GrabLineEdit      *lineEditSmart;
    Settings          *settings;
    Autorun           *autorun;
 
    QBasicTimer       *gsTimer;          // GeometrySaveTimer
-   int                gsTimerId;
+   QBasicTimer       *shTimer;          // ShowHideTimer
+   int               gsTimerId,
+                     shTimerId;
+
+   int               hideOptionsHeight;
+   int               showStep;
+
+   bool              smartMode;
+
+
+
+signals:
+   void nextTranslateDataSignal(QString str);
 
 
 
 public slots:
    void startProcess();
+   void startSmartTranslating();
+   void finishSmartTranslating();
    void errorProcess(QProcess::ProcessError err);
    void getSelected();
    void trayMenuSlot(QAction* a);
    void changeTheme(QString name);
    void setFromLanguage(QModelIndex index);
    void setToLanguage(QModelIndex index);
-   void changeHotkey(QString key);
+   void changeHotkey(GrabLineEdit *gle, QString key);
+   void changeHotkey(QString gle, QString key);
    void changeAutorun(bool status);
    void showTranslate(QString str);
    void changeInfoType(int index);
+   void showHideOptions();
+   void translateText(QString str);
+   void smartTranslateCount(int count);
+
 };
 
 #endif // WIDGET_H

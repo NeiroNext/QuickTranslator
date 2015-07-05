@@ -5,6 +5,10 @@
 #include <QMenu>
 #include <QTimer>
 #include <QRect>
+#include <QMouseEvent>
+#include <QClipboard>
+#include <QDesktopWidget>
+#include "crossplatform.h"
 
 namespace Ui {
     class Box;

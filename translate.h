@@ -19,9 +19,14 @@ public:
    ~Translate();
    void setData(QString from, QString to, QByteArray text);
 
+   void setSimilarWords(bool flag);
+
+
 private:
       QNetworkAccessManager *manager;
       Widget *w;
+
+      bool similarWords;
 
 
 

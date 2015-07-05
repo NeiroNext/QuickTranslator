@@ -9,6 +9,7 @@ using namespace std;
 // Empty constructor
 Translate::Translate(Widget *w){
     this->w = w;
+    similarWords = true;
 }
 
 
@@ -75,21 +76,23 @@ void Translate::translateThis(QNetworkReply *rep){
       }
 
       // Get similar words and more more onother informations
-      vlist = varmap["dict"].toList();
-      if(vlist.size() > 0 && w->translateWindowType != Widget::TW_NOTIFIER){
-          foreach (QVariant var, vlist) {
-             QVariantMap varmap2 = var.value<QVariantMap>();
-             QVariantList vlist2 = varmap2["entry"].toList();
-             QString str;
+      if(similarWords){
+          vlist = varmap["dict"].toList();
+          if(vlist.size() > 0 && w->translateWindowType != Widget::TW_NOTIFIER){
+              foreach (QVariant var, vlist) {
+                 QVariantMap varmap2 = var.value<QVariantMap>();
+                 QVariantList vlist2 = varmap2["entry"].toList();
+                 QString str;
 
-             str = varmap2["pos"].toString();
-             res += "<br><br><b>" + tr("Similar words") + " (" + str + "): </b><br>";
-             foreach (QVariant var2, vlist2) {
-                 QVariantMap varmap3 = var2.value<QVariantMap>();
-                 str = varmap3["word"].toString();
-                 res += str + "<br>";
-             }
+                 str = varmap2["pos"].toString();
+                 res += "<br><br><b>" + tr("Similar words") + " (" + str + "): </b><br>";
+                 foreach (QVariant var2, vlist2) {
+                     QVariantMap varmap3 = var2.value<QVariantMap>();
+                     str = varmap3["word"].toString();
+                     res += str + "<br>";
+                 }
 
+              }
           }
       }
 
@@ -108,3 +111,11 @@ void Translate::translateThis(QNetworkReply *rep){
 
 }
 
+
+
+
+
+// On/Off similar words of translation
+void Translate::setSimilarWords(bool flag){
+    this->similarWords = flag;
+}
