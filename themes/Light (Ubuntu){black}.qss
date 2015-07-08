@@ -10,10 +10,6 @@ QComboBox {
 	padding: 0px 0px 0px 3px;
 }
 
-QLineEdit {
-	background-color: transparent;
-}
-
 QComboBox::item {
 	background-color: #dfd8d0;
 	color: black;
@@ -54,7 +50,15 @@ QFrame[objectName=header] {
 QFrame[objectName=footer] {
 	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #f0ebe7, stop:1 #dfd8d0);
 	border: none;
-	border-top: 1px solid #e3dcd4;
+}
+
+QFrame[objectName=hideFrame],
+QFrame[objectName=frameButton] {
+        background-color: #f0ebe7;
+}
+
+QFrame[objectName=frameButton] {
+        border-top: 1px solid #e3dcd4;
 }
 
 QFrame[objectName=header] *, QFrame[objectName=footer] * {
@@ -75,9 +79,10 @@ QScrollBar::handle:HOVER {
 	background-color:  gray;
 }
 
-QLineEdit {
+QFrame QLineEdit {
 	border-radius: 0px;
 	border: 1px solid transparent;
+	background-color: transparent;
 }
 
 QComboBox  {

@@ -268,19 +268,15 @@
         </spacer>
        </item>
        <item>
-        <widget class="Line" name="line_2">
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
-         </property>
-        </widget>
-       </item>
-       <item>
         <layout class="QHBoxLayout" name="horizontalLayout_6">
          <property name="spacing">
           <number>1</number>
          </property>
          <item>
           <layout class="QVBoxLayout" name="verticalLayout_3">
+           <property name="spacing">
+            <number>0</number>
+           </property>
            <item>
             <widget class="QCheckBox" name="autorun_cb">
              <property name="sizePolicy">
@@ -335,6 +331,9 @@
          </item>
          <item>
           <layout class="QVBoxLayout" name="verticalLayout_4">
+           <property name="spacing">
+            <number>0</number>
+           </property>
            <item>
             <widget class="QLabel" name="info_type_l">
              <property name="sizePolicy">
@@ -399,16 +398,6 @@
         </layout>
        </item>
        <item>
-        <widget class="Line" name="line">
-         <property name="layoutDirection">
-          <enum>Qt::LeftToRight</enum>
-         </property>
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
-         </property>
-        </widget>
-       </item>
-       <item>
         <layout class="QHBoxLayout" name="horizontalLayout_smart">
          <property name="spacing">
           <number>1</number>
@@ -428,7 +417,7 @@
             </size>
            </property>
            <property name="toolTip">
-            <string>Translatinga all text in objects such as table or another difficult object</string>
+            <string>Translating all text in objects such as table or formated text</string>
            </property>
            <property name="text">
             <string>SMART translate from buffer:</string>

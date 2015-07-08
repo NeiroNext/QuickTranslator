@@ -9,11 +9,6 @@ QLabel, QCheckBox, QToolButton {
 }
 
 
-QLineEdit {
-	border-radius: 0px;
-	border: 1px solid lightgray;
-}
-
 QListWidget {
 	background-color: rgba(255, 255, 255, 210);
 	border-radius: 0px;
@@ -31,18 +26,20 @@ QFrame[objectName=header] {
 	border-bottom: 1px solid #e3dcd4;
 }
 
-QFrame[objectName=footer] {
+QFrame[objectName=footer],
+QFrame[objectName=hideFrame],
+QFrame[objectName=frameButton] {
 	background-color: #eeeeee;
 	border: none;
-	border-top: 1px solid #e3dcd4;
 }
 
-QLineEdit {
-	border-radius: 0px;
-	border: 1px solid #ddddee;
+QFrame[objectName=frameButton] {
+        border-top: 1px solid #e3dcd4;
 }
 
-QComboBox, QLineEdit  {
+
+QComboBox, QFrame QLineEdit  {
+        border-radius: 0px;
 	border: 1px solid #efefef;
 	background-color: white;
 }
@@ -96,4 +93,10 @@ QTextEdit {
 QMessageBox {
         background-color: white;
 }
+
+/*QDialog[objectName=TextField] QLineEdit {
+        border: 1px solid gray;
+        border-radius: 3px;
+        margin: 0;
+}*/
 
