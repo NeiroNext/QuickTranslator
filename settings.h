@@ -19,6 +19,7 @@ public:
     explicit Settings(Widget *parent = 0);
     ~Settings();
     void Init();
+    void Load();
     void Update(QString str, QVariant val);
     void applicationLanguageChange();
 
@@ -28,6 +29,7 @@ public:
     QString APP_AUTORUN;
     QString APP_GEOMETRY;
     QString APP_INFOWINTYPE;
+    QString APP_LANG;
     QString LASTLIST_FROM;
     QString LASTLIST_TO;
     QString HOTKEY_MAIN;
@@ -45,7 +47,8 @@ private:
               hotkey,
               hotkeyField,
               hotkeySmart,
-              themeName;
+              themeName,
+              appLang;
     bool      isAutorun;
     QRect     geometry;
     int       infowintype;

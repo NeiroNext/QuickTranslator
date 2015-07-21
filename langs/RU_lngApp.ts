@@ -54,7 +54,7 @@
     </message>
     <message>
         <source>Display the translation window</source>
-        <translation>Отображать окно перевода</translation>
+        <translation type="obsolete">Отображать окно перевода</translation>
     </message>
     <message>
         <source>in the right-bottom corner</source>
@@ -179,6 +179,40 @@
     <message>
         <source>Translating all text in objects such as table or formated text</source>
         <translation>Перевод всего текста в таких объектах как таблица или форматированный текст</translation>
+    </message>
+    <message>
+        <source>Select theme:</source>
+        <translation>Выберите тему:</translation>
+    </message>
+    <message>
+        <source>Display the translation window:</source>
+        <translation>Отображать окно перевода:</translation>
+    </message>
+    <message>
+        <source>Interface language:</source>
+        <translation>Язык интерфейса:</translation>
+    </message>
+    <message>
+        <source>English</source>
+        <translation>Английский</translation>
+    </message>
+    <message>
+        <source>Russia</source>
+        <translation>Русский</translation>
+    </message>
+    <message>
+        <source>Ukrainian</source>
+        <translation>Украинский</translation>
+    </message>
+    <message>
+        <source>Please note!</source>
+        <translation>Пожалуйста обратите внимание!</translation>
+    </message>
+    <message>
+        <source>Change of language will only occur after restarting the application.
+Restart the application now?</source>
+        <translation>Изменение языка произойдет только после перезапуска приложения.
+Перезапустить приложение сейчас?</translation>
     </message>
 </context>
 </TS>

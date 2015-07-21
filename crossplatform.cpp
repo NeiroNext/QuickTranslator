@@ -5,6 +5,9 @@
 #include <X11/Xatom.h>
 #include <X11/Xlib.h>
 #endif
+#ifdef Q_OS_WIN
+#include <QTextCodec>
+#endif
 
 
 
@@ -91,4 +94,24 @@ void Crossplatform::setFocus(QWidget *window){
               (SubstructureNotifyMask | SubstructureRedirectMask), (XEvent *)&xev);
 #endif
 
+}
+
+
+
+
+
+// Return clipboard in needed encoding
+QString Crossplatform::clipboard(){
+    QString ret = "";
+#ifdef Q_OS_WIN
+    QTextCodec *tc = QTextCodec::codecForName("Windows-1251");
+    QByteArray ba
+    ba.append(QApplication::clipboard()->mimeData()->data("text/html"));
+    ret = tc->toUnicode(ba);
+#endif
+#ifdef Q_OS_LINUX
+    ret = QString::fromUtf8(QApplication::clipboard()->mimeData()->data("text/html"));
+#endif
+
+    return ret;
 }

@@ -12,6 +12,7 @@ Settings::Settings(Widget *parent) : QObject() {
     APP_AUTORUN      = "application/autorun";
     APP_GEOMETRY     = "application/geometry";
     APP_INFOWINTYPE  = "application/translate_win_type";
+    APP_LANG         = "application/language";
     LASTLIST_FROM    = "last_list/from";
     LASTLIST_TO      = "last_list/to";
     HOTKEY_MAIN      = "hotkey/main";
@@ -36,20 +37,28 @@ Settings::~Settings(){
 
 
 
+// Load application settings
+void Settings::Load(){
+    QString userLng = getUserLang();
+
+    from        = s->value(LANG_FROM, "auto").toString();
+    to          = s->value(LANG_TO, userLng).toString();
+    themeName   = s->value(APP_THEME, "Default").toString();
+    hotkey      = s->value(HOTKEY_MAIN, "Shift+Meta+Z").toString();
+    hotkeyField = s->value(HOTKEY_FIELD, "Ctrl+Meta+T").toString();
+    hotkeySmart = s->value(HOTKEY_SMART, "Ctrl+Meta+S").toString();
+    isAutorun   = s->value(APP_AUTORUN, true).toBool();
+    geometry    = s->value(APP_GEOMETRY, w->geometry()).toRect();
+    infowintype = s->value(APP_INFOWINTYPE, 0).toInt();
+    appLang     = s->value(APP_LANG, userLng).toString();
+}
+
+
+
+
+
 // Init application settings
 void Settings::Init(){
-   QString userLng = getUserLang();
-
-   from        = s->value(LANG_FROM, "auto").toString();
-   to          = s->value(LANG_TO, userLng).toString();
-   themeName   = s->value(APP_THEME, "Default").toString();
-   hotkey      = s->value(HOTKEY_MAIN, "Shift+Meta+Z").toString();
-   hotkeyField = s->value(HOTKEY_FIELD, "Shift+Meta+T").toString();
-   hotkeySmart = s->value(HOTKEY_SMART, "Shift+Meta+S").toString();
-   isAutorun   = s->value(APP_AUTORUN, true).toBool();
-   geometry    = s->value(APP_GEOMETRY, w->geometry()).toRect();
-   infowintype = s->value(APP_INFOWINTYPE, 0).toInt();
-
    w->setFromLanguage(from);
    w->setToLanguage(to);
    w->changeTheme(themeName);
@@ -59,6 +68,7 @@ void Settings::Init(){
    w->changeAutorun(isAutorun);
    w->setGeometry(geometry);
    w->changeInfoType(infowintype);
+   w->appLngChange(appLang);
 }
 
 
@@ -78,7 +88,7 @@ void Settings::Update(QString str, QVariant val){
 // Change application language
 void Settings::applicationLanguageChange(){
     QString lngUrl    = QCoreApplication::applicationDirPath() + "/langs/";
-    QString langUpper = getUserLang().toUpper();
+    QString langUpper = appLang.toUpper();
 
     if(langUpper != "EN"){
         if(QFile(lngUrl + langUpper + "_lngList.json").exists())

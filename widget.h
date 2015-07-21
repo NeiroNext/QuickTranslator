@@ -44,6 +44,7 @@ public:
     void setFromLanguage(QString str);
     void setToLanguage(QString str);
     void langListInit(QString url, bool initList = true);
+    void appLngChange(QString lng);
     void resizeEvent(QResizeEvent *ev);
     void moveEvent(QMoveEvent *ev);
     void timerEvent(QTimerEvent *ev);
@@ -68,6 +69,7 @@ private:
 
    void geometrySaveEvent();
    void nextTranslateDate(QString str);
+   void appLanguageInit();
 
    Ui::Widget        *ui;
    QProcess          process;
@@ -82,6 +84,7 @@ private:
    QPair<QStringList,QStringList>   themeNames;
    QString           fromLang,
                      toLang;
+   QStringList       appLanguages;
    int               lastFromListIndex,
                      lastToListIndex;
 
@@ -130,6 +133,7 @@ public slots:
    void showHideOptions();
    void translateText(QString str);
    void smartTranslateCount(int count);
+   void applicationLanguageChange(int index);
 
 };
 

@@ -9,9 +9,11 @@ Widget::Widget(QMainWindow *parent) :
    ui(new Ui::Widget)
 {
    settings = new Settings(this);
+   settings->Load();
    settings->applicationLanguageChange();
 
    themeTextColor << "#4c4c4c" << "#4c4c4c" << "#4c4c4c";
+   appLanguages << "en" << "ru" << "uk";
    translateWindowType = TW_DEFAULT;
    smartMode           = false;
 
@@ -46,8 +48,10 @@ Widget::Widget(QMainWindow *parent) :
    delete ui->hotkey_le_smart;
 
    ui->hideFrame->setMaximumHeight(0);
-   hideOptionsHeight = 100;
+   hideOptionsHeight = ui->hideFrame->sizeHint().height();
    showStep          = 10;
+
+
 
    // Connects
    connect(&hotkey,        SIGNAL(activated()),                           SLOT(startProcess()));
@@ -72,6 +76,7 @@ Widget::Widget(QMainWindow *parent) :
    connect(ui->autorun_cb, SIGNAL(toggled(bool)),                         SLOT(changeAutorun(bool)));
    connect(ui->infoWin_ch, SIGNAL(activated(int)),                        SLOT(changeInfoType(int)));
    connect(ui->showOptions,SIGNAL(clicked()),                             SLOT(showHideOptions()));
+   connect(ui->appLanguage,SIGNAL(activated(int)),                        SLOT(applicationLanguageChange(int)));
 }
 
 
@@ -133,7 +138,6 @@ void Widget::startSmartTranslating(){
 void Widget::finishSmartTranslating(){
     smartMode = false;
     trans->setSimilarWords(true);
-    qDebug() << "FINISH";
     pb->setValue(pb->maximum());
     pb->hide();
 }
@@ -190,7 +194,7 @@ void Widget::translateText(QString str){
         tmpStr = td.toPlainText();
     }
 
-    trans->setData(fromLang, toLang, tmpStr.toLocal8Bit());
+    trans->setData(fromLang, toLang, tmpStr.toUtf8());
     pb->setValue(pb->value() + 1);
 }
 
@@ -325,6 +329,7 @@ void Widget::trayMenuSlot(QAction *act){
         mb.raise();
     }
     if(act == trayActions[2]){                                        // Exit
+        trayMenu->hide();
         qApp->quit();
     }
 
@@ -465,6 +470,32 @@ void Widget::changeTheme(QString thName){
     f.close();
 
     settings->Update(settings->APP_THEME, themeName);
+}
+
+
+
+
+
+// Application languagre change
+void Widget::applicationLanguageChange(int index) {
+    settings->Update(settings->APP_LANG, appLanguages[index]);
+    if(QMessageBox::Yes == QMessageBox::question(this, tr("Please note!"),
+                           tr("Change of language will only occur after restarting the application.\n"
+                              "Restart the application now?"), QMessageBox::Yes | QMessageBox::No))
+    {
+        QProcess::startDetached(QApplication::applicationFilePath(), QStringList("--restart"));
+        qApp->quit();
+    }
+}
+
+
+
+
+
+// Application language change at start
+void Widget::appLngChange(QString lng) {
+    int index = appLanguages.indexOf(lng);
+    ui->appLanguage->setCurrentIndex(index);
 }
 
 

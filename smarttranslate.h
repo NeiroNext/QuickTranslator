@@ -24,7 +24,6 @@ public:
 private:
     void getNextPart(bool test);
 
-    QClipboard   *cl;
     int  from, to;
     int packetCount;
     bool isFinish;

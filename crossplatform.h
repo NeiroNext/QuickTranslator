@@ -4,6 +4,9 @@
 #include <QObject>
 #include <QWidget>
 #include <QString>
+#include <QClipboard>
+#include <QApplication>
+#include <QMimeData>
 
 
 
@@ -20,7 +23,8 @@ public:
     static QString         _GetSelectedProcessName();
 
     // Normal functions
-    static void setFocus(QWidget *window);
+    static void    setFocus(QWidget *window);
+    static QString clipboard();
 
 };
 

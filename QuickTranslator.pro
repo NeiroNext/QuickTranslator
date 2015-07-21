@@ -21,24 +21,24 @@ SOURCES  +=  main.cpp           \
              box.cpp            \
              grablineedit.cpp   \
              settings.cpp       \
-             autorun.cpp \
-    textfield.cpp \
-    smarttranslate.cpp \
-    crossplatform.cpp
+             autorun.cpp        \
+             textfield.cpp      \
+             smarttranslate.cpp \
+             crossplatform.cpp
 
 HEADERS  +=  widget.h           \
              translate.h        \
              box.h              \
              grablineedit.h     \
              settings.h         \
-             autorun.h \
-    textfield.h \
-    smarttranslate.h \
-    crossplatform.h
+             autorun.h          \
+             textfield.h        \
+             smarttranslate.h   \
+             crossplatform.h
 
 FORMS    +=  widget.ui          \
-             box.ui \
-    textfield.ui
+             box.ui             \
+             textfield.ui
 
 RESOURCES += main.qrc
 

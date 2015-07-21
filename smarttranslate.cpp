@@ -1,6 +1,7 @@
 #include "smarttranslate.h"
 #include <QDebug>
-
+#include <QTextCodec>
+#include "crossplatform.h"
 
 
 // Constructor
@@ -26,9 +27,7 @@ void SmartTranslate::startTranslating(){
     result      = "";
     isFinish    = false;
 
-
-    cl = QApplication::clipboard();
-    buffer = cl->mimeData()->data("text/html");
+    buffer      = Crossplatform::clipboard();
 
     if(buffer == ""){
         emit finish();
@@ -40,7 +39,7 @@ void SmartTranslate::startTranslating(){
     }
 
 
-    // Twice parcing, count knowing part's count and normal
+    // Twice parsing, count knowing part's count and normal
     for(int i=0; i<2; i++) {
         // If full HTML, for go trougth header scripts and styles
         if(buffer.indexOf("<!DOCTYPE HTML", 0, Qt::CaseInsensitive) != -1 && buffer.indexOf("<body", 0, Qt::CaseInsensitive)) {
@@ -133,12 +132,10 @@ void SmartTranslate::sendTranslateText(QString str){
 // After finish processes
 void SmartTranslate::afterFinish(){
     QMimeData *md = new QMimeData();
-    md->setData("text/html", result.toLocal8Bit()); // text/html data
+    md->setData("text/html", result.toUtf8()); // text/html data
     QTextDocument td;
     td.setHtml(result);
     md->setText(td.toPlainText());
-    cl->setMimeData(md);                            // text data
-
-    qDebug() << "COPY TO CLIPBOARD!";
+    QApplication::clipboard()->setMimeData(md);// text data
 }
 
