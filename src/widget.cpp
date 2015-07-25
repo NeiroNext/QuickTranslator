@@ -478,13 +478,15 @@ void Widget::changeTheme(QString thName){
 
 // Application languagre change
 void Widget::applicationLanguageChange(int index) {
-    settings->Update(settings->APP_LANG, appLanguages[index]);
-    if(QMessageBox::Yes == QMessageBox::question(this, tr("Please note!"),
-                           tr("Change of language will only occur after restarting the application.\n"
-                              "Restart the application now?"), QMessageBox::Yes | QMessageBox::No))
-    {
-        QProcess::startDetached(QApplication::applicationFilePath(), QStringList("--restart"));
-        qApp->quit();
+    if(ui->appLanguage->itemText(index) != lastAppLng){
+        settings->Update(settings->APP_LANG, appLanguages[index]);
+        if(QMessageBox::Yes == QMessageBox::question(this, tr("Please note!"),
+                               tr("Change of language will only occur after restarting the application.\n"
+                                  "Restart the application now?"), QMessageBox::Yes | QMessageBox::No))
+        {
+            QProcess::startDetached(QApplication::applicationFilePath(), QStringList("--restart"));
+            qApp->quit();
+        }
     }
 }
 
@@ -494,8 +496,9 @@ void Widget::applicationLanguageChange(int index) {
 
 // Application language change at start
 void Widget::appLngChange(QString lng) {
-    int index = appLanguages.indexOf(lng);
+    int index  = appLanguages.indexOf(lng);
     ui->appLanguage->setCurrentIndex(index);
+    lastAppLng = ui->appLanguage->currentText();
 }
 
 

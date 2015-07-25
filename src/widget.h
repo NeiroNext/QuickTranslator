@@ -87,6 +87,7 @@ private:
    QStringList       appLanguages;
    int               lastFromListIndex,
                      lastToListIndex;
+   QString           lastAppLng;
 
    Translate         *trans;
    Box               *box;
