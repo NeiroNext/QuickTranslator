@@ -19,11 +19,11 @@ Box::Box(QWidget *parent) :
     timerHide   = new QBasicTimer();
 
     menu    = new QMenu(this);
-    copySel = new QAction(tr("Copy Selected"), 0);
     copyAll = new QAction(tr("Copy All"), 0);
+    copySel = new QAction(tr("Copy Selected"), 0);
 
-    menu->addAction(copySel);
     menu->addAction(copyAll);
+    menu->addAction(copySel);
 
     connect(menu,      SIGNAL(triggered(QAction*)), SLOT(copyToBuffer(QAction*)));
     connect(ui->close, SIGNAL(clicked()),           SLOT(hide()));

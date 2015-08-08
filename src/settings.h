@@ -35,6 +35,7 @@ public:
     QString HOTKEY_MAIN;
     QString HOTKEY_FIELD;
     QString HOTKEY_SMART;
+    QString TRANS_CLIPBOARD;
 
 
 private:
@@ -50,6 +51,7 @@ private:
               themeName,
               appLang;
     bool      isAutorun;
+    bool      copyToClipboard;
     QRect     geometry;
     int       infowintype;
     QTranslator *translator;

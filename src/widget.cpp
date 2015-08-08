@@ -12,7 +12,6 @@ Widget::Widget(QMainWindow *parent) :
    settings->Load();
    settings->applicationLanguageChange();
 
-   themeTextColor << "#4c4c4c" << "#4c4c4c" << "#4c4c4c";
    appLanguages << "en" << "ru" << "uk";
    translateWindowType = TW_DEFAULT;
    smartMode           = false;
@@ -54,29 +53,30 @@ Widget::Widget(QMainWindow *parent) :
 
 
    // Connects
-   connect(&hotkey,        SIGNAL(activated()),                           SLOT(startProcess()));
-   connect(&hotkeyField,   SIGNAL(activated()), textfield,                SLOT(show()));
-   connect(&hotkeySmart,   SIGNAL(activated()),                           SLOT(startSmartTranslating()));
-   connect(smarttranslate, SIGNAL(getPart(QString)),                      SLOT(translateText(QString)));
-   connect(smarttranslate, SIGNAL(finish()),                              SLOT(finishSmartTranslating()));
-   connect(this,           SIGNAL(nextTranslateDataSignal(QString)), smarttranslate, SLOT(sendTranslateText(QString)));
-   connect(smarttranslate, SIGNAL(getPacketCount(int)),                   SLOT(smartTranslateCount(int)));
-   connect(&process,       SIGNAL(error(QProcess::ProcessError)),         SLOT(errorProcess(QProcess::ProcessError)));
-   connect(&process,       SIGNAL(readyReadStandardOutput()),             SLOT(getSelected()));
-   connect(textfield,      SIGNAL(getText(QString)),                      SLOT(translateText(QString)));
-   connect(trayMenu,       SIGNAL(triggered(QAction*)),                   SLOT(trayMenuSlot(QAction*)));
- //connect(trans,          SIGNAL(showTranslate(QString)), box,           SLOT(showTranslate(QString)));
-   connect(trans,          SIGNAL(showTranslate(QString)),                SLOT(showTranslate(QString)));
-   connect(ui->theme_cb,   SIGNAL(activated(QString)),                    SLOT(changeTheme(QString)));
-   connect(ui->from_list,  SIGNAL(doubleClicked(QModelIndex)),            SLOT(setFromLanguage(QModelIndex)));
-   connect(ui->to_list,    SIGNAL(doubleClicked(QModelIndex)),            SLOT(setToLanguage(QModelIndex)));
-   connect(lineEdit,       SIGNAL(hotkeyChanged(GrabLineEdit*, QString)), SLOT(changeHotkey(GrabLineEdit*, QString)));
-   connect(lineEditField,  SIGNAL(hotkeyChanged(GrabLineEdit*, QString)), SLOT(changeHotkey(GrabLineEdit*, QString)));
-   connect(lineEditSmart,  SIGNAL(hotkeyChanged(GrabLineEdit*, QString)), SLOT(changeHotkey(GrabLineEdit*, QString)));
-   connect(ui->autorun_cb, SIGNAL(toggled(bool)),                         SLOT(changeAutorun(bool)));
-   connect(ui->infoWin_ch, SIGNAL(activated(int)),                        SLOT(changeInfoType(int)));
-   connect(ui->showOptions,SIGNAL(clicked()),                             SLOT(showHideOptions()));
-   connect(ui->appLanguage,SIGNAL(activated(int)),                        SLOT(applicationLanguageChange(int)));
+   connect(&hotkey,              SIGNAL(activated()),                           SLOT(startProcess()));
+   connect(&hotkeyField,         SIGNAL(activated()), textfield,                SLOT(show()));
+   connect(&hotkeySmart,         SIGNAL(activated()),                           SLOT(startSmartTranslating()));
+   connect(smarttranslate,       SIGNAL(getPart(QString)),                      SLOT(translateText(QString)));
+   connect(smarttranslate,       SIGNAL(finish()),                              SLOT(finishSmartTranslating()));
+   connect(this,                 SIGNAL(nextTranslateDataSignal(QString)), smarttranslate, SLOT(sendTranslateText(QString)));
+   connect(smarttranslate,       SIGNAL(getPacketCount(int)),                   SLOT(smartTranslateCount(int)));
+   connect(&process,             SIGNAL(error(QProcess::ProcessError)),         SLOT(errorProcess(QProcess::ProcessError)));
+   connect(&process,             SIGNAL(readyReadStandardOutput()),             SLOT(getSelected()));
+   connect(textfield,            SIGNAL(getText(QString)),                      SLOT(translateText(QString)));
+   connect(trayMenu,             SIGNAL(triggered(QAction*)),                   SLOT(trayMenuSlot(QAction*)));
+ //connect(trans,                SIGNAL(showTranslate(QString)), box,           SLOT(showTranslate(QString)));
+   connect(trans,                SIGNAL(showTranslate(QString)),                SLOT(showTranslate(QString)));
+   connect(ui->theme_cb,         SIGNAL(activated(QString)),                    SLOT(changeTheme(QString)));
+   connect(ui->from_list,        SIGNAL(doubleClicked(QModelIndex)),            SLOT(setFromLanguage(QModelIndex)));
+   connect(ui->to_list,          SIGNAL(doubleClicked(QModelIndex)),            SLOT(setToLanguage(QModelIndex)));
+   connect(lineEdit,             SIGNAL(hotkeyChanged(GrabLineEdit*, QString)), SLOT(changeHotkey(GrabLineEdit*, QString)));
+   connect(lineEditField,        SIGNAL(hotkeyChanged(GrabLineEdit*, QString)), SLOT(changeHotkey(GrabLineEdit*, QString)));
+   connect(lineEditSmart,        SIGNAL(hotkeyChanged(GrabLineEdit*, QString)), SLOT(changeHotkey(GrabLineEdit*, QString)));
+   connect(ui->autorun_cb,       SIGNAL(toggled(bool)),                         SLOT(changeAutorun(bool)));
+   connect(ui->cpToClipboard_cb, SIGNAL(toggled(bool)),                         SLOT(translateToClipboard(bool)));
+   connect(ui->infoWin_ch,       SIGNAL(activated(int)),                        SLOT(changeInfoType(int)));
+   connect(ui->showOptions,      SIGNAL(clicked()),                             SLOT(showHideOptions()));
+   connect(ui->appLanguage,      SIGNAL(activated(int)),                        SLOT(applicationLanguageChange(int)));
 }
 
 
@@ -161,11 +161,9 @@ void Widget::errorProcess(QProcess::ProcessError err){
     qDebug() << "Error run process \"xsel\"\nMessage: " << process.errorString();
     if(err == QProcess::NotOpen){
         QMessageBox::critical(this, tr("Critical error!"),
-        "<font color="+getTTColor()+">"+
             tr("Unable to run the utility <b>xsel</b>, maybe it is not exists."
                "<br>The program work is not possible without it!<br>"
-               "Try reinstalling the program to its normal work!")+
-        "</font>");
+               "Try reinstalling the program to its normal work!"));
     }
 }
 
@@ -306,7 +304,7 @@ void Widget::trayMenuSlot(QAction *act){
     if(act == trayActions[1]){
         // About
         QMessageBox mb;
-        mb.about(this, tr("About"), "<font color="+getTTColor()+">"+
+        mb.about(this, tr("About"),
                  tr("<center><h2>Quick Translator</h2></center><br>"
                     "This is simple program designed to quickly translate "
                     "selected text from an unknown language to yours.<br>"
@@ -324,8 +322,7 @@ void Widget::trayMenuSlot(QAction *act){
                     "Author: <a href='http://vk.com/rozshko'>Mihail Rozshko</a><br>"
                     "Email: <a href='mailto:mihail.rozshko@gmail.com'>mihail.rozshko@gmail.com</a><br>"
                     "Site: <a href='http://sovasoft.zz.vc'>SovaSoft.zz.vc</a><br><br>"
-                    "Copyright &copy; SovaSoft 2014-2015")
-                   +"</font>");
+                    "Copyright &copy; SovaSoft 2014-2015"));
         mb.raise();
     }
     if(act == trayActions[2]){                                        // Exit
@@ -333,6 +330,16 @@ void Widget::trayMenuSlot(QAction *act){
         qApp->quit();
     }
 
+}
+
+
+
+
+
+// Copy to clipboard slot
+void Widget::translateToClipboard(bool val){
+    ui->cpToClipboard_cb->setChecked(val);
+    settings->Update(settings->TRANS_CLIPBOARD, val);
 }
 
 
@@ -357,6 +364,10 @@ void Widget::showTranslate(QString str){
                 box->move(wp);
                 box->showTranslate(str);
                 break;
+        }
+        // Copy to clipboard if need
+        if(ui->cpToClipboard_cb->isChecked()) {
+            QApplication::clipboard()->setText(str);
         }
     } else {
         nextTranslateDate(str);
@@ -621,16 +632,6 @@ void Widget::timerEvent(QTimerEvent *ev){
             showStep = (showStep == 10) ? -10 : 10;
         }
     }
-}
-
-
-
-
-
-// Return dialog text color for current theme
-QString Widget::getTTColor(){
-    int index = ui->theme_cb->currentIndex();
-    return themeTextColor[index];
 }
 
 

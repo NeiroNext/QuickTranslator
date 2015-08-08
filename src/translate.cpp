@@ -102,12 +102,10 @@ void Translate::translateThis(QNetworkReply *rep){
    } else {
       qDebug() << "Server Error: " << rep->errorString();
       if(rep->error() == QNetworkReply::HostNotFoundError){
-          QMessageBox::warning(0, tr("Host not found!"), "<font color="+w->getTTColor()+">"+
-                                  tr("Network error! Host not found, maybe you offline now.")+
-                                  "</font>");
+          QMessageBox::warning(0, tr("Host not found!"),
+                                  tr("Network error! Host not found, maybe you offline now."));
       }
    }
-
 
 }
 

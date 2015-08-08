@@ -49,9 +49,6 @@ public:
     void moveEvent(QMoveEvent *ev);
     void timerEvent(QTimerEvent *ev);
 
-    QStringList      themeTextColor;
-    QString          getTTColor(); // getThemeTextColor
-
     // Translate window types
     const static int TW_DEFAULT  = 0; // default
     const static int TW_CURSOR   = 1; // window at the cursor
@@ -135,6 +132,7 @@ public slots:
    void translateText(QString str);
    void smartTranslateCount(int count);
    void applicationLanguageChange(int index);
+   void translateToClipboard(bool val);
 
 };
 

@@ -18,6 +18,7 @@ Settings::Settings(Widget *parent) : QObject() {
     HOTKEY_MAIN      = "hotkey/main";
     HOTKEY_FIELD     = "hotkey/field";
     HOTKEY_SMART     = "hotkey/smart";
+    TRANS_CLIPBOARD  = "translate/to_clipboard";
 
     this->w = parent;
     s = new QSettings("QuikTranslator", "config");
@@ -41,16 +42,17 @@ Settings::~Settings(){
 void Settings::Load(){
     QString userLng = getUserLang();
 
-    from        = s->value(LANG_FROM, "auto").toString();
-    to          = s->value(LANG_TO, userLng).toString();
-    themeName   = s->value(APP_THEME, "Default").toString();
-    hotkey      = s->value(HOTKEY_MAIN, "Shift+Meta+Z").toString();
-    hotkeyField = s->value(HOTKEY_FIELD, "Ctrl+Meta+T").toString();
-    hotkeySmart = s->value(HOTKEY_SMART, "Ctrl+Meta+S").toString();
-    isAutorun   = s->value(APP_AUTORUN, true).toBool();
-    geometry    = s->value(APP_GEOMETRY, w->geometry()).toRect();
-    infowintype = s->value(APP_INFOWINTYPE, 0).toInt();
-    appLang     = s->value(APP_LANG, userLng).toString();
+    from            = s->value(LANG_FROM, "auto").toString();
+    to              = s->value(LANG_TO, userLng).toString();
+    themeName       = s->value(APP_THEME, "Default").toString();
+    hotkey          = s->value(HOTKEY_MAIN, "Shift+Meta+Z").toString();
+    hotkeyField     = s->value(HOTKEY_FIELD, "Ctrl+Meta+T").toString();
+    hotkeySmart     = s->value(HOTKEY_SMART, "Ctrl+Meta+S").toString();
+    isAutorun       = s->value(APP_AUTORUN, true).toBool();
+    geometry        = s->value(APP_GEOMETRY, w->geometry()).toRect();
+    infowintype     = s->value(APP_INFOWINTYPE, 0).toInt();
+    appLang         = s->value(APP_LANG, userLng).toString();
+    copyToClipboard = s->value(TRANS_CLIPBOARD, false).toBool();
 }
 
 
@@ -69,6 +71,7 @@ void Settings::Init(){
    w->setGeometry(geometry);
    w->changeInfoType(infowintype);
    w->appLngChange(appLang);
+   w->translateToClipboard(copyToClipboard);
 }
 
 
