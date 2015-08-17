@@ -85,6 +85,10 @@ Widget::Widget(QMainWindow *parent) :
 
 // Destructor
 Widget::~Widget(){
+    // Some doing
+    trayIcon->hide(); // Hide tray icon for Windows
+
+    // Deleting
     delete ui;
     delete box;
     delete trans;

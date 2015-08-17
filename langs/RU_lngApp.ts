@@ -214,5 +214,9 @@ Restart the application now?</source>
         <translation>Изменение языка произойдет только после перезапуска приложения.
 Перезапустить приложение сейчас?</translation>
     </message>
+    <message>
+        <source>Copy translated to clipboard</source>
+        <translation>Копировать перевод в буфер</translation>
+    </message>
 </context>
 </TS>

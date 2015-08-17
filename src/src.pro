@@ -54,8 +54,8 @@ win32 {
     RC_FILE = win_icon.rc
 }
 
-TRANSLATIONS += langs/RU_lngApp.ts    \
-                langs/UK_lngApp.ts
+TRANSLATIONS += ../langs/RU_lngApp.ts    \
+                ../langs/UK_lngApp.ts
 
 OTHER_FILES +=
 

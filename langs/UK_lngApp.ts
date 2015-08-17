@@ -206,5 +206,9 @@ Restart the application now?</source>
         <translation>Зміна мови здійсниться тільки після перезапуску програми.
 Перезапустити програму зараз?</translation>
     </message>
+    <message>
+        <source>Copy translated to clipboard</source>
+        <translation>Копіювати переклад до буферу</translation>
+    </message>
 </context>
 </TS>
