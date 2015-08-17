@@ -7,7 +7,9 @@
 #endif
 #ifdef Q_OS_WIN
 #include <QTextCodec>
+#include <windows.h>
 #endif
+
 
 
 
@@ -59,7 +61,8 @@ QString Crossplatform::_GetSelectedProcessName(){
 #endif
 
 #ifdef Q_OS_WIN
-    return "xsel.exe";
+    return "win_xsel/debug/win_xsel.exe";   // For Debug
+//    return "win_xsel.exe";                  // For Release
 #endif
 }
 
@@ -93,6 +96,9 @@ void Crossplatform::setFocus(QWidget *window){
     XSendEvent(QX11Info::display(), QX11Info::appRootWindow(), False,
               (SubstructureNotifyMask | SubstructureRedirectMask), (XEvent *)&xev);
 #endif
+#ifdef Q_OS_WIN
+    SetForegroundWindow(window->winId());
+#endif
 
 }
 
@@ -105,7 +111,7 @@ QString Crossplatform::clipboard(){
     QString ret = "";
 #ifdef Q_OS_WIN
     QTextCodec *tc = QTextCodec::codecForName("Windows-1251");
-    QByteArray ba
+    QByteArray ba;
     ba.append(QApplication::clipboard()->mimeData()->data("text/html"));
     ret = tc->toUnicode(ba);
 #endif

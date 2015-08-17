@@ -3,5 +3,10 @@
 #-------------------------------------------------
 
 SUBDIRS += src
+
+win32 {
+   SUBDIRS += src/win_xsel
+}
+
 TEMPLATE =  subdirs
 

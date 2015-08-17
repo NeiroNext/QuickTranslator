@@ -49,7 +49,7 @@ unix {
 }
 
 win32 {
-    LIBS += -L"../QuickTranslator/libs/win32"
+    LIBS += -L"../../QuickTranslator/libs/win32"
 
     RC_FILE = win_icon.rc
 }
