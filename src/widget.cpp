@@ -305,29 +305,33 @@ void Widget::trayMenuSlot(QAction *act){
            hide();
     }
 
-    if(act == trayActions[1]){
-        // About
-        QMessageBox mb;
-        mb.about(this, tr("About"),
-                 tr("<center><h2>Quick Translator</h2></center><br>"
-                    "This is simple program designed to quickly translate "
-                    "selected text from an unknown language to yours.<br>"
-                    "Features:"
-                    "<ul>"
-                    "<li> quick translation of selected text, a combination of keys that can be changed;</li>"
-                    "<li> quick translate your text, that you can write in special text field;</li>"
-                    "<li> Smart translate copied text, that can translate for example"
-                    "completely the entire table or formatted text;</li>"
-                    "<li> display similar words from the translated;</li>"
-                    "<li> translate not only words but also phrases;</li>"
-                    "<li> translation into 80 languages.</li>"
-                    "</ul>"
-                    "The program is absolutely free and allowed to free distribution.<br><br>"
-                    "Author: <a href='http://vk.com/rozshko'>Mihail Rozshko</a><br>"
-                    "Email: <a href='mailto:mihail.rozshko@gmail.com'>mihail.rozshko@gmail.com</a><br>"
-                    "Site: <a href='http://sovasoft.zz.vc'>SovaSoft.zz.vc</a><br><br>"
-                    "Copyright &copy; SovaSoft 2014-2015"));
-        mb.raise();
+    if(act == trayActions[1]){                                         // About
+        if(aboutMB->isHidden()){
+            aboutMB = new QMessageBox(tr("About"),
+                     tr("<center><h2>Quick Translator</h2></center><br>"
+                        "This is simple program designed to quickly translate "
+                        "selected text from an unknown language to yours.<br>"
+                        "Features:"
+                        "<ul>"
+                        "<li> quick translation of selected text, a combination of keys that can be changed;</li>"
+                        "<li> quick translate your text, that you can write in special text field;</li>"
+                        "<li> Smart translate copied text, that can translate for example"
+                        "completely the entire table or formatted text;</li>"
+                        "<li> display similar words from the translated;</li>"
+                        "<li> translate not only words but also phrases;</li>"
+                        "<li> translation into 80 languages.</li>"
+                        "</ul>"
+                        "The program is absolutely free and allowed to free distribution.<br><br>"
+                        "Author: <a href='http://vk.com/rozshko'>Mihail Rozshko</a><br>"
+                        "Email: <a href='mailto:mihail.rozshko@gmail.com'>mihail.rozshko@gmail.com</a><br>"
+                        "Site: <a href='http://sovasoft.zz.vc'>SovaSoft.zz.vc</a><br><br>"
+                        "Copyright &copy; SovaSoft 2014-2015"),
+                        QMessageBox::Information,
+                        QMessageBox::Ok, QMessageBox::NoButton, QMessageBox::NoButton,
+                        this);
+            aboutMB->show();
+            Crossplatform::setFocus(aboutMB);
+        }
     }
     if(act == trayActions[2]){                                        // Exit
         trayMenu->hide();

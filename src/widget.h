@@ -86,6 +86,8 @@ private:
                      lastToListIndex;
    QString           lastAppLng;
 
+   QMessageBox       *aboutMB;
+
    Translate         *trans;
    Box               *box;
    TextField         *textfield;

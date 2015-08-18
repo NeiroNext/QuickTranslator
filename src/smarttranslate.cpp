@@ -32,7 +32,7 @@ void SmartTranslate::startTranslating(){
     if(buffer == ""){
         emit finish();
         return;
-    } else if(buffer.indexOf("<") == -1){
+    } else if(!buffer.contains("<")){
         emit getPart(buffer);
         isFinish = true;
         return;
@@ -42,7 +42,7 @@ void SmartTranslate::startTranslating(){
     // Twice parsing, count knowing part's count and normal
     for(int i=0; i<2; i++) {
         // If full HTML, for go trougth header scripts and styles
-        if(buffer.indexOf("<!DOCTYPE HTML", 0, Qt::CaseInsensitive) != -1 && buffer.indexOf("<body", 0, Qt::CaseInsensitive)) {
+        if(buffer.contains("<!DOCTYPE HTML", Qt::CaseInsensitive) && buffer.indexOf("<body", 0, Qt::CaseInsensitive)) {
             to = buffer.indexOf("<body", 0, Qt::CaseInsensitive);
             result += buffer.mid(0, to);
         }

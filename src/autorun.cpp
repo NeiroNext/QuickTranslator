@@ -104,7 +104,7 @@ int Autorun::distFinder(){
 // Found equals in the QStringList one of the values
 bool Autorun::isFound(QStringList data, QStringList values){
     for(int i=0; i<values.size(); i++)
-        if(data.indexOf(values[i]) >= 0)
+        if(data.contains(values[i]))
             return true;
     return false;
 }
