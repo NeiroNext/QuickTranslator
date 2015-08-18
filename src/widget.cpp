@@ -29,6 +29,7 @@ Widget::Widget(QMainWindow *parent) :
    pb       = new QProgressBar();
    gsTimer  = new QBasicTimer();
    shTimer  = new QBasicTimer();
+   aboutMB  = NULL;
    setWindowFlags(Crossplatform::_WindowCloseButtonHint());
    move(200, 200);
 
@@ -306,7 +307,7 @@ void Widget::trayMenuSlot(QAction *act){
     }
 
     if(act == trayActions[1]){                                         // About
-        if(aboutMB->isHidden()){
+        if(aboutMB == NULL){
             aboutMB = new QMessageBox(tr("About"),
                      tr("<center><h2>Quick Translator</h2></center><br>"
                         "This is simple program designed to quickly translate "
@@ -329,8 +330,12 @@ void Widget::trayMenuSlot(QAction *act){
                         QMessageBox::Information,
                         QMessageBox::Ok, QMessageBox::NoButton, QMessageBox::NoButton,
                         this);
-            aboutMB->show();
             Crossplatform::setFocus(aboutMB);
+            int ret = aboutMB->exec();
+            if(ret == QMessageBox::Ok) {
+                delete aboutMB;
+                aboutMB = NULL;
+            }
         }
     }
     if(act == trayActions[2]){                                        // Exit

@@ -49,13 +49,12 @@ unix {
 }
 
 win32 {
-    LIBS += -L"../../QuickTranslator/libs/win32"
-
+    #LIBS += -L"../../QuickTranslator/libs/win32"
     RC_FILE = win_icon.rc
+    OTHER_FILES += win_icon.rc
 }
 
 TRANSLATIONS += ../langs/RU_lngApp.ts    \
                 ../langs/UK_lngApp.ts
 
-OTHER_FILES +=
 
