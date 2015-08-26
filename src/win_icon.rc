@@ -1,13 +1,13 @@
-IDI_ICON1 ICON DISCARDABLE "../imgs/icon-48.ico"
+IDI_ICON1 ICON DISCARDABLE "../imgs/icon.ico"
 
 
 #include <windows.h>
 
-#define VER_FILEVERSION             1,1,0,0
-#define VER_FILEVERSION_STR         "1.1.0.0\0"
-#define VER_PRODUCTVERSION          1,1,0
-#define VER_PRODUCTVERSION_STR      "1.1.0\0"
-#define VER_FILEDESCRIPTION_STR     "Fine Translator"
+#define VER_FILEVERSION             1,1,1,0
+#define VER_FILEVERSION_STR         "1.1.1.0\0"
+#define VER_PRODUCTVERSION          1,1,1
+#define VER_PRODUCTVERSION_STR      "1.1.1\0"
+#define VER_FILEDESCRIPTION_STR     "Fine and quick Translator"
 #define VER_INTERNALNAME_STR        "QuickTranslator"
 #define VER_LEGALCOPYRIGHT_STR      "Copyright (C) 2015, SovaSoft"
 #define VER_ORIGINALFILENAME_STR    "QuickTranslator.exe"

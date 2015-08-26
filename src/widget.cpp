@@ -113,6 +113,13 @@ Widget::~Widget(){
 
 // Start "get selected text" process
 void Widget::startProcess(){
+#ifdef Q_OS_WIN
+    if(translateWindowType == TW_CURSOR) {
+        box->setFly(true);
+        box->show();
+        box->hide();
+    }
+#endif
 //    process.start(qApp->applicationDirPath()+"/xsel");
     process.start(Crossplatform::_GetSelectedProcessName());
 }
