@@ -23,10 +23,13 @@ public:
 
 
 private:
+      QString preTranslateProcessing(QString str);
+
       QNetworkAccessManager *manager;
       Widget *w;
 
-      bool similarWords;
+      bool     similarWords;
+      QString  lastTranslatedText;
 
 
 
@@ -34,7 +37,7 @@ private slots:
    void translateThis(QNetworkReply* rep);
 
 signals:
-   void showTranslate(QString str);
+   void showTranslate(QString translate, QString origin);
    void deleteManager();
 
 

@@ -59,14 +59,14 @@ Widget::Widget(QMainWindow *parent) :
    connect(&hotkeySmart,         SIGNAL(activated()),                           SLOT(startSmartTranslating()));
    connect(smarttranslate,       SIGNAL(getPart(QString)),                      SLOT(translateText(QString)));
    connect(smarttranslate,       SIGNAL(finish()),                              SLOT(finishSmartTranslating()));
-   connect(this,                 SIGNAL(nextTranslateDataSignal(QString)), smarttranslate, SLOT(sendTranslateText(QString)));
+   connect(this, SIGNAL(nextTranslateDataSignal(QString, QString)), smarttranslate, SLOT(sendTranslateText(QString, QString)));
    connect(smarttranslate,       SIGNAL(getPacketCount(int)),                   SLOT(smartTranslateCount(int)));
    connect(&process,             SIGNAL(error(QProcess::ProcessError)),         SLOT(errorProcess(QProcess::ProcessError)));
    connect(&process,             SIGNAL(readyReadStandardOutput()),             SLOT(getSelected()));
    connect(textfield,            SIGNAL(getText(QString)),                      SLOT(translateText(QString)));
    connect(trayMenu,             SIGNAL(triggered(QAction*)),                   SLOT(trayMenuSlot(QAction*)));
  //connect(trans,                SIGNAL(showTranslate(QString)), box,           SLOT(showTranslate(QString)));
-   connect(trans,                SIGNAL(showTranslate(QString)),                SLOT(showTranslate(QString)));
+   connect(trans,                SIGNAL(showTranslate(QString, QString)),       SLOT(showTranslate(QString, QString)));
    connect(ui->theme_cb,         SIGNAL(activated(QString)),                    SLOT(changeTheme(QString)));
    connect(ui->from_list,        SIGNAL(doubleClicked(QModelIndex)),            SLOT(setFromLanguage(QModelIndex)));
    connect(ui->to_list,          SIGNAL(doubleClicked(QModelIndex)),            SLOT(setToLanguage(QModelIndex)));
@@ -367,40 +367,31 @@ void Widget::translateToClipboard(bool val){
 
 
 // Show translate slot
-void Widget::showTranslate(QString str){
+void Widget::showTranslate(QString translate, QString origin){
     if(!smartMode){
         switch(translateWindowType){
             case TW_DEFAULT:
                 box->setFly(false);
-                emit box->showTranslate(str);
+                emit box->showTranslate(translate);
                 break;
             case TW_NOTIFIER:
                 box->setHidden(true);
-                trayIcon->showMessage(tr("Translate"), str, QSystemTrayIcon::NoIcon, 5000);
+                trayIcon->showMessage(tr("Translate"), translate, QSystemTrayIcon::NoIcon, 5000);
                 break;
             case TW_CURSOR:
                 box->setFly(true);
                 QPoint wp = QCursor::pos() + QPoint(16, 16);
                 box->move(wp);
-                box->showTranslate(str);
+                box->showTranslate(translate);
                 break;
         }
         // Copy to clipboard if need
         if(ui->cpToClipboard_cb->isChecked()) {
-            QApplication::clipboard()->setText(str);
+            QApplication::clipboard()->setText(translate);
         }
     } else {
-        nextTranslateDate(str);
+        emit nextTranslateDataSignal(translate, origin);
     }
-}
-
-
-
-
-
-// Get every next translate part of all data for Smart translate
-void Widget::nextTranslateDate(QString str){
-    emit nextTranslateDataSignal(str);
 }
 
 

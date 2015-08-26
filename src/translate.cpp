@@ -36,9 +36,8 @@ void Translate::setData(QString from, QString to, QByteArray text){
    post.append("&dt=bd");       // Similar words
    post.append("&text=");       // Text
 
-
-   text = QUrl::toPercentEncoding(QString::fromUtf8(text));
-   post.append(text);
+   lastTranslatedText = preTranslateProcessing(QString::fromUtf8(text));
+   post.append(lastTranslatedText);
 
    QNetworkRequest req(url);
    req.setHeader(QNetworkRequest::ContentTypeHeader,
@@ -97,7 +96,7 @@ void Translate::translateThis(QNetworkReply *rep){
       }
 
 
-      emit showTranslate(res);
+      emit showTranslate(res, lastTranslatedText);
 
    } else {
       qDebug() << "Server Error: " << rep->errorString();
@@ -116,4 +115,18 @@ void Translate::translateThis(QNetworkReply *rep){
 // On/Off similar words of translation
 void Translate::setSimilarWords(bool flag){
     this->similarWords = flag;
+}
+
+
+
+
+
+// Pre translate text processing
+QString Translate::preTranslateProcessing(QString str) {
+    str = QUrl::toPercentEncoding(str);
+
+    str.replace("%D0%92%C2%A0", "%20"); // Space symbol for rich text
+
+
+    return str;
 }

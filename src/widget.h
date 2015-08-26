@@ -65,7 +65,6 @@ private:
    void themesInit();
 
    void geometrySaveEvent();
-   void nextTranslateDate(QString str);
    void appLanguageInit();
 
    Ui::Widget        *ui;
@@ -111,7 +110,7 @@ private:
 
 
 signals:
-   void nextTranslateDataSignal(QString str);
+   void nextTranslateDataSignal(QString translate, QString origin);
 
 
 
@@ -128,7 +127,7 @@ public slots:
    void changeHotkey(GrabLineEdit *gle, QString key);
    void changeHotkey(QString gle, QString key);
    void changeAutorun(bool status);
-   void showTranslate(QString str);
+   void showTranslate(QString translate, QString origin);
    void changeInfoType(int index);
    void showHideOptions();
    void translateText(QString str);

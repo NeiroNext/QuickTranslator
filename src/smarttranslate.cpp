@@ -115,8 +115,25 @@ void SmartTranslate::getNextPart(bool test){
 
 
 // Slot for recive next translated text part
-void SmartTranslate::sendTranslateText(QString str){
-    result += Qt::escape(str);
+// And it some processing
+void SmartTranslate::sendTranslateText(QString translate, QString origin){
+    // Some processing
+    if(!translate.startsWith(" ") && origin.startsWith("%20")) {
+        while(origin.startsWith("%20") && origin.length() >= 3) {
+            translate = " " + translate;
+            origin = origin.mid(3);
+        }
+    }
+    if(!translate.endsWith(" ") && origin.endsWith("%20")) {
+        while(origin.endsWith("%20") && origin.length() >= 3) {
+            translate = translate + " ";
+            origin = origin.mid(0, origin.length()-3);
+        }
+    }
+
+
+
+    result += Qt::escape(translate);
 
     if(!isFinish) {
         getNextPart(false);

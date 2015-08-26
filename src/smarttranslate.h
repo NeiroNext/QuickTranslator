@@ -40,7 +40,7 @@ signals:
 
 
 public slots:
-    void sendTranslateText(QString str);
+    void sendTranslateText(QString translate, QString origin);
     void afterFinish();
 
 
