@@ -78,6 +78,7 @@ Widget::Widget(QMainWindow *parent) :
    connect(ui->infoWin_ch,       SIGNAL(activated(int)),                        SLOT(changeInfoType(int)));
    connect(ui->showOptions,      SIGNAL(clicked()),                             SLOT(showHideOptions()));
    connect(ui->appLanguage,      SIGNAL(activated(int)),                        SLOT(applicationLanguageChange(int)));
+   connect(ui->similar_cb,       SIGNAL(toggled(bool)),                         SLOT(translateSimilarWords(bool)));
 }
 
 
@@ -149,7 +150,7 @@ void Widget::startSmartTranslating(){
 // Finish smart translating
 void Widget::finishSmartTranslating(){
     smartMode = false;
-    trans->setSimilarWords(true);
+    trans->setSimilarWords(similarWords);
     pb->setValue(pb->maximum());
     pb->hide();
 }
@@ -582,6 +583,18 @@ void Widget::changeAutorun(bool status){
     } else {
         qDebug() << "Autorun Error!";
     }
+}
+
+
+
+
+
+// Translate similar words change
+void Widget::translateSimilarWords(bool val) {
+    trans->setSimilarWords(val);
+    ui->similar_cb->setChecked(val);
+    settings->Update(settings->TRANS_SIMILAR, val);
+    similarWords = val;
 }
 
 

@@ -36,6 +36,7 @@ public:
     QString HOTKEY_FIELD;
     QString HOTKEY_SMART;
     QString TRANS_CLIPBOARD;
+    QString TRANS_SIMILAR;
 
 
 private:
@@ -52,6 +53,7 @@ private:
               appLang;
     bool      isAutorun;
     bool      copyToClipboard;
+    bool      similarWords;
     QRect     geometry;
     int       infowintype;
     QTranslator *translator;

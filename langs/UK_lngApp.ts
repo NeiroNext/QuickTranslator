@@ -210,5 +210,9 @@ Restart the application now?</source>
         <source>Copy translated to clipboard</source>
         <translation>Копіювати переклад до буферу</translation>
     </message>
+    <message>
+        <source>Show similar words</source>
+        <translation>Показувати схожі слова</translation>
+    </message>
 </context>
 </TS>

@@ -106,6 +106,7 @@ private:
    int               showStep;
 
    bool              smartMode;
+   bool              similarWords;
 
 
 
@@ -134,6 +135,7 @@ public slots:
    void smartTranslateCount(int count);
    void applicationLanguageChange(int index);
    void translateToClipboard(bool val);
+   void translateSimilarWords(bool val);
 
 };
 
