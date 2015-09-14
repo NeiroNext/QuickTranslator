@@ -21,6 +21,7 @@ public:
     static Qt::WindowFlags _WindowOnTopFrameIconHide();
     static Qt::WindowFlags _WindowCloseButtonHint();
     static QString         _GetSelectedProcessName();
+    static QString         _MetaKeyName();
 
     // Normal functions
     static void    setFocus(QWidget *window);

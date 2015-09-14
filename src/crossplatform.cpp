@@ -70,6 +70,21 @@ QString Crossplatform::_GetSelectedProcessName(){
 
 
 
+// Hotkey display Meta key constant
+QString Crossplatform::_MetaKeyName() {
+#ifdef Q_OS_LINUX
+    return "Super";
+#endif
+
+#ifdef Q_OS_WIN
+    return "Win";
+#endif
+}
+
+
+
+
+
 //====================================// FUNCTIONS //======================================//
 
 

@@ -9,6 +9,8 @@ class GrabLineEdit : public QLineEdit
 public:
     explicit GrabLineEdit(QLineEdit *parent = 0);
 
+    void setText(const QString str);
+
 
 
 private:

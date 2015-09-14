@@ -1,5 +1,6 @@
 #include <QKeyEvent>
 #include "grablineedit.h"
+#include "crossplatform.h"
 
 
 
@@ -85,6 +86,9 @@ void GrabLineEdit::keyPressEvent(QKeyEvent *ev){
             key += QString((QChar)k).toUpper();
 
     }
+
+
+    key = key.replace("Meta", Crossplatform::_MetaKeyName());
     this->setText(key);
 }
 
@@ -94,5 +98,17 @@ void GrabLineEdit::keyPressEvent(QKeyEvent *ev){
 
 // Send signal when key released
 void GrabLineEdit::keyReleaseEvent(QKeyEvent *ev){
+    key = key.replace(Crossplatform::_MetaKeyName(), "Meta");
     emit hotkeyChanged(this, key);
+}
+
+
+
+
+
+// SetText function
+void GrabLineEdit::setText(const QString str) {
+    QString str2 = str;
+    str2 = str2.replace("Meta", Crossplatform::_MetaKeyName());
+    QLineEdit::setText(str2);
 }
