@@ -6,19 +6,19 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>450</width>
-    <height>550</height>
+    <width>500</width>
+    <height>650</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>450</width>
+    <width>500</width>
     <height>550</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>500</width>
+    <width>800</width>
     <height>16777215</height>
    </size>
   </property>
@@ -53,6 +53,9 @@
        <pointsize>12</pointsize>
        <stylestrategy>PreferAntialias</stylestrategy>
       </font>
+     </property>
+     <property name="openExternalLinks">
+      <bool>true</bool>
      </property>
     </widget>
    </item>
