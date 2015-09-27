@@ -24,12 +24,13 @@ QComboBox  {
 QFrame[objectName=header] {
 	border: none;
 	border-bottom: 1px solid #e3dcd4;
+	background-color: #fff;
 }
 
 QFrame[objectName=footer],
 QFrame[objectName=hideFrame],
 QFrame[objectName=frameButton] {
-	background-color: #eeeeee;
+	background-color: #fff;
 	border: none;
 }
 
@@ -39,13 +40,18 @@ QFrame[objectName=frameButton] {
 
 
 QComboBox, QFrame QLineEdit  {
-        border-radius: 0px;
-	border: 1px solid #efefef;
+    border-radius: 0px;
+	border: 1px solid #dfdfef;
 	background-color: white;
 }
 
+QComboBox::HOVER, QFrame QLineEdit::HOVER  {
+	border: 1px solid #aaddff;
+	background-color: rgba(220, 230, 255, 150);
+}
+
 QComboBox::drop-down {
-	background-color: white;
+	background-color: transparent;
 }
 
 QComboBox::item {

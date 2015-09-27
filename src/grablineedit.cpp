@@ -1,6 +1,8 @@
 #include <QKeyEvent>
 #include "grablineedit.h"
 #include "crossplatform.h"
+#include <QMenu>
+#include <QDebug>
 
 
 
@@ -13,6 +15,10 @@ GrabLineEdit::GrabLineEdit(QLineEdit *parent) :
     this->setGeometry   ( parent->geometry()    );
     this->setSizePolicy ( parent->sizePolicy()  );
     this->setText       ( parent->text()        );
+
+    this->setReadOnly(true);
+    this->setContextMenuPolicy(Qt::CustomContextMenu); // Disable standart menu
+    infoShow = false;
 }
 
 
@@ -82,8 +88,11 @@ void GrabLineEdit::keyPressEvent(QKeyEvent *ev){
     default:
         if(k >= Qt::Key_F1 && k <= Qt::Key_F35)
             key += QString("F") + QString::number(k - Qt::Key_F1 + 1);
+        else if(k == Qt::Key_Escape)
+            key = lastHotkey;
         else if(k < 16777248)
             key += QString((QChar)k).toUpper();
+
 
     }
 
@@ -109,6 +118,22 @@ void GrabLineEdit::keyReleaseEvent(QKeyEvent *ev){
 // SetText function
 void GrabLineEdit::setText(const QString str) {
     QString str2 = str;
+
+    if(!infoShow)
+        lastHotkey = str;
+
     str2 = str2.replace("Meta", Crossplatform::_MetaKeyName());
     QLineEdit::setText(str2);
+    infoShow = false;
 }
+
+
+
+
+
+// Show info message when mouse pressa
+void GrabLineEdit::mousePressEvent(QMouseEvent *ev) {
+    infoShow = true;
+    this->setText(tr("Press key combination"));
+}
+

@@ -13,6 +13,24 @@
     </message>
 </context>
 <context>
+    <name>GrabLineEdit</name>
+    <message>
+        <source>Press combination</source>
+        <translation type="obsolete">Натисніть комбінацію</translation>
+    </message>
+    <message>
+        <source>Press key combination</source>
+        <translation>Натисніть комбінацію клавіш</translation>
+    </message>
+</context>
+<context>
+    <name>Help</name>
+    <message>
+        <source>Help</source>
+        <translation>Допомога</translation>
+    </message>
+</context>
+<context>
     <name>TextField</name>
     <message>
         <source>Dialog</source>
@@ -166,7 +184,7 @@
     </message>
     <message>
         <source>&lt;center&gt;&lt;h2&gt;Quick Translator&lt;/h2&gt;&lt;/center&gt;&lt;br&gt;This is simple program designed to quickly translate selected text from an unknown language to yours.&lt;br&gt;Features:&lt;ul&gt;&lt;li&gt; quick translation of selected text, a combination of keys that can be changed;&lt;/li&gt;&lt;li&gt; quick translate your text, that you can write in special text field;&lt;/li&gt;&lt;li&gt; Smart translate copied text, that can translate for examplecompletely the entire table or formatted text;&lt;/li&gt;&lt;li&gt; display similar words from the translated;&lt;/li&gt;&lt;li&gt; translate not only words but also phrases;&lt;/li&gt;&lt;li&gt; translation into 80 languages.&lt;/li&gt;&lt;/ul&gt;The program is absolutely free and allowed to free distribution.&lt;br&gt;&lt;br&gt;Author: &lt;a href=&apos;http://vk.com/rozshko&apos;&gt;Mihail Rozshko&lt;/a&gt;&lt;br&gt;Email: &lt;a href=&apos;mailto:mihail.rozshko@gmail.com&apos;&gt;mihail.rozshko@gmail.com&lt;/a&gt;&lt;br&gt;Site: &lt;a href=&apos;http://sovasoft.zz.vc&apos;&gt;SovaSoft.zz.vc&lt;/a&gt;&lt;br&gt;&lt;br&gt;Copyright &amp;copy; SovaSoft 2014-2015</source>
-        <translation>&lt;center&gt;&lt;h2&gt;Quick Translator&lt;/h2&gt;&lt;/center&gt;&lt;br&gt;Це проста програма розроблена для швидкого перекладу виділеного тексту з незрозумілої мови на Вашу. &lt;br&gt;Можливості:&lt;ul&gt;&lt;li&gt; швидкий переклад виділеного тексту, комбінацією клавіш, яку можливо змінити;&lt;/li&gt;&lt;li&gt; швидкий переклад вашого тексту, який ви можете написати в спеціальному текстовому полі;&lt;/li&gt;&lt;li&gt; Розумний переклад скопійованого тексту, який може перекласти до прикладу повністю всю таблицю чи форматований текст;&lt;/li&gt;&lt;li&gt; відображення схожих слів з переведених;&lt;/li&gt;&lt;li&gt; переклад не тільки слів, а й висловів;&lt;/li&gt;&lt;li&gt;переклад на 80 мов.&lt;/li&gt;&lt;/ul&gt;Програма є абсолютно безкоштовною і вільною в розповсюджені.&lt;br&gt;&lt;br&gt;Автор: &lt;a href=&apos;http://vk.com/rozshko&apos;&gt;Михайло Рожко&lt;/a&gt;&lt;br&gt;Пошта: &lt;a href=&apos;mailto:mihail.rozshko@gmail.com&apos;&gt;mihail.rozshko@gmail.com&lt;/a&gt;&lt;br&gt;Сайт: &lt;a href=&apos;http://sovasoft.zz.vc&apos;&gt;SovaSoft.zz.vc&lt;/a&gt;&lt;br&gt;&lt;br&gt;Copyright &amp;copy; SovaSoft 2014-2015</translation>
+        <translation type="obsolete">&lt;center&gt;&lt;h2&gt;Quick Translator&lt;/h2&gt;&lt;/center&gt;&lt;br&gt;Це проста програма розроблена для швидкого перекладу виділеного тексту з незрозумілої мови на Вашу. &lt;br&gt;Можливості:&lt;ul&gt;&lt;li&gt; швидкий переклад виділеного тексту, комбінацією клавіш, яку можливо змінити;&lt;/li&gt;&lt;li&gt; швидкий переклад вашого тексту, який ви можете написати в спеціальному текстовому полі;&lt;/li&gt;&lt;li&gt; Розумний переклад скопійованого тексту, який може перекласти до прикладу повністю всю таблицю чи форматований текст;&lt;/li&gt;&lt;li&gt; відображення схожих слів з переведених;&lt;/li&gt;&lt;li&gt; переклад не тільки слів, а й висловів;&lt;/li&gt;&lt;li&gt;переклад на 80 мов.&lt;/li&gt;&lt;/ul&gt;Програма є абсолютно безкоштовною і вільною в розповсюджені.&lt;br&gt;&lt;br&gt;Автор: &lt;a href=&apos;http://vk.com/rozshko&apos;&gt;Михайло Рожко&lt;/a&gt;&lt;br&gt;Пошта: &lt;a href=&apos;mailto:mihail.rozshko@gmail.com&apos;&gt;mihail.rozshko@gmail.com&lt;/a&gt;&lt;br&gt;Сайт: &lt;a href=&apos;http://sovasoft.zz.vc&apos;&gt;SovaSoft.zz.vc&lt;/a&gt;&lt;br&gt;&lt;br&gt;Copyright &amp;copy; SovaSoft 2014-2015</translation>
     </message>
     <message>
         <source>Translating all text in objects such as table or formated text</source>
@@ -213,6 +231,14 @@ Restart the application now?</source>
     <message>
         <source>Show similar words</source>
         <translation>Показувати схожі слова</translation>
+    </message>
+    <message>
+        <source>Help</source>
+        <translation>Допомога</translation>
+    </message>
+    <message>
+        <source>&lt;center&gt;&lt;h2&gt;Quick Translator&lt;/h2&gt;&lt;/center&gt;&lt;br&gt;This is simple program designed to quickly translate selected text from an unknown language to yours.&lt;br&gt;Features:&lt;ul&gt;&lt;li&gt; quick translation of selected text, a combination of keys that can be changed;&lt;/li&gt;&lt;li&gt; quick translate your text, that you can write in special text field;&lt;/li&gt;&lt;li&gt; Smart translate copied text, that can translate for example,completely the entire table or formatted text;&lt;/li&gt;&lt;li&gt; display similar words from the translated;&lt;/li&gt;&lt;li&gt; translate not only words but also phrases;&lt;/li&gt;&lt;li&gt; translation into 80 languages.&lt;/li&gt;&lt;/ul&gt;The program is absolutely free and allowed to free distribution.&lt;br&gt;&lt;br&gt;Author: &lt;a href=&apos;http://vk.com/rozshko&apos;&gt;Mihail Rozshko&lt;/a&gt;&lt;br&gt;Email: &lt;a href=&apos;mailto:mihail.rozshko@gmail.com&apos;&gt;mihail.rozshko@gmail.com&lt;/a&gt;&lt;br&gt;Site: &lt;a href=&apos;http://sovasoft.zz.vc&apos;&gt;SovaSoft.zz.vc&lt;/a&gt;&lt;br&gt;&lt;br&gt;Copyright &amp;copy; SovaSoft 2014-2015</source>
+        <translation>&lt;center&gt;&lt;h2&gt;Quick Translator&lt;/h2&gt;&lt;/center&gt;&lt;br&gt;Це проста програма розроблена для швидкого перекладу виділеного тексту з незрозумілої мови на Вашу. &lt;br&gt;Можливості:&lt;ul&gt;&lt;li&gt; швидкий переклад виділеного тексту, комбінацією клавіш, яку можливо змінити;&lt;/li&gt;&lt;li&gt; швидкий переклад вашого тексту, який ви можете написати в спеціальному текстовому полі;&lt;/li&gt;&lt;li&gt; Розумний переклад скопійованого тексту, який може перекласти до прикладу, повністю всю таблицю чи форматований текст;&lt;/li&gt;&lt;li&gt; відображення схожих слів з переведених;&lt;/li&gt;&lt;li&gt; переклад не тільки слів, а й висловів;&lt;/li&gt;&lt;li&gt;переклад на 80 мов.&lt;/li&gt;&lt;/ul&gt;Програма є абсолютно безкоштовною і вільною в розповсюджені.&lt;br&gt;&lt;br&gt;Автор: &lt;a href=&apos;http://vk.com/rozshko&apos;&gt;Михайло Рожко&lt;/a&gt;&lt;br&gt;Пошта: &lt;a href=&apos;mailto:mihail.rozshko@gmail.com&apos;&gt;mihail.rozshko@gmail.com&lt;/a&gt;&lt;br&gt;Сайт: &lt;a href=&apos;http://sovasoft.zz.vc&apos;&gt;SovaSoft.zz.vc&lt;/a&gt;&lt;br&gt;&lt;br&gt;Copyright &amp;copy; SovaSoft 2014-2015</translation>
     </message>
 </context>
 </TS>

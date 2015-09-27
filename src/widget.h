@@ -23,6 +23,7 @@
 #include "textfield.h"
 #include "smarttranslate.h"
 #include "grablineedit.h"
+#include "help.h"
 #include "settings.h"
 #include "autorun.h"
 #include "crossplatform.h"
@@ -84,6 +85,7 @@ private:
    int               lastFromListIndex,
                      lastToListIndex;
    QString           lastAppLng;
+   QString           appLngShort;
 
    QMessageBox       *aboutMB;
 
@@ -94,6 +96,7 @@ private:
    GrabLineEdit      *lineEdit;
    GrabLineEdit      *lineEditField;
    GrabLineEdit      *lineEditSmart;
+   Help              *help;
    Settings          *settings;
    Autorun           *autorun;
 

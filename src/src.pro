@@ -24,7 +24,8 @@ SOURCES  +=  main.cpp           \
              autorun.cpp        \
              textfield.cpp      \
              smarttranslate.cpp \
-             crossplatform.cpp
+             crossplatform.cpp \
+    help.cpp
 
 HEADERS  +=  widget.h           \
              translate.h        \
@@ -34,11 +35,13 @@ HEADERS  +=  widget.h           \
              autorun.h          \
              textfield.h        \
              smarttranslate.h   \
-             crossplatform.h
+             crossplatform.h \
+    help.h
 
 FORMS    +=  widget.ui          \
              box.ui             \
-             textfield.ui
+             textfield.ui \
+    help.ui
 
 RESOURCES += main.qrc
 

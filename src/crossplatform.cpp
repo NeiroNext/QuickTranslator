@@ -46,7 +46,9 @@ Qt::WindowFlags Crossplatform::_WindowCloseButtonHint(){
 #endif
 
 #ifdef Q_OS_WIN
-    return Qt::WindowCloseButtonHint;
+    //return Qt::WindowCloseButtonHint;
+    // Only for some WindoUsers =)
+    return Qt::WindowCloseButtonHint | Qt::WindowMinimizeButtonHint;
 #endif
 }
 
@@ -78,6 +80,20 @@ QString Crossplatform::_MetaKeyName() {
 
 #ifdef Q_OS_WIN
     return "Win";
+#endif
+}
+
+
+
+
+
+// File Path prefix file:///
+QString Crossplatform::_FilePathPrefix() {
+#ifdef Q_OS_LINUX
+    return "file://";
+#endif
+#ifdef Q_OS_WIN
+    return "file:///";
 #endif
 }
 

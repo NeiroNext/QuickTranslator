@@ -11,12 +11,17 @@ public:
 
     void setText(const QString str);
 
+    void mousePressEvent(QMouseEvent *ev);
 
 
 private:
     void keyPressEvent(QKeyEvent* ev);
     void keyReleaseEvent(QKeyEvent* ev);
     QString key;
+    QString lastHotkey;
+    bool    infoShow;
+
+
 
 signals:
     void hotkeyChanged(GrabLineEdit *gle, QString key);

@@ -26,6 +26,7 @@ Widget::Widget(QMainWindow *parent) :
    lineEdit = new GrabLineEdit(ui->hotkey_le);
    lineEditField = new GrabLineEdit(ui->hotkey_le_field);
    lineEditSmart = new GrabLineEdit(ui->hotkey_le_smart);
+   help     = new Help();
    pb       = new QProgressBar();
    gsTimer  = new QBasicTimer();
    shTimer  = new QBasicTimer();
@@ -38,6 +39,7 @@ Widget::Widget(QMainWindow *parent) :
    langListInit();
    themesInit();
    settings->Init();
+   help->Init(appLngShort);
 
    // Delete default QLineEdit (used for fine design only)
    ui->footer->layout()->addWidget(lineEdit);
@@ -79,6 +81,7 @@ Widget::Widget(QMainWindow *parent) :
    connect(ui->showOptions,      SIGNAL(clicked()),                             SLOT(showHideOptions()));
    connect(ui->appLanguage,      SIGNAL(activated(int)),                        SLOT(applicationLanguageChange(int)));
    connect(ui->similar_cb,       SIGNAL(toggled(bool)),                         SLOT(translateSimilarWords(bool)));
+   connect(ui->help_button,      SIGNAL(clicked(bool)),        help,            SLOT(show()));
 }
 
 
@@ -324,7 +327,7 @@ void Widget::trayMenuSlot(QAction *act){
                         "<ul>"
                         "<li> quick translation of selected text, a combination of keys that can be changed;</li>"
                         "<li> quick translate your text, that you can write in special text field;</li>"
-                        "<li> Smart translate copied text, that can translate for example"
+                        "<li> Smart translate copied text, that can translate for example,"
                         "completely the entire table or formatted text;</li>"
                         "<li> display similar words from the translated;</li>"
                         "<li> translate not only words but also phrases;</li>"
@@ -338,6 +341,7 @@ void Widget::trayMenuSlot(QAction *act){
                         QMessageBox::Information,
                         QMessageBox::Ok, QMessageBox::NoButton, QMessageBox::NoButton,
                         this);
+            aboutMB->setIconPixmap(QPixmap(":/files/imgs/icon-color.svg"));
             Crossplatform::setFocus(aboutMB);
             int ret = aboutMB->exec();
             if(ret == QMessageBox::Ok) {
@@ -519,9 +523,10 @@ void Widget::applicationLanguageChange(int index) {
 
 // Application language change at start
 void Widget::appLngChange(QString lng) {
-    int index  = appLanguages.indexOf(lng);
+    appLngShort = lng;
+    int index   = appLanguages.indexOf(lng);
     ui->appLanguage->setCurrentIndex(index);
-    lastAppLng = ui->appLanguage->currentText();
+    lastAppLng  = ui->appLanguage->currentText();
 }
 
 
