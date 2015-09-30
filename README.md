@@ -10,7 +10,7 @@ Features:
  - Smart translate copied text, that can translate for examplecompletely the entire table or formatted text;
  - display similar words from the translated;
  - translate not only words but also phrases;
- - translation into 80 languages.
+ - translation into 90 languages.
 
 The program is absolutely free and allowed to free distribution.
 

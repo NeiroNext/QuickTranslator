@@ -322,7 +322,7 @@ void Widget::trayMenuSlot(QAction *act){
             aboutMB = new QMessageBox(tr("About"),
                      tr("<center><h2>Quick Translator</h2></center><br>"
                         "This is simple program designed to quickly translate "
-                        "selected text from an unknown language to yours.<br>"
+                        "selected text from an foreign language to yours.<br>"
                         "Features:"
                         "<ul>"
                         "<li> quick translation of selected text, a combination of keys that can be changed;</li>"
@@ -331,7 +331,7 @@ void Widget::trayMenuSlot(QAction *act){
                         "completely the entire table or formatted text;</li>"
                         "<li> display similar words from the translated;</li>"
                         "<li> translate not only words but also phrases;</li>"
-                        "<li> translation into 80 languages.</li>"
+                        "<li> translation into 90 languages.</li>"
                         "</ul>"
                         "The program is absolutely free and allowed to free distribution.<br><br>"
                         "Author: <a href='http://vk.com/rozshko'>Mihail Rozshko</a><br>"
