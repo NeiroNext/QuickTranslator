@@ -334,10 +334,17 @@ void Widget::trayMenuSlot(QAction *act){
                         "<li> translation into 90 languages.</li>"
                         "</ul>"
                         "The program is absolutely free and allowed to free distribution.<br><br>"
+                        "If you like the program, you can support the further development of the program"
+                        "and future projects:<br><br>"
+                        "Web  Money<p style=\"margin: 0; margin-left: 40px\">"
+                        "<b>WMR:</b> R243421992717<br>"
+                        "<b>WMU:</b> U275261423550<br>"
+                        "<b>WMK:</b> K407115109469<br>"
+                        "<b>WMZ:</b> Z100236886128<br></p>"
                         "Author: <a href='http://vk.com/rozshko'>Mihail Rozshko</a><br>"
                         "Email: <a href='mailto:mihail.rozshko@gmail.com'>mihail.rozshko@gmail.com</a><br>"
-                        "Site: <a href='http://sovasoft.zz.vc'>SovaSoft.zz.vc</a><br><br>"
-                        "Copyright &copy; SovaSoft 2014-2015"),
+                        "Site: <a href='http://bimusoft.hol.es'>BimuSoft.hol.es</a><br><br>"
+                        "Copyright &copy; BimuSoft 2014-2015"),
                         QMessageBox::Information,
                         QMessageBox::Ok, QMessageBox::NoButton, QMessageBox::NoButton,
                         this);
