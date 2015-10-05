@@ -343,7 +343,7 @@ void Widget::trayMenuSlot(QAction *act){
                         "<b>WMZ:</b> Z100236886128<br></p>"
                         "Author: <a href='http://vk.com/rozshko'>Mihail Rozshko</a><br>"
                         "Email: <a href='mailto:mihail.rozshko@gmail.com'>mihail.rozshko@gmail.com</a><br>"
-                        "Site: <a href='http://bimusoft.hol.es'>BimuSoft.hol.es</a><br><br>"
+                        "Site: <a href='http://bimusoft.tk'>BimuSoft.tk</a><br><br>"
                         "Copyright &copy; BimuSoft 2014-2015"),
                         QMessageBox::Information,
                         QMessageBox::Ok, QMessageBox::NoButton, QMessageBox::NoButton,
