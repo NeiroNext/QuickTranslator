@@ -16,6 +16,7 @@
 #include <QPair>
 #include <QListWidget>
 #include <QProgressBar>
+#include <QListWidgetItem>
 
 
 #include "translate.h"
@@ -45,6 +46,7 @@ public:
     void setFromLanguage(QString str);
     void setToLanguage(QString str);
     void langListInit(QString url, bool initList = true);
+    void langListFlagsInit();
     void appLngChange(QString lng);
     void resizeEvent(QResizeEvent *ev);
     void moveEvent(QMoveEvent *ev);
@@ -77,8 +79,10 @@ private:
    QSystemTrayIcon   *trayIcon;
    QMenu             *trayMenu;
    QList<QAction*>   trayActions;
-   QPair<QStringList,QStringList>   lngs;
-   QPair<QStringList,QStringList>   themeNames;
+   QPair<QStringList,QStringList> lngs;
+   QPair<QStringList,QStringList> themeNames;
+   QPair<QStringList,QStringList> flagNames;
+   QPair<QList<QListWidgetItem*>, QList<QListWidgetItem*> > listWgtItms;
    QString           fromLang,
                      toLang;
    QStringList       appLanguages;

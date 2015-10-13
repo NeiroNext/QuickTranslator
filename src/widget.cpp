@@ -36,6 +36,7 @@ Widget::Widget(QMainWindow *parent) :
 
    // Init some objects
    trayMenuInit();
+   langListFlagsInit();
    langListInit();
    themesInit();
    settings->Init();
@@ -93,6 +94,9 @@ Widget::~Widget(){
     // Some doing
     trayIcon->hide(); // Hide tray icon for Windows
 
+    for(int i=0; i<trayActions.size(); ++i)
+        delete trayActions[i];
+
     // Deleting
     delete ui;
     delete box;
@@ -109,6 +113,7 @@ Widget::~Widget(){
     delete shTimer;
     delete trayIcon;
     delete trayMenu;
+    delete help;
 }
 
 
@@ -245,6 +250,7 @@ void Widget::langListInit(){
 
 // Init languages list
 void Widget::langListInit(QString url, bool initList){
+    QString workDir = QApplication::applicationDirPath() +"/imgs/flags/";
     QFile fl(url);
     fl.open(QFile::ReadOnly);
     QString str = QString(fl.readAll());
@@ -261,14 +267,72 @@ void Widget::langListInit(QString url, bool initList){
         }
     }
     if(initList){
-        ui->from_list->addItems(lngs.second);
-        ui->to_list->addItems(lngs.second);
+        if(flagNames.first.size() > 0) {
+            for(int i=0; i<lngs.first.size(); i++) {
+                int index = flagNames.first.indexOf(lngs.first[i]);
 
+                QIcon icon;
+
+                if(index != -1)
+                    icon = QIcon(workDir + flagNames.second[index] + ".png");
+                else
+                    icon = QIcon(workDir + "non.png");
+
+                QListWidgetItem *item1 = new QListWidgetItem(icon, lngs.second[i]);
+                QListWidgetItem *item2 = new QListWidgetItem(icon, lngs.second[i]);
+                listWgtItms.first.append(item1);
+                listWgtItms.second.append(item2);
+                ui->from_list->addItem(item1);
+                ui->to_list->addItem(item2);
+            }
+        }
+        else {
+            ui->from_list->addItems(lngs.second);
+            ui->to_list->addItems(lngs.second);
+        }
         delete ui->to_list->takeItem(0);
     }
 
     lastFromListIndex = 0;
     lastToListIndex   = 0;
+}
+
+
+
+
+
+// Init languages list's flags
+// MUST INIT BEFORE "langListInit" !!!
+void Widget::langListFlagsInit() {
+    QString workDir = QApplication::applicationDirPath() +"/imgs/flags/";
+    QString url = workDir + "To_ISO_3166-1.json";
+    QFile fl(url);
+    fl.open(QFile::ReadOnly);
+    QString str = QString(fl.readAll());
+    fl.close();
+
+    if(flagNames.first.size() > 0) {
+        flagNames.first.clear();
+        flagNames.second.clear();
+    }
+
+    QVariantList vl = QxtJSON::parse(str).value<QVariantList>();
+    foreach (QVariant v, vl) {
+        QVariantMap vm = v.value<QVariantMap>();
+        QString from = vm["from"].toString();
+        QString to = vm["to"].toString();
+        flagNames.first.append(from);
+        flagNames.second.append(to);
+    }
+
+    for(int i=0; i<flagNames.first.size(); i++) {
+        QFile icon(workDir + flagNames.second[i] + ".png");
+        if( !icon.exists() ) {
+            qDebug() << "File: " << icon.fileName() << "don't exists!";
+            flagNames.second[i] = "non";
+        }
+    }
+
 }
 
 
@@ -470,7 +534,7 @@ void Widget::setToLanguage(QString str){
     int index = lngs.first.indexOf(str) - 1; // -1 beacouse toList don't have "Detect language" item
     index = (index < 0) ? 0 : index;
 
-    QModelIndex mi = ui->to_list->indexAt(QPoint(0, 0));
+    QModelIndex mi= ui->to_list->indexAt(QPoint(0, 0));
     setToLanguage(mi.model()->index(index, 0));
 }
 
