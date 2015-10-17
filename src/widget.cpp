@@ -32,7 +32,6 @@ Widget::Widget(QMainWindow *parent) :
    shTimer  = new QBasicTimer();
    aboutMB  = NULL;
    setWindowFlags(Crossplatform::_WindowCloseButtonHint());
-   move(200, 200);
 
    // Init some objects
    trayMenuInit();

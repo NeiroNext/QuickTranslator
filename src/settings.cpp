@@ -50,7 +50,7 @@ void Settings::Load(){
     hotkeyField     = s->value(HOTKEY_FIELD, "Ctrl+Meta+T").toString();
     hotkeySmart     = s->value(HOTKEY_SMART, "Ctrl+Meta+S").toString();
     isAutorun       = s->value(APP_AUTORUN, true).toBool();
-    geometry        = s->value(APP_GEOMETRY, w->geometry()).toRect();
+    geometry        = s->value(APP_GEOMETRY, QRect(0, 0, 0, 0)).toRect();
     infowintype     = s->value(APP_INFOWINTYPE, 0).toInt();
     appLang         = s->value(APP_LANG, userLng).toString();
     copyToClipboard = s->value(TRANS_CLIPBOARD, false).toBool();
@@ -63,6 +63,11 @@ void Settings::Load(){
 
 // Init application settings
 void Settings::Init(){
+   // Configure some standart values
+   if(geometry == QRect(0, 0, 0, 0)) {
+        geometry = QRect(200, 200, w->width(), w->height());
+   }
+
    w->setFromLanguage(from);
    w->setToLanguage(to);
    w->changeTheme(themeName);
