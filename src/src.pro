@@ -25,7 +25,8 @@ SOURCES  +=  main.cpp           \
              textfield.cpp      \
              smarttranslate.cpp \
              crossplatform.cpp \
-    help.cpp
+    help.cpp \
+    defaulttranslator.cpp
 
 HEADERS  +=  widget.h           \
              translate.h        \
@@ -36,12 +37,14 @@ HEADERS  +=  widget.h           \
              textfield.h        \
              smarttranslate.h   \
              crossplatform.h \
-    help.h
+    help.h \
+    defaulttranslator.h
 
 FORMS    +=  widget.ui          \
              box.ui             \
              textfield.ui \
-    help.ui
+    help.ui \
+    defaulttranslator.ui
 
 RESOURCES += main.qrc
 

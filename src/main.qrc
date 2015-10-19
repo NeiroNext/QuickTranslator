@@ -1,6 +1,7 @@
 <RCC>
     <qresource prefix="/files">
         <file>../imgs/planet-background.png</file>
+        <file>../imgs/settings.png</file>
         <file>../imgs/icon-color.svg</file>
         <file>../imgs/icon-white.svg</file>
         <file>../imgs/icon-black.svg</file>

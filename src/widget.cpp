@@ -17,10 +17,12 @@ Widget::Widget(QMainWindow *parent) :
    smartMode           = false;
 
    ui->setupUi(this);
+   ui->options->hide();
 
    autorun  = new Autorun();
    box      = new Box();
    textfield= new TextField(this);
+   defTrans = new DefaultTranslator(ui->defTrans, ui->options, this);
    smarttranslate = new SmartTranslate();
    trans    = new Translate(this);
    lineEdit = new GrabLineEdit(ui->hotkey_le);
@@ -284,10 +286,12 @@ void Widget::langListInit(QString url, bool initList){
                 ui->from_list->addItem(item1);
                 ui->to_list->addItem(item2);
             }
+            defTrans->loadLanguages(listWgtItms.first);
         }
         else {
             ui->from_list->addItems(lngs.second);
             ui->to_list->addItems(lngs.second);
+            defTrans->loadLanguages(lngs.second);
         }
         delete ui->to_list->takeItem(0);
     }
@@ -488,6 +492,7 @@ void Widget::setFromLanguage(QModelIndex i){
     lastFromListIndex = i.row();
 
     settings->Update(settings->LANG_FROM, fromLang);
+    emit defTrans->fromLng->setCurrentIndex(index);
 }
 
 
@@ -497,6 +502,15 @@ void Widget::setFromLanguage(QModelIndex i){
 // Set fromTranslate list item
 void Widget::setFromLanguage(QString str){
     int index = lngs.first.indexOf(str);
+    setFromLanguage(index);
+}
+
+
+
+
+
+// Set fromTranslate list item
+void Widget::setFromLanguage(int index){
     index = (index < 0) ? 0 : index;
 
     QModelIndex mi = ui->from_list->indexAt(QPoint(0, 0));
@@ -522,6 +536,7 @@ void Widget::setToLanguage(QModelIndex i){
     lastToListIndex = i.row();
 
     settings->Update(settings->LANG_TO, toLang);
+    emit defTrans->toLng->setCurrentIndex(index-1);
 }
 
 
@@ -531,6 +546,15 @@ void Widget::setToLanguage(QModelIndex i){
 // Set toTranslate list item
 void Widget::setToLanguage(QString str){
     int index = lngs.first.indexOf(str) - 1; // -1 beacouse toList don't have "Detect language" item
+    setToLanguage(index);
+}
+
+
+
+
+
+// Set toTranslate list item
+void Widget::setToLanguage(int index){
     index = (index < 0) ? 0 : index;
 
     QModelIndex mi= ui->to_list->indexAt(QPoint(0, 0));

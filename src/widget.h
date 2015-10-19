@@ -28,6 +28,7 @@
 #include "settings.h"
 #include "autorun.h"
 #include "crossplatform.h"
+#include "defaulttranslator.h"
 
 
 namespace Ui {
@@ -61,7 +62,7 @@ public:
     int translateWindowType;
    
 
-   
+
 private:
    void trayMenuInit();
    void langListInit();
@@ -103,6 +104,7 @@ private:
    Help              *help;
    Settings          *settings;
    Autorun           *autorun;
+   DefaultTranslator *defTrans;
 
    QBasicTimer       *gsTimer;          // GeometrySaveTimer
    QBasicTimer       *shTimer;          // ShowHideTimer
@@ -143,6 +145,8 @@ public slots:
    void applicationLanguageChange(int index);
    void translateToClipboard(bool val);
    void translateSimilarWords(bool val);
+   void setFromLanguage(int i);
+   void setToLanguage(int i);
 
 };
 
