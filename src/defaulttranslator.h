@@ -5,6 +5,7 @@
 #include <QListWidgetItem>
 #include <QMainWindow>
 #include <QComboBox>
+#include <QFrame>
 
 class Widget;
 
@@ -22,6 +23,7 @@ public:
 
     void loadLanguages(QList<QListWidgetItem*> itemsFrom);
     void loadLanguages(QStringList items);
+    void setItemsHeights(QFrame *frHeader, QFrame *frFooter1, QFrame *frFooter2);
 
     QComboBox *fromLng, *toLng;
 

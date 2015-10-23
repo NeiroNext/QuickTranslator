@@ -55,6 +55,7 @@ Widget::Widget(QMainWindow *parent) :
    hideOptionsHeight = ui->hideFrame->sizeHint().height();
    showStep          = 10;
 
+   needElementsResize();
 
 
    // Connects
@@ -591,6 +592,7 @@ void Widget::changeTheme(QString thName){
     f.close();
 
     settings->Update(settings->APP_THEME, themeName);
+    needElementsResize();
 }
 
 
@@ -778,4 +780,15 @@ void Widget::showHideOptions(){
         shTimer->start(30, this);
         shTimerId = shTimer->timerId();
     }
+}
+
+
+
+
+
+// Resize some elements where it's need
+void Widget::needElementsResize() {
+    // Resize footer of default translator window
+    defTrans->setItemsHeights(ui->header, ui->footer, ui->frameButton);
+
 }

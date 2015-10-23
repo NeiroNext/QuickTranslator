@@ -4,6 +4,10 @@
 	background-position: right bottom;
 }
 
+QWidget[objectName=defTrans] {
+	background-color: rgba(255, 255, 255, 140);
+}
+
 
 QComboBox {
 	background-color: rgba(255, 255, 255, 150);
@@ -19,6 +23,8 @@ QComboBox::item {
 
 QComboBox::drop-down {
 	background-color: rgba(255, 255, 255, 50);
+	background-image: url(:/files/imgs/arrow-black.png);
+	background-position: center;
 }
 
 QCheckBox {
@@ -57,11 +63,13 @@ QFrame[objectName=frameButton] {
         background-color: #f0ebe7;
 }
 
-QFrame[objectName=frameButton] {
+QFrame[objectName=frameButton],
+QWidget[objectName=defTrans] QFrame[objectName=footer] {
         border-top: 1px solid #e3dcd4;
 }
 
-QFrame[objectName=header] *, QFrame[objectName=footer] * {
+QFrame[objectName=header] *,
+QWidget[objectName=options] QFrame[objectName=footer] * {
 	color: #4c4c4c;
 }
 
@@ -86,7 +94,7 @@ QFrame QLineEdit {
 }
 
 QComboBox  {
-	border: 1px solid transparent;
+	border: 1px solid #e3dcd4;
 }
 
 QDialog[objectName=Box] {
@@ -102,13 +110,13 @@ QDialog QMenu {
 	selection-background-color: #f07746;
 }
 
-QToolButton {
+QDialog QToolButton {
 	border: 1px solid gray;
 	border-right: 1px solid transparent;
 	border-top: 1px solid transparent;
 }
 
-QToolButton:HOVER {
+QDialog QToolButton:HOVER {
 	background-color: #f07746;
 }
 
@@ -117,4 +125,9 @@ QTextEdit {
 	selection-background-color:  #f07746;
 	border: 1px solid transparent;
 	border-radius: 0px;
+}
+
+QWidget[objectName=defTrans] QTextEdit {
+	border: 1px solid #e3dcd4;
+	border-radius: 2px;
 }

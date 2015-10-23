@@ -48,6 +48,7 @@ public:
     void setToLanguage(QString str);
     void langListInit(QString url, bool initList = true);
     void langListFlagsInit();
+    void needElementsResize();
     void appLngChange(QString lng);
     void resizeEvent(QResizeEvent *ev);
     void moveEvent(QMoveEvent *ev);

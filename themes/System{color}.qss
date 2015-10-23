@@ -9,14 +9,20 @@ QDialog[objectName=Box] {
 	background:  white;
 }
 
-QToolButton {
+QDialog QToolButton {
 	border: 1px solid gray;
 	border-right: 1px solid transparent;
 	border-top: 1px solid transparent;
 }
 
-QToolButton:HOVER {
+QDialog QToolButton:HOVER {
 	background-color: lightgray;
+}
+
+QFrame[objectName=footer],
+QFrame[objectName=hideFrame],
+QFrame[objectName=frameButton] {
+	border: none;
 }
 
 
@@ -26,3 +32,11 @@ QTextEdit {
 	border-radius: 0px;
 }
 
+QMainWindow QTextEdit {
+	border: 1px solid lightgray;
+	border-radius: 2px;
+}
+
+QMainWindow > QWidget {
+	background: rgba(255, 255, 255, 128);
+}
