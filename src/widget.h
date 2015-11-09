@@ -60,7 +60,11 @@ public:
     const static int TW_NOTIFIER = 2; // at the tray notifier
 
 
-    int translateWindowType;
+    int       translateWindowType;
+    bool      similarWords;
+    QString   fromLang,
+              toLang;
+    QPair<QStringList,QStringList> lngs;
    
 
 
@@ -81,12 +85,10 @@ private:
    QSystemTrayIcon   *trayIcon;
    QMenu             *trayMenu;
    QList<QAction*>   trayActions;
-   QPair<QStringList,QStringList> lngs;
    QPair<QStringList,QStringList> themeNames;
    QPair<QStringList,QStringList> flagNames;
    QPair<QList<QListWidgetItem*>, QList<QListWidgetItem*> > listWgtItms;
-   QString           fromLang,
-                     toLang;
+
    QStringList       appLanguages;
    int               lastFromListIndex,
                      lastToListIndex;
@@ -116,7 +118,6 @@ private:
    int               showStep;
 
    bool              smartMode;
-   bool              similarWords;
 
 
 

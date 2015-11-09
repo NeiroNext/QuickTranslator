@@ -22,9 +22,9 @@ Widget::Widget(QMainWindow *parent) :
    autorun  = new Autorun();
    box      = new Box();
    textfield= new TextField(this);
-   defTrans = new DefaultTranslator(ui->defTrans, ui->options, this);
-   smarttranslate = new SmartTranslate();
    trans    = new Translate(this);
+   defTrans = new DefaultTranslator(ui->defTrans, ui->options, this, trans);
+   smarttranslate = new SmartTranslate();
    lineEdit = new GrabLineEdit(ui->hotkey_le);
    lineEditField = new GrabLineEdit(ui->hotkey_le_field);
    lineEditSmart = new GrabLineEdit(ui->hotkey_le_smart);
@@ -790,5 +790,4 @@ void Widget::showHideOptions(){
 void Widget::needElementsResize() {
     // Resize footer of default translator window
     defTrans->setItemsHeights(ui->header, ui->footer, ui->frameButton);
-
 }

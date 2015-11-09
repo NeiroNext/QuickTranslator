@@ -1,0 +1,133 @@
+ QWidget[objectName="MainWidget"] {
+	background-repeat: no-repeat; 
+	background-image: url(:/files/imgs/planet-background.png);
+	background-position: right bottom;
+}
+
+QWidget[objectName=defTrans] {
+	background-color: rgba(255, 255, 255, 210);
+}
+
+
+QComboBox {
+	background-color: rgba(255, 255, 255, 150);
+	padding: 0px 0px 0px 3px;
+}
+
+QComboBox::item {
+	background-color: #dfd8d0;
+	color: black;
+	selection-color: white;
+	selection-background-color: #f07746;
+}
+
+QComboBox::drop-down {
+	background-color: rgba(255, 255, 255, 50);
+	background-image: url(:/files/imgs/arrow-black.png);
+	background-position: center;
+}
+
+QCheckBox {
+	background: transparent;
+}
+
+QListWidget {
+	background-color: rgba(255, 255, 255, 200);
+	border-radius: 0px;
+	border: none;
+}
+
+QListWidget::item:HOVER {
+	background-color: rgba(200, 200, 200, 128);
+}
+
+QListWidget::item:selected {
+	background-color: transparent;
+	font-weight: 100;
+	color: #4c4c4c;
+}
+
+QFrame[objectName=header] {
+	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #dfd8d0, stop:1 #f0ebe7);
+	border: none;
+	border-bottom: 1px solid #e3dcd4;
+}
+
+QFrame[objectName=footer] {
+	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #f0ebe7, stop:1 #dfd8d0);
+	border: none;
+}
+
+QFrame[objectName=hideFrame],
+QFrame[objectName=frameButton] {
+        background-color: #f0ebe7;
+}
+
+QFrame[objectName=frameButton],
+QWidget[objectName=defTrans] QFrame[objectName=footer] {
+        border-top: 1px solid #e3dcd4;
+}
+
+QFrame[objectName=header] *,
+QWidget[objectName=options] QFrame[objectName=footer] * {
+	color: #4c4c4c;
+}
+
+QScrollBar {
+	border:  none;
+	width:  4px;
+	background:  transparent;
+}
+
+QScrollBar::handle {
+	background-color:  qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 rgba(255, 255, 255, 0), stop:0.5 gray, stop:1 rgba(255, 255, 255, 0));
+}
+
+QScrollBar::handle:HOVER {
+	background-color:  gray;
+}
+
+QFrame QLineEdit {
+	border-radius: 0px;
+	border: 1px solid transparent;
+	background-color: transparent;
+}
+
+QComboBox  {
+	border: 1px solid #e3dcd4;
+}
+
+QDialog[objectName=Box] {
+	border: 1px solid gray;
+	background:  #f7f5f3;
+}
+
+
+QDialog QMenu {
+	border: 1px solid black;
+	background:  white;
+	selection-color: black;
+	selection-background-color: #f07746;
+}
+
+QDialog QToolButton {
+	border: 1px solid gray;
+	border-right: 1px solid transparent;
+	border-top: 1px solid transparent;
+}
+
+QDialog QToolButton:HOVER {
+	background-color: #f07746;
+}
+
+QTextEdit {
+	background:  #f7f5f3;
+	selection-background-color:  #f07746;
+	border: 1px solid transparent;
+	border-radius: 0px;
+}
+
+QWidget[objectName=defTrans] QTextEdit {
+	border: 1px solid #e3dcd4;
+	border-radius: 2px;
+}

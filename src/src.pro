@@ -38,7 +38,8 @@ HEADERS  +=  widget.h           \
              smarttranslate.h   \
              crossplatform.h \
     help.h \
-    defaulttranslator.h
+    defaulttranslator.h \
+    gettranslate.h
 
 FORMS    +=  widget.ui          \
              box.ui             \

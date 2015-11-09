@@ -5,7 +5,11 @@
 #include <QListWidgetItem>
 #include <QMainWindow>
 #include <QComboBox>
+#include <QTextBrowser>
 #include <QFrame>
+#include <QBasicTimer>
+#include "translate.h"
+#include "gettranslate.h"
 
 class Widget;
 
@@ -13,12 +17,12 @@ namespace Ui {
     class DefaultTranslator;
 }
 
-class DefaultTranslator : public QWidget
+class DefaultTranslator : public QWidget, public GetTranslate
 {
     Q_OBJECT
 
 public:
-    explicit DefaultTranslator(QWidget *parent, QWidget *options, Widget *wgt);
+    explicit DefaultTranslator(QWidget *parent, QWidget *options, Widget *wgt, Translate *trans);
     ~DefaultTranslator();
 
     void loadLanguages(QList<QListWidgetItem*> itemsFrom);
@@ -27,15 +31,26 @@ public:
 
     QComboBox *fromLng, *toLng;
 
+    void getTranslate(QString translate, QString origin, QString autoLng);
+    void timerEvent(QTimerEvent *ev);
+
+
 private:
     Ui::DefaultTranslator *ui;
-    QWidget *options;
-    Widget  *wgt;
+    QBasicTimer           *autoTranslate;
+    int                    autoTranslateId;
+
+    QWidget               *options;
+    Widget                *wgt;
+    Translate             *trans;
 
 
 public slots:
     void toggleOptionsShow(bool arg);
+    void translateBtnClick();
+    void textChange();
 
 };
+
 
 #endif // DEFAULTTRANSLATOR_H

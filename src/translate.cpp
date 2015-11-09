@@ -24,30 +24,41 @@ Translate::~Translate(){}
 
 
 // Generate translate request
-void Translate::setData(QString from, QString to, QByteArray text){
-   QUrl url("http://translate.google.com/translate_a/t");
-   
-   QByteArray post;
-   post.append("client=x");
-   post.append("&sl=");         // From
-   post.append(from);
-   post.append("&tl=");         // To
-   post.append(to);
-   post.append("&dt=bd");       // Similar words
-   post.append("&text=");       // Text
+void Translate::setData(QString from, QString to, QByteArray text, GetTranslate *gt){
+   setDataMain(from, to, text);
 
-   lastTranslatedText = preTranslateProcessing(QString::fromUtf8(text));
-   post.append(lastTranslatedText);
-
-   QNetworkRequest req(url);
-   req.setHeader(QNetworkRequest::ContentTypeHeader,
-                 QVariant("application/x-www-form-urlencoded"));
-   manager = new QNetworkAccessManager();
-   manager->post(req, post);
+    this->gt = gt;
 
    connect(manager, SIGNAL(finished(QNetworkReply*)), SLOT(translateThis(QNetworkReply*)));
    connect(this,    SIGNAL(deleteManager()), manager, SLOT(deleteLater()));
- }
+}
+
+
+
+
+
+// Main function for generate translate request
+void Translate::setDataMain(QString from, QString to, QByteArray text) {
+    QUrl url("http://translate.google.com/translate_a/t");
+
+    QByteArray post;
+    post.append("client=x");
+    post.append("&sl=");         // From
+    post.append(from);
+    post.append("&tl=");         // To
+    post.append(to);
+    post.append("&dt=bd");       // Similar words
+    post.append("&text=");       // Text
+
+    lastTranslatedText = preTranslateProcessing(QString::fromUtf8(text));
+    post.append(lastTranslatedText);
+
+    QNetworkRequest req(url);
+    req.setHeader(QNetworkRequest::ContentTypeHeader,
+                  QVariant("application/x-www-form-urlencoded"));
+    manager = new QNetworkAccessManager();
+    manager->post(req, post);
+}
 
 
 
@@ -63,7 +74,13 @@ void Translate::translateThis(QNetworkReply *rep){
 
       QVariantMap varmap = QxtJSON::parse(QString::fromUtf8(ba)).toMap();
       QVariantList vlist;
+      QString autoLng;
       QString res = "";
+
+
+      // Get auto detect language
+      autoLng = varmap["src"].toString();
+
 
       // Get translate text
       vlist = varmap["sentences"].toList();
@@ -95,8 +112,10 @@ void Translate::translateThis(QNetworkReply *rep){
           }
       }
 
-
-      emit showTranslate(res, lastTranslatedText);
+      if(gt == NULL)
+          emit showTranslate(res, lastTranslatedText);
+      else
+          gt->getTranslate(res, lastTranslatedText, autoLng);
 
    } else {
       qDebug() << "Server Error: " << rep->errorString();

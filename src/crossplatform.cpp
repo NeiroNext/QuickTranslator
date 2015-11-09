@@ -42,7 +42,8 @@ Qt::WindowFlags Crossplatform::_WindowOnTopFrameIconHide(){
 // WindowCloseButtonHint constant
 Qt::WindowFlags Crossplatform::_WindowCloseButtonHint(){
 #ifdef Q_OS_LINUX
-    return Qt::Tool;
+    //return Qt::Tool;
+    return Qt::WindowCloseButtonHint | Qt::WindowMinimizeButtonHint;
 #endif
 
 #ifdef Q_OS_WIN

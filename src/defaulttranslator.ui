@@ -67,10 +67,51 @@
        <widget class="QComboBox" name="cbFrom">
         <property name="minimumSize">
          <size>
-          <width>150</width>
+          <width>160</width>
           <height>0</height>
          </size>
         </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QFrame" name="frHide1">
+        <property name="frameShape">
+         <enum>QFrame::NoFrame</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Raised</enum>
+        </property>
+        <layout class="QHBoxLayout" name="horizontalLayout_4">
+         <property name="spacing">
+          <number>0</number>
+         </property>
+         <property name="leftMargin">
+          <number>0</number>
+         </property>
+         <property name="topMargin">
+          <number>0</number>
+         </property>
+         <property name="rightMargin">
+          <number>0</number>
+         </property>
+         <property name="bottomMargin">
+          <number>0</number>
+         </property>
+         <item>
+          <widget class="QLabel" name="label">
+           <property name="text">
+            <string>Autodetect: </string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="autoLng">
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+        </layout>
        </widget>
       </item>
       <item>
@@ -124,7 +165,7 @@
       <number>20</number>
      </property>
      <item>
-      <widget class="QTextBrowser" name="ttbFrom">
+      <widget class="QTextBrowser" name="tbFrom">
        <property name="readOnly">
         <bool>false</bool>
        </property>
@@ -152,10 +193,44 @@
         <widget class="QComboBox" name="cbTo">
          <property name="minimumSize">
           <size>
-           <width>150</width>
+           <width>160</width>
            <height>0</height>
           </size>
          </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QFrame" name="frHide2">
+         <property name="frameShape">
+          <enum>QFrame::NoFrame</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout_5">
+          <property name="spacing">
+           <number>0</number>
+          </property>
+          <property name="leftMargin">
+           <number>0</number>
+          </property>
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <property name="bottomMargin">
+           <number>0</number>
+          </property>
+          <item>
+           <widget class="QLabel" name="label_2">
+            <property name="text">
+             <string>    </string>
+            </property>
+           </widget>
+          </item>
+         </layout>
         </widget>
        </item>
        <item>

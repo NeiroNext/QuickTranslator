@@ -1,0 +1,43 @@
+ QWidget[objectName="MainWidget"] {
+	background-repeat: no-repeat; 
+	background-image: url(:/files/imgs/planet-background.png);
+	background-position: right bottom;
+}
+
+QDialog[objectName=Box] {
+	border: 1px solid gray;
+	background:  white;
+}
+
+QDialog QToolButton {
+	border: 1px solid gray;
+	border-right: 1px solid transparent;
+	border-top: 1px solid transparent;
+}
+
+QDialog QToolButton:HOVER {
+	background-color: lightgray;
+}
+
+QFrame[objectName=footer],
+QFrame[objectName=hideFrame],
+QFrame[objectName=frameButton] {
+	border: none;
+	background-color: red;
+}
+
+
+QTextEdit {
+	background: white;
+	border: 1px solid transparent;
+	border-radius: 0px;
+}
+
+QMainWindow QTextEdit {
+	border: 1px solid lightgray;
+	border-radius: 2px;
+}
+
+QMainWindow > QWidget {
+	background: rgba(255, 255, 255, 128);
+}

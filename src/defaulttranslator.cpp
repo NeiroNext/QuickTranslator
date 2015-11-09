@@ -3,7 +3,8 @@
 #include "widget.h"
 #include <QDebug>
 
-DefaultTranslator::DefaultTranslator(QWidget *parent, QWidget *options, Widget *wgt) :
+
+DefaultTranslator::DefaultTranslator(QWidget *parent, QWidget *options, Widget *wgt, Translate *trans) :
     QWidget(0),
     ui(new Ui::DefaultTranslator)
 {
@@ -11,15 +12,21 @@ DefaultTranslator::DefaultTranslator(QWidget *parent, QWidget *options, Widget *
     parent->layout()->addWidget(this);
 
     this->wgt     = wgt;
+    this->trans   = trans;
     this->options = options;
     this->fromLng = ui->cbFrom;
     this->toLng   = ui->cbTo;
 
-    connect(ui->btnOptions, SIGNAL(clicked(bool)), SLOT(toggleOptionsShow(bool)));
-    connect(ui->cbFrom, SIGNAL(activated(int)), wgt, SLOT(setFromLanguage(int)));
-    connect(ui->cbTo, SIGNAL(activated(int)), wgt, SLOT(setToLanguage(int)));
+    autoTranslate = new QBasicTimer();
+
+    connect(ui->btnOptions, SIGNAL(clicked(bool)),       SLOT(toggleOptionsShow(bool)));
+    connect(ui->cbFrom,     SIGNAL(activated(int)), wgt, SLOT(setFromLanguage(int)));
+    connect(ui->cbTo,       SIGNAL(activated(int)), wgt, SLOT(setToLanguage(int)));
+    connect(ui->translate,  SIGNAL(clicked(bool)),       SLOT(translateBtnClick()));
+    connect(ui->tbFrom,     SIGNAL(textChanged()),       SLOT(textChange()));
 
     toggleOptionsShow(false);
+
 }
 
 
@@ -35,24 +42,47 @@ DefaultTranslator::~DefaultTranslator() {
 
 
 void DefaultTranslator::toggleOptionsShow(bool arg) {
-    options->setVisible(arg);
 
     int needMargin = ui->header->layout()->contentsMargins().left();
 
-    if (options->isVisible()) {
+    if (arg) {
         int footerHeight       = ui->footer->height();
         int translateBtnHeight = ui->translate->height();
-        int needMarginBottom   = footerHeight- translateBtnHeight;
-
+        int needMarginBottom   = footerHeight- translateBtnHeight - 1;
 
         ui->header->layout()->setContentsMargins(QMargins(needMargin, 0, 0, 0));
-        ui->footer->layout()->setContentsMargins(QMargins(needMargin, 0, 0, needMargin));
+        ui->footer->layout()->setContentsMargins(QMargins(needMargin, 0, 0, needMarginBottom));
         ui->mainVLayout->setContentsMargins(QMargins(needMargin, 0, 0, 0));
+
+        int ii1 = this->width() - (ui->frHide1->pos().x() + ui->frHide1->width());
+        int ii2 = this->width() - (ui->frHide2->pos().x() + ui->frHide2->width());
+
+        if(ii1 <= options->width() || ii2 <= options->width()) {
+            ui->frHide1->hide();
+            ui->frHide2->hide();
+        }
     } else {
         ui->header->layout()->setContentsMargins(QMargins(needMargin, 0, needMargin, 0));
         ui->footer->layout()->setContentsMargins(QMargins(needMargin, 0, needMargin, 0));
         ui->mainVLayout->setContentsMargins(QMargins(needMargin, 0, needMargin, 0));
+
+        ui->frHide1->show();
+        ui->frHide2->show();
     }
+
+    options->setVisible(arg);
+
+}
+
+
+
+
+
+void DefaultTranslator::setItemsHeights(QFrame *frHeader, QFrame *frFooter1, QFrame *frFooter2) {
+    ui->header->setMinimumHeight(frHeader->height());
+    int height = frFooter1->minimumSizeHint().height() + frFooter2->minimumSizeHint().height();
+    ui->footer->setMinimumHeight(height - 0);
+    ui->footer->setMaximumHeight(height - 0);
 }
 
 
@@ -77,14 +107,44 @@ void DefaultTranslator::loadLanguages(QStringList items) {
 
 
 
-void DefaultTranslator::setItemsHeights(QFrame *frHeader, QFrame *frFooter1, QFrame *frFooter2) {
-    ui->header->setMinimumHeight(frHeader->height());
-    int height = frFooter1->minimumSizeHint().height() + frFooter2->minimumSizeHint().height();
-    ui->footer->setMinimumHeight(height - 0);
-    ui->footer->setMaximumHeight(height - 0);
+// Translate Button Click
+void DefaultTranslator::translateBtnClick() {
+    trans->setSimilarWords(false);
+    trans->setData(wgt->fromLang, wgt->toLang, ui->tbFrom->toPlainText().toUtf8(), this);
 }
 
 
 
 
 
+// Show translate text
+void DefaultTranslator::getTranslate(QString translate, QString origin, QString autoLng) {
+    trans->setSimilarWords(wgt->similarWords);
+    ui->tbTo->setText(translate);
+    ui->autoLng->setText(wgt->lngs.second[wgt->lngs.first.indexOf(autoLng)]);
+}
+
+
+
+
+
+// Text change slot
+void DefaultTranslator::textChange() {
+    if(autoTranslate->isActive()){
+        autoTranslate->stop();
+    }
+    autoTranslate->start(500, this);
+    autoTranslateId = autoTranslate->timerId();
+}
+
+
+
+
+
+// TimerEvent method
+void DefaultTranslator::timerEvent(QTimerEvent *ev) {
+    if(ev->timerId() == autoTranslateId) {
+        emit ui->translate->click();
+        autoTranslate->stop();
+    }
+}
