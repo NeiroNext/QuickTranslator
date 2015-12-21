@@ -22,6 +22,12 @@ QComboBox::drop-down {
 	background-color: rgba(106, 103, 100, 255);
 }
 
+QComboBox::drop-down {
+	background-color: rgba(106, 103, 100, 255);
+	background-image: url(:/files/imgs/arrow-white.png);
+	background-position: center;
+}
+
 
 QCheckBox {
 	background: transparent;

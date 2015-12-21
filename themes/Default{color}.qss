@@ -51,8 +51,10 @@ QComboBox::HOVER, QFrame QLineEdit::HOVER  {
 }
 
 QComboBox::drop-down {
-	background-color: transparent;
+	background-image: url(:/files/imgs/arrow-black.png);
+	background-position: center;
 }
+
 
 QComboBox::item {
 	selection-background-color: gray;
