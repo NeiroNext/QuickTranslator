@@ -39,7 +39,7 @@ void Translate::setData(QString from, QString to, QByteArray text, GetTranslate 
 
 // Main function for generate translate request
 void Translate::setDataMain(QString from, QString to, QByteArray text) {
-    QUrl url("http://translate.google.com/translate_a/t");
+    QUrl url("http://translate.google.com/translate_a/single");
 
     QByteArray post;
     post.append("client=x");
@@ -48,7 +48,8 @@ void Translate::setDataMain(QString from, QString to, QByteArray text) {
     post.append("&tl=");         // To
     post.append(to);
     post.append("&dt=bd");       // Similar words
-    post.append("&text=");       // Text
+    post.append("&dt=t");        // Get translate
+    post.append("&q=");          // Text
 
     lastTranslatedText = preTranslateProcessing(QString::fromUtf8(text));
     post.append(lastTranslatedText);
@@ -72,39 +73,48 @@ void Translate::translateThis(QNetworkReply *rep){
    if(!rep->error()){
       QByteArray ba = rep->readAll();
 
-      QVariantMap varmap = QxtJSON::parse(QString::fromUtf8(ba)).toMap();
+      // Replace SyntaxError path
+      ba.replace("[,", "[[],");
+      ba.replace(",,", ",[],");
+      ba.replace(",,", ",[],");
+
+      QVariantList vl = QxtJSON::parse(QString::fromUtf8(ba)).toList();
+      /**
+       *    0 - translate text
+       *    1 - similar words
+       *    2 - autodetect from language
+       *    6 - autodetect percent
+       *    8 - autodetect with percent
+       */
+
+
       QVariantList vlist;
       QString autoLng;
       QString res = "";
 
-
       // Get auto detect language
-      autoLng = varmap["src"].toString();
+      autoLng = vl[2].toString();
 
 
-      // Get translate text
-      vlist = varmap["sentences"].toList();
+      // Get translate text lines
+      vlist = vl[0].toList();
 
-      foreach (QVariant var, vlist) {
-         QVariantMap varmap2 = var.value<QVariantMap>();
-         QString str = varmap2["trans"].toString();
-         res += str;
+      // Get all text
+      foreach (QVariant vline, vlist) {
+         res += vline.toList()[0].toString();
       }
 
       // Get similar words and more more onother informations
       if(similarWords){
-          vlist = varmap["dict"].toList();
+          vlist = vl[1].toList();
           if(vlist.size() > 0 && w->translateWindowType != Widget::TW_NOTIFIER){
               foreach (QVariant var, vlist) {
-                 QVariantMap varmap2 = var.value<QVariantMap>();
-                 QVariantList vlist2 = varmap2["entry"].toList();
-                 QString str;
+                 QVariantList subVl = var.toList();
+                 QString str = subVl[0].toString();
 
-                 str = varmap2["pos"].toString();
                  res += "<br><br><b>" + tr("Similar words") + " (" + str + "): </b><br>";
-                 foreach (QVariant var2, vlist2) {
-                     QVariantMap varmap3 = var2.value<QVariantMap>();
-                     str = varmap3["word"].toString();
+                 foreach (QVariant var2, subVl[1].toList()) {
+                     str = var2.toString();
                      res += str + "<br>";
                  }
 

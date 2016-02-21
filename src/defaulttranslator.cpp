@@ -121,7 +121,10 @@ void DefaultTranslator::translateBtnClick() {
 void DefaultTranslator::getTranslate(QString translate, QString origin, QString autoLng) {
     trans->setSimilarWords(wgt->similarWords);
     ui->tbTo->setText(translate);
-    ui->autoLng->setText(wgt->lngs.second[wgt->lngs.first.indexOf(autoLng)]);
+
+    int index = wgt->lngs.first.indexOf(autoLng);
+    if(index != -1)
+        ui->autoLng->setText(wgt->lngs.second[index]);
 }
 
 
