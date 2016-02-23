@@ -8,6 +8,7 @@
         <file>../imgs/arrow-black.png</file>
         <file>../imgs/arrow-white.png</file>
         <file>../themes/Default{color}.qss</file>
+        <file>../imgs/reverse.svg</file>
     </qresource>
     <qresource prefix="/">
         <file>../langs/lngList.json</file>

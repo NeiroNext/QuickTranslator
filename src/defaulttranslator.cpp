@@ -4,6 +4,7 @@
 #include <QDebug>
 
 
+
 DefaultTranslator::DefaultTranslator(QWidget *parent, QWidget *options, Widget *wgt, Translate *trans) :
     QWidget(0),
     ui(new Ui::DefaultTranslator)
@@ -45,7 +46,7 @@ void DefaultTranslator::toggleOptionsShow(bool arg) {
 
     int needMargin = ui->header->layout()->contentsMargins().left();
 
-    if (arg) {
+    if (arg) {  // Show options
         int footerHeight       = ui->footer->height();
         int translateBtnHeight = ui->translate->height();
         int needMarginBottom   = footerHeight- translateBtnHeight - 1;
@@ -61,7 +62,7 @@ void DefaultTranslator::toggleOptionsShow(bool arg) {
             ui->frHide1->hide();
             ui->frHide2->hide();
         }
-    } else {
+    } else {    // Hide options
         ui->header->layout()->setContentsMargins(QMargins(needMargin, 0, needMargin, 0));
         ui->footer->layout()->setContentsMargins(QMargins(needMargin, 0, needMargin, 0));
         ui->mainVLayout->setContentsMargins(QMargins(needMargin, 0, needMargin, 0));
