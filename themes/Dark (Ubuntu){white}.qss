@@ -6,7 +6,7 @@
 }
 
 QWidget[objectName=defTrans] {
-	background-color: rgba(250, 250, 250, 180);
+	background-color: rgba(0, 0, 0, 60);
 }
 
 QComboBox {
@@ -25,6 +25,11 @@ QComboBox::drop-down {
 	background-color: rgba(106, 103, 100, 255);
 	background-image: url(:/files/imgs/arrow-white.png);
 	background-position: center;
+}
+
+QComboBox::HOVER,
+QLineEdit::HOVER {
+	border: 1px solid gray;
 }
 
 
@@ -123,9 +128,26 @@ QDialog QToolButton {
 	border-top: 1px solid transparent;
 }
 
-QDialog QToolButton:HOVER {
+QDialog QToolButton:HOVER,
+QDialog QComboBox:HOVER {
 	background-color: #f07746;
 }
+
+QDialog QComboBox {
+	margin-right: -20px;
+	padding: 0px 2px;
+	border: none;
+	background-color: transparent;
+}
+
+QDialog QToolButton[objectName=reverse] {
+	border: none;
+}
+
+QDialog QComboBox::HOVER {
+	border: none;
+}
+
 
 QTextEdit {
 	background:  #f7f5f3;
@@ -139,6 +161,18 @@ QWidget[objectName=defTrans] QTextEdit {
 	border-radius: 2px;
 }
 
+QWidget[objectName=defTrans] QToolButton::HOVER {
+	border: none;
+	background-color: rgba(80, 80, 80, 180);
+	border-radius: 5px;
+}
+
+QWidget[objectName=defTrans] QComboBox[objectName=cbTo],
+QWidget[objectName=defTrans] QComboBox[objectName=cbTo]::drop-down {
+	background-color:  gray;
+	border-color: #aaa;
+}
+
 QDialog[objectName=TextField] {
     background-color: #42413c;
 }
@@ -146,3 +180,4 @@ QDialog[objectName=TextField] {
 QDialog[objectName=TextField] QLineEdit {
     background-color: #eee;
 }
+

@@ -113,8 +113,24 @@ QDialog QToolButton {
 	border-top: 1px solid transparent;
 }
 
-QDialog QToolButton:HOVER {
+QDialog QToolButton:HOVER,
+QDialog QComboBox:HOVER  {
 	background-color: lightgray;
+}
+
+QDialog QComboBox {
+	margin-right: -20px;
+	padding: 0px 2px;
+	border: none;
+	background-color: transparent;
+}
+
+QDialog QComboBox::HOVER {
+	border: none;
+}
+
+QDialog QToolButton[objectName=reverse] {
+	border: none;
 }
 
 
@@ -133,6 +149,17 @@ QMessageBox {
 QWidget[objectName=defTrans] QFrame[objectName=header],
 QWidget[objectName=defTrans] QFrame[objectName=footer] {
 	background-color: transparent;
+}
+
+
+QWidget[objectName="MainWidget"] QToolButton {
+	border: none;
+}
+
+QWidget[objectName="MainWidget"] QToolButton:HOVER {
+	background-color: #e6e9e9;
+	border-radius: 12px;
+	border: 1px solid #aaddff;
 }
 
 /*QDialog[objectName=TextField] QLineEdit {

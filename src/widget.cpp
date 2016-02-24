@@ -20,7 +20,7 @@ Widget::Widget(QMainWindow *parent) :
    ui->options->hide();
 
    autorun  = new Autorun();
-   box      = new Box();
+   box      = new Box(this);
    textfield= new TextField(this);
    trans    = new Translate(this);
    defTrans = new DefaultTranslator(ui->defTrans, ui->options, this, trans);
@@ -288,11 +288,13 @@ void Widget::langListInit(QString url, bool initList){
                 ui->to_list->addItem(item2);
             }
             defTrans->loadLanguages(listWgtItms.first);
+            box->loadLanguages(listWgtItms.first);
         }
         else {
             ui->from_list->addItems(lngs.second);
             ui->to_list->addItems(lngs.second);
             defTrans->loadLanguages(lngs.second);
+            box->loadLanguages(lngs.second);
         }
         delete ui->to_list->takeItem(0);
     }
@@ -494,6 +496,7 @@ void Widget::setFromLanguage(QModelIndex i){
 
     settings->Update(settings->LANG_FROM, fromLang);
     emit defTrans->fromLng->setCurrentIndex(index);
+    emit box->fromLng->setCurrentIndex(index);
 }
 
 
@@ -538,6 +541,7 @@ void Widget::setToLanguage(QModelIndex i){
 
     settings->Update(settings->LANG_TO, toLang);
     emit defTrans->toLng->setCurrentIndex(index-1);
+    emit box->toLng->setCurrentIndex(index-1);
 }
 
 

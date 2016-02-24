@@ -97,6 +97,11 @@ QComboBox  {
 	border: 1px solid #e3dcd4;
 }
 
+QComboBox::HOVER,
+QLineEdit::HOVER  {
+	border: 1px solid #aaa;
+}
+
 QDialog[objectName=Box] {
 	border: 1px solid gray;
 	background:  #f7f5f3;
@@ -116,8 +121,20 @@ QDialog QToolButton {
 	border-top: 1px solid transparent;
 }
 
-QDialog QToolButton:HOVER {
+QDialog QToolButton:HOVER,
+QDialog QComboBox:HOVER  {
 	background-color: #f07746;
+}
+
+QDialog QComboBox {
+	margin-right: -20px;
+	padding: 0px 2px;
+	border: none;
+	background-color: transparent;
+}
+
+QDialog QToolButton[objectName=reverse] {
+	border: none;
 }
 
 QTextEdit {

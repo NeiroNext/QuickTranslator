@@ -1,17 +1,22 @@
 #include "box.h"
 #include "ui_box.h"
+#include "widget.h"
 
 #include <QDebug>
 
 
 
 // Constructor
-Box::Box(QWidget *parent) :
+Box::Box(Widget *wgt, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::Box)
 {
     ui->setupUi(this);
     setWindowFlags(Crossplatform::_WindowOnTopFrameIconHide());
+
+    this->wgt     = wgt;
+    this->fromLng = ui->cbFrom;
+    this->toLng   = ui->cbTo;
 
     fly = false;
 
@@ -27,6 +32,8 @@ Box::Box(QWidget *parent) :
 
     connect(menu,      SIGNAL(triggered(QAction*)), SLOT(copyToBuffer(QAction*)));
     connect(ui->close, SIGNAL(clicked()),           SLOT(hide()));
+    connect(ui->cbFrom,SIGNAL(activated(int)), wgt, SLOT(setFromLanguage(int)));
+    connect(ui->cbTo,  SIGNAL(activated(int)), wgt, SLOT(setToLanguage(int)));
 
     defaultRect = rect();
 }
@@ -194,4 +201,29 @@ bool Box::event(QEvent *ev){
     if(ev->type() == QEvent::WindowDeactivate && fly)
         hide();
     return QWidget::event(ev);
+}
+
+
+
+
+
+// Load language list with icon
+void Box::loadLanguages(QList<QListWidgetItem*> items) {
+    QString spaces = "          ";    // Cratch for non cut text at right
+    for(int i=0; i<items.size(); i++) {
+        ui->cbFrom->addItem(items[i]->icon(), items[i]->text()+spaces);
+        ui->cbTo->addItem(items[i]->icon(), items[i]->text()+spaces);
+    }
+    ui->cbTo->removeItem(0);
+}
+
+// Load language list without icon
+void Box::loadLanguages(QStringList items) {
+    QString spaces = "                    ";    // Cratch for non cut text at right
+    for (int i=0; i<items.size(); i++) {
+        items[i] += spaces;
+    }
+    ui->cbFrom->addItems(items);
+    ui->cbTo->addItems(items);
+    ui->cbTo->removeItem(0);
 }
