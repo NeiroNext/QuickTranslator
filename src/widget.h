@@ -63,7 +63,8 @@ public:
     int       translateWindowType;
     bool      similarWords;
     QString   fromLang,
-              toLang;
+              toLang,
+              autoLang;
     QPair<QStringList,QStringList> lngs;
    
 
@@ -139,7 +140,7 @@ public slots:
    void changeHotkey(GrabLineEdit *gle, QString key);
    void changeHotkey(QString gle, QString key);
    void changeAutorun(bool status);
-   void showTranslate(QString translate, QString origin);
+   void showTranslate(QString translate, QString origin, QString autoLang);
    void changeInfoType(int index);
    void showHideOptions();
    void translateText(QString str);
@@ -149,6 +150,7 @@ public slots:
    void translateSimilarWords(bool val);
    void setFromLanguage(int i);
    void setToLanguage(int i);
+   void languageReverse();
 
 };
 

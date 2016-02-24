@@ -123,7 +123,7 @@ void Translate::translateThis(QNetworkReply *rep){
       }
 
       if(gt == NULL)
-          emit showTranslate(res, lastTranslatedText);
+          emit showTranslate(res, lastTranslatedText, autoLng);
       else
           gt->getTranslate(res, lastTranslatedText, autoLng);
 

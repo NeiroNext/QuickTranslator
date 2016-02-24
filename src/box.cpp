@@ -30,10 +30,11 @@ Box::Box(Widget *wgt, QWidget *parent) :
     menu->addAction(copyAll);
     menu->addAction(copySel);
 
-    connect(menu,      SIGNAL(triggered(QAction*)), SLOT(copyToBuffer(QAction*)));
-    connect(ui->close, SIGNAL(clicked()),           SLOT(hide()));
-    connect(ui->cbFrom,SIGNAL(activated(int)), wgt, SLOT(setFromLanguage(int)));
-    connect(ui->cbTo,  SIGNAL(activated(int)), wgt, SLOT(setToLanguage(int)));
+    connect(menu,       SIGNAL(triggered(QAction*)), SLOT(copyToBuffer(QAction*)));
+    connect(ui->close,  SIGNAL(clicked()),           SLOT(hide()));
+    connect(ui->cbFrom, SIGNAL(activated(int)), wgt, SLOT(setFromLanguage(int)));
+    connect(ui->cbTo,   SIGNAL(activated(int)), wgt, SLOT(setToLanguage(int)));
+    connect(ui->reverse,SIGNAL(clicked()),      wgt, SLOT(languageReverse()));
 
     defaultRect = rect();
 }

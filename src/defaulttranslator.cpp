@@ -25,6 +25,7 @@ DefaultTranslator::DefaultTranslator(QWidget *parent, QWidget *options, Widget *
     connect(ui->cbTo,       SIGNAL(activated(int)), wgt, SLOT(setToLanguage(int)));
     connect(ui->translate,  SIGNAL(clicked(bool)),       SLOT(translateBtnClick()));
     connect(ui->tbFrom,     SIGNAL(textChanged()),       SLOT(textChange()));
+    connect(ui->reverse,    SIGNAL(clicked(bool)),  wgt, SLOT(languageReverse()));
 
     toggleOptionsShow(false);
 
@@ -123,9 +124,7 @@ void DefaultTranslator::getTranslate(QString translate, QString origin, QString 
     trans->setSimilarWords(wgt->similarWords);
     ui->tbTo->setText(translate);
 
-    int index = wgt->lngs.first.indexOf(autoLng);
-    if(index != -1)
-        ui->autoLng->setText(wgt->lngs.second[index]);
+    setAutoLang(autoLng);
 }
 
 
@@ -151,4 +150,18 @@ void DefaultTranslator::timerEvent(QTimerEvent *ev) {
         emit ui->translate->click();
         autoTranslate->stop();
     }
+}
+
+
+
+
+
+// Set autoLang QLabel value
+void DefaultTranslator::setAutoLang(QString lng) {
+    wgt->autoLang = lng;
+    int index = wgt->lngs.first.indexOf(lng);
+    if(index != -1)
+        ui->autoLng->setText(wgt->lngs.second[index]);
+    else
+        wgt->autoLang = "";
 }

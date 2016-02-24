@@ -54,6 +54,7 @@ Widget::Widget(QMainWindow *parent) :
    ui->hideFrame->setMaximumHeight(0);
    hideOptionsHeight = ui->hideFrame->sizeHint().height();
    showStep          = 10;
+   autoLang          = "";
 
    needElementsResize();
 
@@ -71,7 +72,7 @@ Widget::Widget(QMainWindow *parent) :
    connect(textfield,            SIGNAL(getText(QString)),                      SLOT(translateText(QString)));
    connect(trayMenu,             SIGNAL(triggered(QAction*)),                   SLOT(trayMenuSlot(QAction*)));
  //connect(trans,                SIGNAL(showTranslate(QString)), box,           SLOT(showTranslate(QString)));
-   connect(trans,                SIGNAL(showTranslate(QString, QString)),       SLOT(showTranslate(QString, QString)));
+   connect(trans,                SIGNAL(showTranslate(QString,QString,QString)),SLOT(showTranslate(QString, QString, QString)));
    connect(ui->theme_cb,         SIGNAL(activated(QString)),                    SLOT(changeTheme(QString)));
    connect(ui->from_list,        SIGNAL(doubleClicked(QModelIndex)),            SLOT(setFromLanguage(QModelIndex)));
    connect(ui->to_list,          SIGNAL(doubleClicked(QModelIndex)),            SLOT(setToLanguage(QModelIndex)));
@@ -449,7 +450,9 @@ void Widget::translateToClipboard(bool val){
 
 
 // Show translate slot
-void Widget::showTranslate(QString translate, QString origin){
+void Widget::showTranslate(QString translate, QString origin, QString autoLang){
+    this->autoLang = autoLang;
+    defTrans->setAutoLang(autoLang);
     if(!smartMode){
         switch(translateWindowType){
             case TW_DEFAULT:
@@ -794,4 +797,25 @@ void Widget::showHideOptions(){
 void Widget::needElementsResize() {
     // Resize footer of default translator window
     defTrans->setItemsHeights(ui->header, ui->footer, ui->frameButton);
+}
+
+
+
+
+
+// Reverse translate languages
+void Widget::languageReverse() {
+    QString oldFrom = this->fromLang;
+    QString oldTo   = this->toLang;
+
+    if(oldFrom == "auto") {
+        oldFrom = autoLang;
+        if(oldFrom == "") {
+            oldFrom = "en";
+        }
+    }
+
+
+    this->setFromLanguage(oldTo);
+    this->setToLanguage(oldFrom);
 }

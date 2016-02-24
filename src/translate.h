@@ -39,7 +39,7 @@ private slots:
    void translateThis(QNetworkReply* rep);
 
 signals:
-   void showTranslate(QString translate, QString origin);
+   void showTranslate(QString translate, QString origin, QString autoLng);
    void deleteManager();
 
 
