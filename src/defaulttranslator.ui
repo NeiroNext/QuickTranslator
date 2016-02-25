@@ -133,7 +133,7 @@
       <item>
        <widget class="QToolButton" name="btnOptions">
         <property name="toolTip">
-         <string>SHow/Hide options</string>
+         <string>Show/Hide options</string>
         </property>
         <property name="text">
          <string notr="true"/>

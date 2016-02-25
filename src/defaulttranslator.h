@@ -7,7 +7,7 @@
 #include <QComboBox>
 #include <QTextBrowser>
 #include <QFrame>
-#include <QLabel>
+#include <QPushButton>
 #include <QBasicTimer>
 #include "translate.h"
 #include "gettranslate.h"
@@ -31,7 +31,10 @@ public:
     void setItemsHeights(QFrame *frHeader, QFrame *frFooter1, QFrame *frFooter2);
     void setAutoLang(QString lng);
 
-    QComboBox *fromLng, *toLng;
+    QComboBox   *fromLng,
+                *toLng;
+    QPushButton *btnHelp,
+                *btnAbout;
 
     void getTranslate(QString translate, QString origin, QString autoLng);
     void timerEvent(QTimerEvent *ev);

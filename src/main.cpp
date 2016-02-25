@@ -2,12 +2,15 @@
 #include "widget.h"
 #include <QDebug>
 
+#define VERSION "1.2.0"
 
 
 int main(int argc, char *argv[])
 {    
     QtSingleApplication app(argc, argv);
+
     QtSingleApplication::setQuitOnLastWindowClosed(false);
+    QtSingleApplication::setApplicationVersion(VERSION);
 
     if(app.isRunning() && !app.arguments().contains("--restart"))
         return !app.sendMessage("Something");
@@ -19,7 +22,10 @@ int main(int argc, char *argv[])
     if(!app.arguments().contains("--hide"))
         w.show();
 
+
     QObject::connect(&app, SIGNAL(messageReceived(const QString&)), &w, SLOT(show()));
+
+    w.checkUpdates();
 
    return app.exec();
 }

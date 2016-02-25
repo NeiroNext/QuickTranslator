@@ -4,6 +4,7 @@
 #include <QObject>
 #include <QSettings>
 #include <QRect>
+#include <QDateTime>
 #include <QTranslator>
 
 
@@ -37,6 +38,8 @@ public:
     QString HOTKEY_SMART;
     QString TRANS_CLIPBOARD;
     QString TRANS_SIMILAR;
+    QString UPDATE_CHECK;
+    QString UPDATE_NEXTTIME;
 
 
 private:
@@ -54,8 +57,11 @@ private:
     bool      isAutorun;
     bool      copyToClipboard;
     bool      similarWords;
+    bool      updateCheck;
     QRect     geometry;
     int       infowintype;
+    QDateTime nextCheckTime;
+
     QTranslator *translator;
 
 

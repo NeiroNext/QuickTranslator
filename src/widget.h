@@ -17,6 +17,7 @@
 #include <QListWidget>
 #include <QProgressBar>
 #include <QListWidgetItem>
+#include <QDateTime>
 
 
 #include "translate.h"
@@ -29,6 +30,7 @@
 #include "autorun.h"
 #include "crossplatform.h"
 #include "defaulttranslator.h"
+#include "update.h"
 
 
 namespace Ui {
@@ -50,6 +52,8 @@ public:
     void langListFlagsInit();
     void needElementsResize();
     void appLngChange(QString lng);
+    void checkUpdates();
+    void configUpdates(QVariant check, QDateTime time);
     void resizeEvent(QResizeEvent *ev);
     void moveEvent(QMoveEvent *ev);
     void timerEvent(QTimerEvent *ev);
@@ -109,6 +113,7 @@ private:
    Settings          *settings;
    Autorun           *autorun;
    DefaultTranslator *defTrans;
+   Update            *update;
 
    QBasicTimer       *gsTimer;          // GeometrySaveTimer
    QBasicTimer       *shTimer;          // ShowHideTimer
@@ -119,6 +124,9 @@ private:
    int               showStep;
 
    bool              smartMode;
+
+   bool              isCheckUpdates;
+   QDateTime         nextUpdatesCheckTime;
 
 
 
@@ -151,6 +159,8 @@ public slots:
    void setFromLanguage(int i);
    void setToLanguage(int i);
    void languageReverse();
+   void about();
+   void changeCheckUpdates(bool val);
 
 };
 

@@ -17,6 +17,8 @@ DefaultTranslator::DefaultTranslator(QWidget *parent, QWidget *options, Widget *
     this->options = options;
     this->fromLng = ui->cbFrom;
     this->toLng   = ui->cbTo;
+    this->btnHelp = ui->btnHelp;
+    this->btnAbout= ui->btnAbout;
 
     autoTranslate = new QBasicTimer();
 

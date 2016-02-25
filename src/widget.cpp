@@ -24,6 +24,7 @@ Widget::Widget(QMainWindow *parent) :
    textfield= new TextField(this);
    trans    = new Translate(this);
    defTrans = new DefaultTranslator(ui->defTrans, ui->options, this, trans);
+   update   = new Update(this);
    smarttranslate = new SmartTranslate();
    lineEdit = new GrabLineEdit(ui->hotkey_le);
    lineEditField = new GrabLineEdit(ui->hotkey_le_field);
@@ -85,7 +86,10 @@ Widget::Widget(QMainWindow *parent) :
    connect(ui->showOptions,      SIGNAL(clicked()),                             SLOT(showHideOptions()));
    connect(ui->appLanguage,      SIGNAL(activated(int)),                        SLOT(applicationLanguageChange(int)));
    connect(ui->similar_cb,       SIGNAL(toggled(bool)),                         SLOT(translateSimilarWords(bool)));
-   connect(ui->help_button,      SIGNAL(clicked(bool)),        help,            SLOT(show()));
+   connect(defTrans->btnHelp,    SIGNAL(clicked(bool)), help,                   SLOT(show()));
+   connect(defTrans->btnAbout,   SIGNAL(clicked(bool)),                         SLOT(about()));
+   connect(ui->checkUpdates_cb,  SIGNAL(toggled(bool)),                         SLOT(changeCheckUpdates(bool)));
+
 }
 
 
@@ -117,6 +121,7 @@ Widget::~Widget(){
     delete trayIcon;
     delete trayMenu;
     delete help;
+    delete update;
 }
 
 
@@ -389,44 +394,7 @@ void Widget::trayMenuSlot(QAction *act){
     }
 
     if(act == trayActions[1]){                                         // About
-        if(aboutMB == NULL){
-            aboutMB = new QMessageBox(tr("About"),
-                     tr("<center><h2>Quick Translator</h2></center><br>"
-                        "This is simple program designed to quickly translate "
-                        "selected text from an foreign language to yours.<br>"
-                        "Features:"
-                        "<ul>"
-                        "<li> quick translation of selected text, a combination of keys that can be changed;</li>"
-                        "<li> quick translate your text, that you can write in special text field;</li>"
-                        "<li> Smart translate copied text, that can translate for example,"
-                        "completely the entire table or formatted text;</li>"
-                        "<li> display similar words from the translated;</li>"
-                        "<li> translate not only words but also phrases;</li>"
-                        "<li> translation into 90 languages.</li>"
-                        "</ul>"
-                        "The program is absolutely free and allowed to free distribution.<br><br>"
-                        "If you like the program, you can support the further development of the program"
-                        "and future projects:<br><br>"
-                        "Web  Money<p style=\"margin: 0; margin-left: 40px\">"
-                        "<b>WMR:</b> R243421992717<br>"
-                        "<b>WMU:</b> U275261423550<br>"
-                        "<b>WMK:</b> K407115109469<br>"
-                        "<b>WMZ:</b> Z100236886128<br></p>"
-                        "Author: <a href='http://vk.com/rozshko'>Mihail Rozshko</a><br>"
-                        "Email: <a href='mailto:mihail.rozshko@gmail.com'>mihail.rozshko@gmail.com</a><br>"
-                        "Site: <a href='http://bimusoft.tk'>BimuSoft.tk</a><br><br>"
-                        "Copyright &copy; BimuSoft 2014-2015"),
-                        QMessageBox::Information,
-                        QMessageBox::Ok, QMessageBox::NoButton, QMessageBox::NoButton,
-                        this);
-            aboutMB->setIconPixmap(QPixmap(":/files/imgs/icon-color.svg"));
-            Crossplatform::setFocus(aboutMB);
-            int ret = aboutMB->exec();
-            if(ret == QMessageBox::Ok) {
-                delete aboutMB;
-                aboutMB = NULL;
-            }
-        }
+        about();
     }
     if(act == trayActions[2]){                                        // Exit
         trayMenu->hide();
@@ -818,4 +786,88 @@ void Widget::languageReverse() {
 
     this->setFromLanguage(oldTo);
     this->setToLanguage(oldFrom);
+}
+
+
+
+
+
+
+// Show about messagebox
+void Widget::about() {
+    if(aboutMB == NULL){
+        aboutMB = new QMessageBox(tr("About"),
+                 tr("<center><h2>Quick Translator</h2></center><br>"
+                    "This is simple program designed to quickly translate "
+                    "selected text from an foreign language to yours.<br>"
+                    "Features:"
+                    "<ul>"
+                    "<li> quick translation of selected text, a combination of keys that can be changed;</li>"
+                    "<li> quick translate your text, that you can write in special text field;</li>"
+                    "<li> Smart translate copied text, that can translate for example,"
+                    "completely the entire table or formatted text;</li>"
+                    "<li> display similar words from the translated;</li>"
+                    "<li> translate not only words but also phrases;</li>"
+                    "<li> translation into 90 languages.</li>"
+                    "</ul>"
+                    "The program is absolutely free and allowed to free distribution.<br><br>"
+                    "If you like the program, you can support the further development of the program"
+                    "and future projects:<br><br>"
+                    "Web  Money<p style=\"margin: 0; margin-left: 40px\">"
+                    "<b>WMR:</b> R243421992717<br>"
+                    "<b>WMU:</b> U275261423550<br>"
+                    "<b>WMK:</b> K407115109469<br>"
+                    "<b>WMZ:</b> Z100236886128<br></p>"
+                    "Author: <a href='http://vk.com/rozshko'>Mihail Rozshko</a><br>"
+                    "Email: <a href='mailto:mihail.rozshko@gmail.com'>mihail.rozshko@gmail.com</a><br>"
+                    "Site: <a href='http://bimusoft.tk'>BimuSoft.tk</a><br><br>"
+                    "Copyright &copy; BimuSoft 2014-2015"),
+                    QMessageBox::Information,
+                    QMessageBox::Ok, QMessageBox::NoButton, QMessageBox::NoButton,
+                    this);
+        aboutMB->setIconPixmap(QPixmap(":/files/imgs/icon-color.svg"));
+        Crossplatform::setFocus(aboutMB);
+        int ret = aboutMB->exec();
+        if(ret == QMessageBox::Ok) {
+            delete aboutMB;
+            aboutMB = NULL;
+        }
+    }
+}
+
+
+
+
+
+// Check for updates
+void Widget::checkUpdates() {
+    if(isCheckUpdates && QDateTime::currentDateTime() >= nextUpdatesCheckTime) {
+        update->check();
+    }
+}
+
+
+
+
+
+// Change check updates slot
+void Widget::changeCheckUpdates(bool val) {
+    configUpdates(QVariant(val), QDateTime());
+}
+
+
+
+
+
+// Configure updates setting
+void Widget::configUpdates(QVariant check, QDateTime time) {
+    if(check.isValid()) {
+        settings->Update(settings->UPDATE_CHECK, check);
+        isCheckUpdates = check.toBool();
+        ui->checkUpdates_cb->setChecked(isCheckUpdates);
+    }
+    if(time.isValid()) {
+        settings->Update(settings->UPDATE_NEXTTIME, time);
+        nextUpdatesCheckTime = time;
+    }
 }

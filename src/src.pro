@@ -26,7 +26,8 @@ SOURCES  +=  main.cpp           \
              smarttranslate.cpp \
              crossplatform.cpp \
     help.cpp \
-    defaulttranslator.cpp
+    defaulttranslator.cpp \
+    update.cpp
 
 HEADERS  +=  widget.h           \
              translate.h        \
@@ -39,7 +40,8 @@ HEADERS  +=  widget.h           \
              crossplatform.h \
     help.h \
     defaulttranslator.h \
-    gettranslate.h
+    gettranslate.h \
+    update.h
 
 FORMS    +=  widget.ui          \
              box.ui             \
@@ -63,5 +65,7 @@ win32 {
 
 TRANSLATIONS += ../langs/RU_lngApp.ts    \
                 ../langs/UK_lngApp.ts
+
+DISTFILES +=
 
 
