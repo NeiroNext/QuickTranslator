@@ -578,9 +578,9 @@ void Widget::changeTheme(QString thName){
 void Widget::applicationLanguageChange(int index) {
     if(ui->appLanguage->itemText(index) != lastAppLng){
         settings->Update(settings->APP_LANG, appLanguages[index]);
-        if(QMessageBox::Yes == QMessageBox::question(this, tr("Please note!"),
+        if(0 == QMessageBox::question(this, tr("Please note!"),
                                tr("Change of language will only occur after restarting the application.\n"
-                                  "Restart the application now?"), QMessageBox::Yes | QMessageBox::No))
+                                  "Restart the application now?"), tr("Yes"), tr("No")))
         {
             QProcess::startDetached(QApplication::applicationFilePath(), QStringList("--restart"));
             qApp->quit();
@@ -808,6 +808,8 @@ void Widget::about() {
                     "completely the entire table or formatted text;</li>"
                     "<li> display similar words from the translated;</li>"
                     "<li> translate not only words but also phrases;</li>"
+                    "<li> living translation;</li>"
+                    "<li> quick reverse translation languages;</li>"
                     "<li> translation into 90 languages.</li>"
                     "</ul>"
                     "The program is absolutely free and allowed to free distribution.<br><br>"
@@ -821,7 +823,7 @@ void Widget::about() {
                     "Author: <a href='http://vk.com/rozshko'>Mihail Rozshko</a><br>"
                     "Email: <a href='mailto:mihail.rozshko@gmail.com'>mihail.rozshko@gmail.com</a><br>"
                     "Site: <a href='http://bimusoft.tk'>BimuSoft.tk</a><br><br>"
-                    "Copyright &copy; BimuSoft 2014-2015"),
+                    "Copyright &copy; BimuSoft 2014-2016"),
                     QMessageBox::Information,
                     QMessageBox::Ok, QMessageBox::NoButton, QMessageBox::NoButton,
                     this);
