@@ -14,27 +14,34 @@ Box::Box(Widget *wgt, QWidget *parent) :
     ui->setupUi(this);
     setWindowFlags(Crossplatform::_WindowOnTopFrameIconHide());
 
-    this->wgt     = wgt;
-    this->fromLng = ui->cbFrom;
-    this->toLng   = ui->cbTo;
+    this->wgt   = wgt;
 
-    fly = false;
+    fly         = false;
 
     timerShow   = new QBasicTimer();
     timerHide   = new QBasicTimer();
 
-    menu    = new QMenu(this);
+    menu        = new QMenu(this);
+    fromLngList = new QListWidget(this);
+    toLngList   = new QListWidget(this);
+    fromLngList->setWindowFlags(Crossplatform::_WindowOnTopFrameIconHide());
+    toLngList->setWindowFlags(Crossplatform::_WindowOnTopFrameIconHide());
+    fromLngList->setStyleSheet("QListWidget {border: 1px solid lightgray;}");
+    toLngList->setStyleSheet("QListWidget {border: 1px solid lightgray;}");
     copyAll = new QAction(tr("Copy All"), 0);
     copySel = new QAction(tr("Copy Selected"), 0);
 
     menu->addAction(copyAll);
     menu->addAction(copySel);
 
-    connect(menu,       SIGNAL(triggered(QAction*)), SLOT(copyToBuffer(QAction*)));
-    connect(ui->close,  SIGNAL(clicked()),           SLOT(hide()));
-    connect(ui->cbFrom, SIGNAL(activated(int)), wgt, SLOT(setFromLanguage(int)));
-    connect(ui->cbTo,   SIGNAL(activated(int)), wgt, SLOT(setToLanguage(int)));
-    connect(ui->reverse,SIGNAL(clicked()),      wgt, SLOT(languageReverse()));
+    connect(menu,       SIGNAL(triggered(QAction*)),        SLOT(copyToBuffer(QAction*)));
+    connect(ui->close,  SIGNAL(clicked()),                  SLOT(hide()));
+    connect(ui->reverse,SIGNAL(clicked()), wgt,             SLOT(languageReverse()));
+    connect(ui->from,   SIGNAL(clicked(bool)),              SLOT(showFromMenu()));
+    connect(ui->to,     SIGNAL(clicked(bool)),              SLOT(showToMenu()));
+    connect(fromLngList,SIGNAL(clicked(QModelIndex)), wgt,  SLOT(setFromLanguage(QModelIndex)));
+    connect(toLngList,  SIGNAL(clicked(QModelIndex)), wgt,  SLOT(setToLanguage(QModelIndex)));
+
 
     defaultRect = rect();
 }
@@ -51,6 +58,8 @@ Box::~Box(){
     delete menu;
     delete timerShow;
     delete timerHide;
+    delete fromLngList;
+    delete toLngList;
 }
 
 
@@ -127,7 +136,7 @@ void Box::setFly(bool isFly){
 
 // Show menu by mouse right key pressdown
 void Box::mousePressEvent(QMouseEvent *ev){
-    if(ev->button() & Qt::RightButton){
+    if(ev->button() & Qt::RightButton && ev->pos().y() > 20){
         menu->exec(ev->globalPos());
     }
 }
@@ -158,6 +167,9 @@ void Box::show(){
 
 // Hide slot
 void Box::hide(){
+    fromLngList->hide();
+    toLngList->hide();
+
     if(!timerHide->isActive() && !timerShow->isActive()){
         if(!fly){
             timerHide->start(10, this);
@@ -210,21 +222,92 @@ bool Box::event(QEvent *ev){
 
 // Load language list with icon
 void Box::loadLanguages(QList<QListWidgetItem*> items) {
-    QString spaces = "          ";    // Cratch for non cut text at right
+    listWgtItms.first.clear();
+    listWgtItms.second.clear();
+
     for(int i=0; i<items.size(); i++) {
-        ui->cbFrom->addItem(items[i]->icon(), items[i]->text()+spaces);
-        ui->cbTo->addItem(items[i]->icon(), items[i]->text()+spaces);
+        QListWidgetItem *item1 = new QListWidgetItem(*items[i]);
+        listWgtItms.first.append(item1);
+
+        fromLngList->addItem(listWgtItms.first[i]);
+        if(i > 0) {
+            QListWidgetItem *item2 = new QListWidgetItem(*items[i]);
+            listWgtItms.second.append(item2);
+            toLngList->addItem(listWgtItms.second[i-1]);
+        }
     }
-    ui->cbTo->removeItem(0);
 }
 
 // Load language list without icon
 void Box::loadLanguages(QStringList items) {
-    QString spaces = "                    ";    // Cratch for non cut text at right
-    for (int i=0; i<items.size(); i++) {
-        items[i] += spaces;
+    for(int i=0; i<items.size(); i++) {
+        fromLngList->addItem(items[i]);
+        if(i > 0) {
+            toLngList->addItem(items[i]);
+        }
     }
-    ui->cbFrom->addItems(items);
-    ui->cbTo->addItems(items);
-    ui->cbTo->removeItem(0);
+}
+
+
+
+
+
+// Show from language menu slot
+void Box::showFromMenu() {
+    toLngList->hide();
+    if(fromLngList->isVisible()) {
+        fromLngList->hide();
+    } else {
+        QPoint pos = this->pos() + ui->from->pos() + QPoint(0, ui->from->height());
+        fromLngList->setGeometry(QRect(pos.x(),
+                                       pos.y(),
+                                       200,
+                                       this->height()-ui->to->height()));
+        fromLngList->show();
+        fromLngList->scrollToItem(fromLngList->currentItem());
+        Crossplatform::setFocus(fromLngList);
+    }
+}
+
+
+
+
+
+// Show to language menu slot
+void Box::showToMenu() {
+    fromLngList->hide();
+    if(toLngList->isVisible()) {
+        toLngList->hide();
+    } else {
+        QPoint pos = this->pos() + ui->to->pos() + QPoint(0, ui->to->height());
+        toLngList->setGeometry(QRect(pos.x(),
+                                     pos.y(),
+                                     200,
+                                     this->height()-ui->to->height()));
+        toLngList->show();
+        toLngList->scrollToItem(toLngList->currentItem());
+        Crossplatform::setFocus(toLngList);
+    }
+}
+
+
+
+
+
+// Change from language menu index
+void Box::setFromIndex(QModelIndex index) {
+    int indx = index.row();
+    fromLngList->setCurrentRow(indx);
+    ui->from->setIcon(fromLngList->item(indx)->icon());
+}
+
+
+
+
+
+// Change to language menu index
+void Box::setToIndex(QModelIndex index) {
+    int indx = index.row();
+    toLngList->setCurrentRow(indx);
+    ui->to->setIcon(toLngList->item(indx)->icon());
 }

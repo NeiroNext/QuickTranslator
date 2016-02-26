@@ -124,7 +124,7 @@ void DefaultTranslator::translateBtnClick() {
 // Show translate text
 void DefaultTranslator::getTranslate(QString translate, QString origin, QString autoLng) {
     trans->setSimilarWords(wgt->similarWords);
-    ui->tbTo->setText(translate);
+    ui->tbTo->setPlainText(translate);
 
     setAutoLang(autoLng);
 }

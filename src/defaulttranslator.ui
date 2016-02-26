@@ -106,6 +106,12 @@
          </item>
          <item>
           <widget class="QLabel" name="autoLng">
+           <property name="minimumSize">
+            <size>
+             <width>110</width>
+             <height>0</height>
+            </size>
+           </property>
            <property name="toolTip">
             <string>Autodetected from language</string>
            </property>
@@ -171,11 +177,7 @@
       <number>20</number>
      </property>
      <item>
-      <widget class="QTextBrowser" name="tbFrom">
-       <property name="readOnly">
-        <bool>false</bool>
-       </property>
-      </widget>
+      <widget class="QPlainTextEdit" name="tbFrom"/>
      </item>
      <item>
       <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -277,9 +279,9 @@
       </layout>
      </item>
      <item>
-      <widget class="QTextBrowser" name="tbTo">
+      <widget class="QPlainTextEdit" name="tbTo">
        <property name="readOnly">
-        <bool>false</bool>
+        <bool>true</bool>
        </property>
       </widget>
      </item>

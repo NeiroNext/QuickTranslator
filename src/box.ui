@@ -35,18 +35,15 @@
       <number>0</number>
      </property>
      <item>
-      <widget class="QComboBox" name="cbFrom">
-       <property name="minimumSize">
-        <size>
-         <width>20</width>
-         <height>0</height>
-        </size>
-       </property>
+      <widget class="QToolButton" name="from">
        <property name="maximumSize">
         <size>
          <width>20</width>
          <height>20</height>
         </size>
+       </property>
+       <property name="autoRaise">
+        <bool>true</bool>
        </property>
       </widget>
      </item>
@@ -74,18 +71,15 @@
       </widget>
      </item>
      <item>
-      <widget class="QComboBox" name="cbTo">
-       <property name="minimumSize">
-        <size>
-         <width>20</width>
-         <height>0</height>
-        </size>
-       </property>
+      <widget class="QToolButton" name="to">
        <property name="maximumSize">
         <size>
          <width>20</width>
          <height>20</height>
         </size>
+       </property>
+       <property name="autoRaise">
+        <bool>true</bool>
        </property>
       </widget>
      </item>

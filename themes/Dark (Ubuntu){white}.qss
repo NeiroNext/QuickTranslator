@@ -122,14 +122,13 @@ QDialog QMenu {
 	selection-background-color: #f07746;
 }
 
-QDialog QToolButton {
+QDialog QToolButton[objectName=close] {
 	border: 1px solid gray;
 	border-right: 1px solid transparent;
 	border-top: 1px solid transparent;
 }
 
-QDialog QToolButton:HOVER,
-QDialog QComboBox:HOVER {
+QDialog QToolButton:HOVER {
 	background-color: #f07746;
 }
 
@@ -140,23 +139,20 @@ QDialog QComboBox {
 	background-color: transparent;
 }
 
-QDialog QToolButton[objectName=reverse] {
-	border: none;
-}
-
-QDialog QComboBox::HOVER {
+QDialog QToolButton {
 	border: none;
 }
 
 
-QTextEdit {
+QTextEdit,
+QPlainTextEdit {
 	background:  #f7f5f3;
 	selection-background-color:  #f07746;
 	border: 1px solid transparent;
 	border-radius: 0px;
 }
 
-QWidget[objectName=defTrans] QTextEdit {
+QWidget[objectName=defTrans] , QPlainTextEdit {
 	border: 1px solid #e3dcd4;
 	border-radius: 2px;
 }

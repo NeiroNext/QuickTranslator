@@ -29,7 +29,6 @@ public:
     void loadLanguages(QList<QListWidgetItem*> itemsFrom);
     void loadLanguages(QStringList items);
 
-    QComboBox *fromLng, *toLng;
 
 
 
@@ -49,11 +48,15 @@ private:
 
     Ui::Box     *ui;
     QMenu       *menu;
+    QListWidget *fromLngList,
+                *toLngList;
+    QPair<QList<QListWidgetItem*>, QList<QListWidgetItem*> > listWgtItms;
     QAction     *copyAll;
     QAction     *copySel;
 
     bool         fly;
     QRect        defaultRect;
+    QPoint       mousePos;
 
 
 
@@ -62,6 +65,10 @@ public slots:
     void copyToBuffer (QAction *act);
     void show();
     void hide();
+    void showFromMenu();
+    void showToMenu();
+    void setFromIndex(QModelIndex index);
+    void setToIndex(QModelIndex index);
 };
 
 #endif // BOX_H

@@ -467,7 +467,7 @@ void Widget::setFromLanguage(QModelIndex i){
 
     settings->Update(settings->LANG_FROM, fromLang);
     emit defTrans->fromLng->setCurrentIndex(index);
-    emit box->fromLng->setCurrentIndex(index);
+    emit box->setFromIndex(i);
 }
 
 
@@ -512,7 +512,7 @@ void Widget::setToLanguage(QModelIndex i){
 
     settings->Update(settings->LANG_TO, toLang);
     emit defTrans->toLng->setCurrentIndex(index-1);
-    emit box->toLng->setCurrentIndex(index-1);
+    emit box->setToIndex(i);
 }
 
 

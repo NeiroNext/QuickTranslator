@@ -9,25 +9,17 @@ QDialog[objectName=Box] {
 	background:  white;
 }
 
-QDialog QToolButton {
+QDialog QToolButton[objectName=close] {
 	border: 1px solid gray;
 	border-right: 1px solid transparent;
 	border-top: 1px solid transparent;
 }
 
-QDialog QToolButton:HOVER,
-QDialog QComboBox::HOVER {
+QDialog QToolButton:HOVER {
 	background-color: lightgray;
 }
 
-QDialog QComboBox {
-	margin-right: -20px;
-	padding: 0px 2px;
-	border: none;
-	background-color: transparent;
-}
-
-QDialog QToolButton[objectName=reverse] {
+QDialog QToolButton {
 	border: none;
 }
 
@@ -38,13 +30,15 @@ QFrame[objectName=frameButton] {
 }
 
 
-QTextEdit {
+QTextEdit,
+QPlainTextEdit {
 	background: white;
 	border: 1px solid transparent;
 	border-radius: 0px;
 }
 
-QMainWindow QTextEdit {
+QMainWindow QTextEdit,
+QMainWindow QPlainTextEdit {
 	border: 1px solid lightgray;
 	border-radius: 2px;
 }
