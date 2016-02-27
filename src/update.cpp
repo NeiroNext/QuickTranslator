@@ -103,7 +103,7 @@ QByteArray Update::getMAC() {
     if(list.size() > 0) {
         foreach (QNetworkInterface ni, list) {
            QString mac = ni.hardwareAddress();
-           if(mac != "00:00:00:00:00:00") {
+           if(mac != "00:00:00:00:00:00" && mac != "" && ni.flags() & QNetworkInterface::IsUp) {
                ret += mac;
            }
         }
