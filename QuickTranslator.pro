@@ -9,4 +9,5 @@ win32 {
 }
 
 TEMPLATE =  subdirs
+VERSION  =  1.2.0
 

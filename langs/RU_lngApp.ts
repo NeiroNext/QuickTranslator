@@ -13,6 +13,49 @@
     </message>
 </context>
 <context>
+    <name>DefaultTranslator</name>
+    <message>
+        <source>Form</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Translate from:</source>
+        <translation>Перевести с:</translation>
+    </message>
+    <message>
+        <source>Autodetect: </source>
+        <translation>Автоопределение: </translation>
+    </message>
+    <message>
+        <source>Autodetected from language</source>
+        <translation>Автоопределенно с языка перевода</translation>
+    </message>
+    <message>
+        <source>Translate to:</source>
+        <translation>Перевести на:</translation>
+    </message>
+    <message>
+        <source>Reverse from and to languages</source>
+        <translation>Реверс с которого и на который языков</translation>
+    </message>
+    <message>
+        <source>Help</source>
+        <translation>Помощь</translation>
+    </message>
+    <message>
+        <source>About</source>
+        <translation>О программе</translation>
+    </message>
+    <message>
+        <source>Translate</source>
+        <translation>Перевод</translation>
+    </message>
+    <message>
+        <source>Show/Hide options</source>
+        <translation>Показать/Скрыть настройки</translation>
+    </message>
+</context>
+<context>
     <name>GrabLineEdit</name>
     <message>
         <source>Press combination</source>
@@ -54,6 +97,25 @@
     <message>
         <source>Network error! Host not found, maybe you offline now.</source>
         <translation>Ошибка сети! Сервер не найден, может быть, вы сейчас вне сети.</translation>
+    </message>
+</context>
+<context>
+    <name>Update</name>
+    <message>
+        <source>Update available</source>
+        <translation>Доступно обновление</translation>
+    </message>
+    <message>
+        <source>&lt;center&gt;&lt;h2&gt;Update available&lt;/h2&gt;&lt;/center&gt;Available new version of the program!&lt;br&gt;You are using a version: &lt;b&gt;%1&lt;/b&gt; &lt;br&gt;Available version: &lt;b&gt;%2&lt;/b&gt; &lt;br&gt;Do you want to download the new version?&lt;br&gt;%3</source>
+        <translation>&lt;center&gt;&lt;h2&gt;Доступно обновление&lt;/h2&gt;&lt;/center&gt;Доступна новая версия программы!&lt;br&gt;Вы используете версию: &lt;b&gt;%1&lt;/b&gt; &lt;br&gt;Доступная версия: &lt;b&gt;%2&lt;/b&gt; &lt;br&gt;Вы хотите загрузить новую версию?&lt;br&gt;%3</translation>
+    </message>
+    <message>
+        <source>Download new version</source>
+        <translation>Зпгрузить новую версию</translation>
+    </message>
+    <message>
+        <source>Remind me later</source>
+        <translation>Напомнить мне позже</translation>
     </message>
 </context>
 <context>
@@ -242,7 +304,7 @@ Restart the application now?</source>
     </message>
     <message>
         <source>Help</source>
-        <translation>Помощь</translation>
+        <translation type="obsolete">Помощь</translation>
     </message>
     <message>
         <source>&lt;center&gt;&lt;h2&gt;Quick Translator&lt;/h2&gt;&lt;/center&gt;&lt;br&gt;This is simple program designed to quickly translate selected text from an unknown language to yours.&lt;br&gt;Features:&lt;ul&gt;&lt;li&gt; quick translation of selected text, a combination of keys that can be changed;&lt;/li&gt;&lt;li&gt; quick translate your text, that you can write in special text field;&lt;/li&gt;&lt;li&gt; Smart translate copied text, that can translate for example,completely the entire table or formatted text;&lt;/li&gt;&lt;li&gt; display similar words from the translated;&lt;/li&gt;&lt;li&gt; translate not only words but also phrases;&lt;/li&gt;&lt;li&gt; translation into 80 languages.&lt;/li&gt;&lt;/ul&gt;The program is absolutely free and allowed to free distribution.&lt;br&gt;&lt;br&gt;Author: &lt;a href=&apos;http://vk.com/rozshko&apos;&gt;Mihail Rozshko&lt;/a&gt;&lt;br&gt;Email: &lt;a href=&apos;mailto:mihail.rozshko@gmail.com&apos;&gt;mihail.rozshko@gmail.com&lt;/a&gt;&lt;br&gt;Site: &lt;a href=&apos;http://sovasoft.zz.vc&apos;&gt;SovaSoft.zz.vc&lt;/a&gt;&lt;br&gt;&lt;br&gt;Copyright &amp;copy; SovaSoft 2014-2015</source>
@@ -262,7 +324,27 @@ Restart the application now?</source>
     </message>
     <message>
         <source>&lt;center&gt;&lt;h2&gt;Quick Translator&lt;/h2&gt;&lt;/center&gt;&lt;br&gt;This is simple program designed to quickly translate selected text from an foreign language to yours.&lt;br&gt;Features:&lt;ul&gt;&lt;li&gt; quick translation of selected text, a combination of keys that can be changed;&lt;/li&gt;&lt;li&gt; quick translate your text, that you can write in special text field;&lt;/li&gt;&lt;li&gt; Smart translate copied text, that can translate for example,completely the entire table or formatted text;&lt;/li&gt;&lt;li&gt; display similar words from the translated;&lt;/li&gt;&lt;li&gt; translate not only words but also phrases;&lt;/li&gt;&lt;li&gt; translation into 90 languages.&lt;/li&gt;&lt;/ul&gt;The program is absolutely free and allowed to free distribution.&lt;br&gt;&lt;br&gt;If you like the program, you can support the further development of the programand future projects:&lt;br&gt;&lt;br&gt;Web  Money&lt;p style=&quot;margin: 0; margin-left: 40px&quot;&gt;&lt;b&gt;WMR:&lt;/b&gt; R243421992717&lt;br&gt;&lt;b&gt;WMU:&lt;/b&gt; U275261423550&lt;br&gt;&lt;b&gt;WMK:&lt;/b&gt; K407115109469&lt;br&gt;&lt;b&gt;WMZ:&lt;/b&gt; Z100236886128&lt;br&gt;&lt;/p&gt;Author: &lt;a href=&apos;http://vk.com/rozshko&apos;&gt;Mihail Rozshko&lt;/a&gt;&lt;br&gt;Email: &lt;a href=&apos;mailto:mihail.rozshko@gmail.com&apos;&gt;mihail.rozshko@gmail.com&lt;/a&gt;&lt;br&gt;Site: &lt;a href=&apos;http://bimusoft.tk&apos;&gt;BimuSoft.tk&lt;/a&gt;&lt;br&gt;&lt;br&gt;Copyright &amp;copy; BimuSoft 2014-2015</source>
-        <translation>&lt;center&gt;&lt;h2&gt;Quick Translator&lt;/h2&gt;&lt;/center&gt;&lt;br&gt;Это простая программа разработанная для перевода текста с иностранного языка на Ваш. &lt;br&gt;Возможности:&lt;ul&gt;&lt;li&gt; быстрый перевод выделенного текста, комбинацией клавиш, которую можно сменить;&lt;/li&gt;&lt;li&gt; быстрый перевод вашего текста, который вы можете написать в специальном текстовом поле;&lt;/li&gt;&lt;li&gt; Умный перевод скопированного текста, который может перевести к примеру, полностью всю таблицу или форматированный текст;&lt;/li&gt;&lt;li&gt; Отображение похожих слов от переведенных;&lt;/li&gt;&lt;li&gt; перевод не только слов, но и выражений;&lt;/li&gt;&lt;li&gt; перевод на 90 языков.&lt;/li&gt;&lt;/ul&gt;Программа является абсолютно бесплатной и свободной в распространении.&lt;br&gt;&lt;br&gt;Если вам понравилась программа, Вы можете поддержать дальнейшую разработку программы и будущих проектов:&lt;br&gt;&lt;br&gt;Web  Кошелек&lt;p style=&quot;margin: 0; margin-left: 40px&quot;&gt;&lt;b&gt;WMR:&lt;/b&gt; R243421992717&lt;br&gt;&lt;b&gt;WMU:&lt;/b&gt; U275261423550&lt;br&gt;&lt;b&gt;WMK:&lt;/b&gt; K407115109469&lt;br&gt;&lt;b&gt;WMZ:&lt;/b&gt; Z100236886128&lt;br&gt;&lt;/p&gt;Автор: &lt;a href=&apos;http://vk.com/rozshko&apos;&gt;Михаил Рожко&lt;/a&gt;&lt;br&gt;Почта: &lt;a href=&apos;mailto:mihail.rozshko@gmail.com&apos;&gt;mihail.rozshko@gmail.com&lt;/a&gt;&lt;br&gt;Сайт: &lt;a href=&apos;http://bimusoft.tk&apos;&gt;BimuSoft.tk&lt;/a&gt;&lt;br&gt;&lt;br&gt;Copyright &amp;copy; BimuSoft 2014-2015</translation>
+        <translation type="obsolete">&lt;center&gt;&lt;h2&gt;Quick Translator&lt;/h2&gt;&lt;/center&gt;&lt;br&gt;Это простая программа разработанная для перевода текста с иностранного языка на Ваш. &lt;br&gt;Возможности:&lt;ul&gt;&lt;li&gt; быстрый перевод выделенного текста, комбинацией клавиш, которую можно сменить;&lt;/li&gt;&lt;li&gt; быстрый перевод вашего текста, который вы можете написать в специальном текстовом поле;&lt;/li&gt;&lt;li&gt; Умный перевод скопированного текста, который может перевести к примеру, полностью всю таблицу или форматированный текст;&lt;/li&gt;&lt;li&gt; Отображение похожих слов от переведенных;&lt;/li&gt;&lt;li&gt; перевод не только слов, но и выражений;&lt;/li&gt;&lt;li&gt; перевод на 90 языков.&lt;/li&gt;&lt;/ul&gt;Программа является абсолютно бесплатной и свободной в распространении.&lt;br&gt;&lt;br&gt;Если вам понравилась программа, Вы можете поддержать дальнейшую разработку программы и будущих проектов:&lt;br&gt;&lt;br&gt;Web  Кошелек&lt;p style=&quot;margin: 0; margin-left: 40px&quot;&gt;&lt;b&gt;WMR:&lt;/b&gt; R243421992717&lt;br&gt;&lt;b&gt;WMU:&lt;/b&gt; U275261423550&lt;br&gt;&lt;b&gt;WMK:&lt;/b&gt; K407115109469&lt;br&gt;&lt;b&gt;WMZ:&lt;/b&gt; Z100236886128&lt;br&gt;&lt;/p&gt;Автор: &lt;a href=&apos;http://vk.com/rozshko&apos;&gt;Михаил Рожко&lt;/a&gt;&lt;br&gt;Почта: &lt;a href=&apos;mailto:mihail.rozshko@gmail.com&apos;&gt;mihail.rozshko@gmail.com&lt;/a&gt;&lt;br&gt;Сайт: &lt;a href=&apos;http://bimusoft.tk&apos;&gt;BimuSoft.tk&lt;/a&gt;&lt;br&gt;&lt;br&gt;Copyright &amp;copy; BimuSoft 2014-2015</translation>
+    </message>
+    <message>
+        <source>Check for updates</source>
+        <translation>Проверять на обновления</translation>
+    </message>
+    <message>
+        <source>Yes</source>
+        <translation>Да</translation>
+    </message>
+    <message>
+        <source>No</source>
+        <translation>Нет</translation>
+    </message>
+    <message>
+        <source>&lt;center&gt;&lt;h2&gt;Quick Translator&lt;/h2&gt;&lt;/center&gt;&lt;br&gt;This is simple program designed to quickly translate selected text from an foreign language to yours.&lt;br&gt;Features:&lt;ul&gt;&lt;li&gt; quick translation of selected text, a combination of keys that can be changed;&lt;/li&gt;&lt;li&gt; quick translate your text, that you can write in special text field;&lt;/li&gt;&lt;li&gt; Smart translate copied text, that can translate for example,completely the entire table or formatted text;&lt;/li&gt;&lt;li&gt; display similar words from the translated;&lt;/li&gt;&lt;li&gt; translate not only words but also phrases;&lt;/li&gt;&lt;li&gt; translation into 90 languages.&lt;/li&gt;&lt;/ul&gt;The program is absolutely free and allowed to free distribution.&lt;br&gt;&lt;br&gt;If you like the program, you can support the further development of the programand future projects:&lt;br&gt;&lt;br&gt;Web  Money&lt;p style=&quot;margin: 0; margin-left: 40px&quot;&gt;&lt;b&gt;WMR:&lt;/b&gt; R243421992717&lt;br&gt;&lt;b&gt;WMU:&lt;/b&gt; U275261423550&lt;br&gt;&lt;b&gt;WMK:&lt;/b&gt; K407115109469&lt;br&gt;&lt;b&gt;WMZ:&lt;/b&gt; Z100236886128&lt;br&gt;&lt;/p&gt;Author: &lt;a href=&apos;http://vk.com/rozshko&apos;&gt;Mihail Rozshko&lt;/a&gt;&lt;br&gt;Email: &lt;a href=&apos;mailto:mihail.rozshko@gmail.com&apos;&gt;mihail.rozshko@gmail.com&lt;/a&gt;&lt;br&gt;Site: &lt;a href=&apos;http://bimusoft.tk&apos;&gt;BimuSoft.tk&lt;/a&gt;&lt;br&gt;&lt;br&gt;Copyright &amp;copy; BimuSoft 2014-2016</source>
+        <translation type="obsolete">&lt;center&gt;&lt;h2&gt;Quick Translator&lt;/h2&gt;&lt;/center&gt;&lt;br&gt;Это простая программа разработанная для перевода текста с иностранного языка на Ваш. &lt;br&gt;Возможности:&lt;ul&gt;&lt;li&gt; быстрый перевод выделенного текста, комбинацией клавиш, которую можно сменить;&lt;/li&gt;&lt;li&gt; быстрый перевод вашего текста, который вы можете написать в специальном текстовом поле;&lt;/li&gt;&lt;li&gt; Умный перевод скопированного текста, который может перевести к примеру, полностью всю таблицу или форматированный текст;&lt;/li&gt;&lt;li&gt; Отображение похожих слов от переведенных;&lt;/li&gt;&lt;li&gt; перевод не только слов, но и выражений;&lt;/li&gt;&lt;li&gt; перевод на 90 языков.&lt;/li&gt;&lt;/ul&gt;Программа является абсолютно бесплатной и свободной в распространении.&lt;br&gt;&lt;br&gt;Если вам понравилась программа, Вы можете поддержать дальнейшую разработку программы и будущих проектов:&lt;br&gt;&lt;br&gt;Web  Кошелек&lt;p style=&quot;margin: 0; margin-left: 40px&quot;&gt;&lt;b&gt;WMR:&lt;/b&gt; R243421992717&lt;br&gt;&lt;b&gt;WMU:&lt;/b&gt; U275261423550&lt;br&gt;&lt;b&gt;WMK:&lt;/b&gt; K407115109469&lt;br&gt;&lt;b&gt;WMZ:&lt;/b&gt; Z100236886128&lt;br&gt;&lt;/p&gt;Автор: &lt;a href=&apos;http://vk.com/rozshko&apos;&gt;Михаил Рожко&lt;/a&gt;&lt;br&gt;Почта: &lt;a href=&apos;mailto:mihail.rozshko@gmail.com&apos;&gt;mihail.rozshko@gmail.com&lt;/a&gt;&lt;br&gt;Сайт: &lt;a href=&apos;http://bimusoft.tk&apos;&gt;BimuSoft.tk&lt;/a&gt;&lt;br&gt;&lt;br&gt;Copyright &amp;copy; BimuSoft 2014-2016</translation>
+    </message>
+    <message>
+        <source>&lt;center&gt;&lt;h2&gt;Quick Translator&lt;/h2&gt;&lt;/center&gt;&lt;br&gt;This is simple program designed to quickly translate selected text from an foreign language to yours.&lt;br&gt;Features:&lt;ul&gt;&lt;li&gt; quick translation of selected text, a combination of keys that can be changed;&lt;/li&gt;&lt;li&gt; quick translate your text, that you can write in special text field;&lt;/li&gt;&lt;li&gt; Smart translate copied text, that can translate for example,completely the entire table or formatted text;&lt;/li&gt;&lt;li&gt; display similar words from the translated;&lt;/li&gt;&lt;li&gt; translate not only words but also phrases;&lt;/li&gt;&lt;li&gt; living translation;&lt;/li&gt;&lt;li&gt; quick reverse translation languages;&lt;/li&gt;&lt;li&gt; translation into 90 languages.&lt;/li&gt;&lt;/ul&gt;The program is absolutely free and allowed to free distribution.&lt;br&gt;&lt;br&gt;If you like the program, you can support the further development of the programand future projects:&lt;br&gt;&lt;br&gt;Web  Money&lt;p style=&quot;margin: 0; margin-left: 40px&quot;&gt;&lt;b&gt;WMR:&lt;/b&gt; R243421992717&lt;br&gt;&lt;b&gt;WMU:&lt;/b&gt; U275261423550&lt;br&gt;&lt;b&gt;WMK:&lt;/b&gt; K407115109469&lt;br&gt;&lt;b&gt;WMZ:&lt;/b&gt; Z100236886128&lt;br&gt;&lt;/p&gt;Author: &lt;a href=&apos;http://vk.com/rozshko&apos;&gt;Mihail Rozshko&lt;/a&gt;&lt;br&gt;Email: &lt;a href=&apos;mailto:mihail.rozshko@gmail.com&apos;&gt;mihail.rozshko@gmail.com&lt;/a&gt;&lt;br&gt;Site: &lt;a href=&apos;http://bimusoft.tk&apos;&gt;BimuSoft.tk&lt;/a&gt;&lt;br&gt;&lt;br&gt;Copyright &amp;copy; BimuSoft 2014-2016</source>
+        <translation>&lt;center&gt;&lt;h2&gt;Quick Translator&lt;/h2&gt;&lt;/center&gt;&lt;br&gt;Это простая программа разработанная для перевода текста с иностранного языка на Ваш. &lt;br&gt;Возможности:&lt;ul&gt;&lt;li&gt; быстрый перевод выделенного текста, комбинацией клавиш, которую можно сменить;&lt;/li&gt;&lt;li&gt; быстрый перевод вашего текста, который вы можете написать в специальном текстовом поле;&lt;/li&gt;&lt;li&gt; Умный перевод скопированного текста, который может перевести к примеру, полностью всю таблицу или форматированный текст;&lt;/li&gt;&lt;li&gt; Отображение похожих слов от переведенных;&lt;/li&gt;&lt;li&gt; перевод не только слов, но и выражений;&lt;/li&gt;&lt;li&gt; живой перевод;&lt;/li&gt;&lt;li&gt; быстрый реверс языков перевода;&lt;/li&gt;&lt;li&gt; перевод на 90 языков.&lt;/li&gt;&lt;/ul&gt;Программа является абсолютно бесплатной и свободной в распространении.&lt;br&gt;&lt;br&gt;Если вам понравилась программа, Вы можете поддержать дальнейшую разработку программы и будущих проектов:&lt;br&gt;&lt;br&gt;Web  Кошелек&lt;p style=&quot;margin: 0; margin-left: 40px&quot;&gt;&lt;b&gt;WMR:&lt;/b&gt; R243421992717&lt;br&gt;&lt;b&gt;WMU:&lt;/b&gt; U275261423550&lt;br&gt;&lt;b&gt;WMK:&lt;/b&gt; K407115109469&lt;br&gt;&lt;b&gt;WMZ:&lt;/b&gt; Z100236886128&lt;br&gt;&lt;/p&gt;Автор: &lt;a href=&apos;http://vk.com/rozshko&apos;&gt;Михаил Рожко&lt;/a&gt;&lt;br&gt;Почта: &lt;a href=&apos;mailto:mihail.rozshko@gmail.com&apos;&gt;mihail.rozshko@gmail.com&lt;/a&gt;&lt;br&gt;Сайт: &lt;a href=&apos;http://bimusoft.tk&apos;&gt;BimuSoft.tk&lt;/a&gt;&lt;br&gt;&lt;br&gt;Copyright &amp;copy; BimuSoft 2014-2016</translation>
     </message>
 </context>
 </TS>

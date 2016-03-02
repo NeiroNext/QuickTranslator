@@ -20,6 +20,8 @@ Settings::Settings(Widget *parent) : QObject() {
     HOTKEY_SMART     = "hotkey/smart";
     TRANS_CLIPBOARD  = "translate/to_clipboard";
     TRANS_SIMILAR    = "translate/similar";
+    UPDATE_CHECK     = "update/check";
+    UPDATE_NEXTTIME  = "update/next_check_time";
 
     this->w = parent;
     s = new QSettings("QuikTranslator", "config");
@@ -54,7 +56,9 @@ void Settings::Load(){
     infowintype     = s->value(APP_INFOWINTYPE, 0).toInt();
     appLang         = s->value(APP_LANG, userLng).toString();
     copyToClipboard = s->value(TRANS_CLIPBOARD, false).toBool();
-    similarWords   = s->value(TRANS_SIMILAR, true).toBool();
+    similarWords    = s->value(TRANS_SIMILAR, true).toBool();
+    updateCheck     = s->value(UPDATE_CHECK, true).toBool();
+    nextCheckTime   = s->value(UPDATE_NEXTTIME, QDateTime::currentDateTime()).toDateTime();
 }
 
 
@@ -80,6 +84,7 @@ void Settings::Init(){
    w->appLngChange(appLang);
    w->translateToClipboard(copyToClipboard);
    w->translateSimilarWords(similarWords);
+   w->configUpdates(QVariant(updateCheck), nextCheckTime);
 }
 
 

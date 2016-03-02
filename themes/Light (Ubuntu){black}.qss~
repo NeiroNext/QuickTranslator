@@ -5,7 +5,7 @@
 }
 
 QWidget[objectName=defTrans] {
-	background-color: rgba(255, 255, 255, 140);
+	background-color: rgba(255, 255, 255, 210);
 }
 
 
@@ -97,11 +97,6 @@ QComboBox  {
 	border: 1px solid #e3dcd4;
 }
 
-QComboBox::HOVER,
-QLineEdit::HOVER  {
-	border: 1px solid #aaa;
-}
-
 QDialog[objectName=Box] {
 	border: 1px solid gray;
 	background:  #f7f5f3;
@@ -115,30 +110,24 @@ QDialog QMenu {
 	selection-background-color: #f07746;
 }
 
-QDialog QToolButton[objectName=close] {
+QDialog QToolButton {
 	border: 1px solid gray;
 	border-right: 1px solid transparent;
 	border-top: 1px solid transparent;
 }
 
-QDialog QToolButton:HOVER  {
+QDialog QToolButton:HOVER {
 	background-color: #f07746;
 }
 
-QDialog QToolButton {
-	border: none;
-}
-
-QTextEdit,
-QPlainTextEdit {
+QTextEdit {
 	background:  #f7f5f3;
 	selection-background-color:  #f07746;
 	border: 1px solid transparent;
 	border-radius: 0px;
 }
 
-QWidget[objectName=defTrans] QTextEdit,
-QWidget[objectName=defTrans] QPlainTextEdit {
+QWidget[objectName=defTrans] QTextEdit {
 	border: 1px solid #e3dcd4;
 	border-radius: 2px;
 }

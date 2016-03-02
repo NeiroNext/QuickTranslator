@@ -17,6 +17,7 @@
 #include <QListWidget>
 #include <QProgressBar>
 #include <QListWidgetItem>
+#include <QDateTime>
 
 
 #include "translate.h"
@@ -28,6 +29,8 @@
 #include "settings.h"
 #include "autorun.h"
 #include "crossplatform.h"
+#include "defaulttranslator.h"
+#include "update.h"
 
 
 namespace Ui {
@@ -47,7 +50,10 @@ public:
     void setToLanguage(QString str);
     void langListInit(QString url, bool initList = true);
     void langListFlagsInit();
+    void needElementsResize();
     void appLngChange(QString lng);
+    void checkUpdates();
+    void configUpdates(QVariant check, QDateTime time);
     void resizeEvent(QResizeEvent *ev);
     void moveEvent(QMoveEvent *ev);
     void timerEvent(QTimerEvent *ev);
@@ -58,10 +64,15 @@ public:
     const static int TW_NOTIFIER = 2; // at the tray notifier
 
 
-    int translateWindowType;
+    int       translateWindowType;
+    bool      similarWords;
+    QString   fromLang,
+              toLang,
+              autoLang;
+    QPair<QStringList,QStringList> lngs;
    
 
-   
+
 private:
    void trayMenuInit();
    void langListInit();
@@ -79,12 +90,10 @@ private:
    QSystemTrayIcon   *trayIcon;
    QMenu             *trayMenu;
    QList<QAction*>   trayActions;
-   QPair<QStringList,QStringList> lngs;
    QPair<QStringList,QStringList> themeNames;
    QPair<QStringList,QStringList> flagNames;
    QPair<QList<QListWidgetItem*>, QList<QListWidgetItem*> > listWgtItms;
-   QString           fromLang,
-                     toLang;
+
    QStringList       appLanguages;
    int               lastFromListIndex,
                      lastToListIndex;
@@ -103,6 +112,8 @@ private:
    Help              *help;
    Settings          *settings;
    Autorun           *autorun;
+   DefaultTranslator *defTrans;
+   Update            *update;
 
    QBasicTimer       *gsTimer;          // GeometrySaveTimer
    QBasicTimer       *shTimer;          // ShowHideTimer
@@ -113,7 +124,9 @@ private:
    int               showStep;
 
    bool              smartMode;
-   bool              similarWords;
+
+   bool              isCheckUpdates;
+   QDateTime         nextUpdatesCheckTime;
 
 
 
@@ -135,7 +148,7 @@ public slots:
    void changeHotkey(GrabLineEdit *gle, QString key);
    void changeHotkey(QString gle, QString key);
    void changeAutorun(bool status);
-   void showTranslate(QString translate, QString origin);
+   void showTranslate(QString translate, QString origin, QString autoLang);
    void changeInfoType(int index);
    void showHideOptions();
    void translateText(QString str);
@@ -143,6 +156,11 @@ public slots:
    void applicationLanguageChange(int index);
    void translateToClipboard(bool val);
    void translateSimilarWords(bool val);
+   void setFromLanguage(int i);
+   void setToLanguage(int i);
+   void languageReverse();
+   void about();
+   void changeCheckUpdates(bool val);
 
 };
 

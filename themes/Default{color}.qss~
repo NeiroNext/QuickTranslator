@@ -1,4 +1,4 @@
-QWidget[objectName="MainWidget"] {
+ QWidget[objectName="MainWidget"] {
 	background-repeat: no-repeat; 
 	background-image: url(:/files/imgs/planet-background.png);
 	background-position: right bottom;
@@ -8,7 +8,6 @@ QWidget[objectName=defTrans] {
 	background-color: rgba(255, 255, 255, 210);
 }
 
-
 QLabel,
 QCheckBox,
 QDialog QToolButton {
@@ -16,7 +15,7 @@ QDialog QToolButton {
 }
 
 
-QWidget[objectName=options] QListWidget {
+QListWidget {
 	background-color: rgba(255, 255, 255, 210);
 	border-radius: 0px;
 	border: none;
@@ -25,6 +24,7 @@ QWidget[objectName=options] QListWidget {
 
 QComboBox  {
 	border: 1px solid lightgray;
+	
 }
 
 
@@ -64,17 +64,16 @@ QFrame QLineEdit  {
 
 QComboBox::HOVER,
 QFrame QLineEdit::HOVER,
-QWidget[objectName=defTrans] QPlainTextEdit::HOVER  {
+QWidget[objectName=defTrans] QTextEdit::HOVER  {
 	border: 1px solid #aaddff;
 	background-color: rgba(230, 240, 255, 255);
 }
 
-QWidget[objectName=defTrans] QPlainTextEdit {
+QWidget[objectName=defTrans] QTextEdit {
 	background-color: rgba(255, 255, 255, 160);
-	border: 1px solid lightgray;
 }
 
-QWidget[objectName=defTrans] QPlainTextEdit::HOVER {
+QWidget[objectName=defTrans] QTextEdit::HOVER {
 	background-color: rgba(253, 254, 255, 255);
 	border-radius: 2px;
 }
@@ -83,7 +82,6 @@ QComboBox::drop-down {
 	background-image: url(:/files/imgs/arrow-black.png);
 	background-position: center;
 }
-
 
 QComboBox::item {
 	selection-background-color: gray;
@@ -109,18 +107,14 @@ QDialog[objectName=Box] {
 	background:  white;
 }
 
-QDialog QToolButton[objectName=close] {
+QDialog QToolButton {
 	border: 1px solid gray;
 	border-right: 1px solid transparent;
 	border-top: 1px solid transparent;
 }
 
-QDialog QToolButton:HOVER  {
+QDialog QToolButton:HOVER {
 	background-color: lightgray;
-}
-
-QDialog QToolButton {
-	border: none;
 }
 
 
@@ -141,23 +135,9 @@ QWidget[objectName=defTrans] QFrame[objectName=footer] {
 	background-color: transparent;
 }
 
-
-QWidget[objectName="MainWidget"] QToolButton {
-	border: none;
-}
-
-QWidget[objectName="MainWidget"] QToolButton:HOVER {
-	background-color: #e6e9e9;
-	border-radius: 12px;
-	border: 1px solid #aaddff;
-}
-
-QWidget[objectName=Help] QTextEdit{
-	border: none;
-}
-
-QDialog QListWidget::item:HOVER {
-	background-color: lightgray;
-}
-
+/*QDialog[objectName=TextField] QLineEdit {
+        border: 1px solid gray;
+        border-radius: 3px;
+        margin: 0;
+}*/
 

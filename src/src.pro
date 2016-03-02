@@ -25,7 +25,9 @@ SOURCES  +=  main.cpp           \
              textfield.cpp      \
              smarttranslate.cpp \
              crossplatform.cpp \
-    help.cpp
+    help.cpp \
+    defaulttranslator.cpp \
+    update.cpp
 
 HEADERS  +=  widget.h           \
              translate.h        \
@@ -36,12 +38,16 @@ HEADERS  +=  widget.h           \
              textfield.h        \
              smarttranslate.h   \
              crossplatform.h \
-    help.h
+    help.h \
+    defaulttranslator.h \
+    gettranslate.h \
+    update.h
 
 FORMS    +=  widget.ui          \
              box.ui             \
              textfield.ui \
-    help.ui
+    help.ui \
+    defaulttranslator.ui
 
 RESOURCES += main.qrc
 
@@ -59,5 +65,7 @@ win32 {
 
 TRANSLATIONS += ../langs/RU_lngApp.ts    \
                 ../langs/UK_lngApp.ts
+
+DISTFILES +=
 
 
