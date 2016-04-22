@@ -113,8 +113,11 @@ void DefaultTranslator::loadLanguages(QStringList items) {
 
 // Translate Button Click
 void DefaultTranslator::translateBtnClick() {
-    trans->setSimilarWords(false);
-    trans->setData(wgt->fromLang, wgt->toLang, ui->tbFrom->toPlainText().toUtf8(), this);
+    QByteArray txt = ui->tbFrom->toPlainText().toUtf8();
+    if(txt.length() > 0) {
+        trans->setSimilarWords(false);
+        trans->setData(wgt->fromLang, wgt->toLang, txt, this);
+    }
 }
 
 
