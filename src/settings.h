@@ -40,6 +40,7 @@ public:
     QString TRANS_SIMILAR;
     QString UPDATE_CHECK;
     QString UPDATE_NEXTTIME;
+    QString NOTIF_INTERNETUSE;
 
 
 private:
@@ -58,6 +59,7 @@ private:
     bool      copyToClipboard;
     bool      similarWords;
     bool      updateCheck;
+    bool      notifUseInt;
     QRect     geometry;
     int       infowintype;
     QDateTime nextCheckTime;

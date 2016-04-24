@@ -41,7 +41,7 @@ namespace Ui {
 class Widget : public QMainWindow
 {
    Q_OBJECT
-   
+
 public:
    explicit Widget(QMainWindow *parent = 0);
    ~Widget();
@@ -70,7 +70,7 @@ public:
               toLang,
               autoLang;
     QPair<QStringList,QStringList> lngs;
-   
+
 
 
 private:
@@ -80,6 +80,7 @@ private:
 
    void geometrySaveEvent();
    void appLanguageInit();
+   void showNotifAppUseInt();
 
    Ui::Widget        *ui;
    QProcess          process;
@@ -125,6 +126,8 @@ private:
 
    bool              smartMode;
 
+   bool              notifUseInternet;
+
    bool              isCheckUpdates;
    QDateTime         nextUpdatesCheckTime;
 
@@ -161,6 +164,7 @@ public slots:
    void languageReverse();
    void about();
    void changeCheckUpdates(bool val);
+   void readNotifUseInternet(bool iRead);
 
 };
 

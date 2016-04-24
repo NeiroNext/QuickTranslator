@@ -6,22 +6,23 @@
 
 // Constructor
 Settings::Settings(Widget *parent) : QObject() {
-    LANG_FROM        = "language/from";
-    LANG_TO          = "language/to";
-    APP_THEME        = "application/theme";
-    APP_AUTORUN      = "application/autorun";
-    APP_GEOMETRY     = "application/geometry";
-    APP_INFOWINTYPE  = "application/translate_win_type";
-    APP_LANG         = "application/language";
-    LASTLIST_FROM    = "last_list/from";
-    LASTLIST_TO      = "last_list/to";
-    HOTKEY_MAIN      = "hotkey/main";
-    HOTKEY_FIELD     = "hotkey/field";
-    HOTKEY_SMART     = "hotkey/smart";
-    TRANS_CLIPBOARD  = "translate/to_clipboard";
-    TRANS_SIMILAR    = "translate/similar";
-    UPDATE_CHECK     = "update/check";
-    UPDATE_NEXTTIME  = "update/next_check_time";
+    LANG_FROM         = "language/from";
+    LANG_TO           = "language/to";
+    APP_THEME         = "application/theme";
+    APP_AUTORUN       = "application/autorun";
+    APP_GEOMETRY      = "application/geometry";
+    APP_INFOWINTYPE   = "application/translate_win_type";
+    APP_LANG          = "application/language";
+    LASTLIST_FROM     = "last_list/from";
+    LASTLIST_TO       = "last_list/to";
+    HOTKEY_MAIN       = "hotkey/main";
+    HOTKEY_FIELD      = "hotkey/field";
+    HOTKEY_SMART      = "hotkey/smart";
+    TRANS_CLIPBOARD   = "translate/to_clipboard";
+    TRANS_SIMILAR     = "translate/similar";
+    UPDATE_CHECK      = "update/check";
+    UPDATE_NEXTTIME   = "update/next_check_time";
+    NOTIF_INTERNETUSE = "notification/app_use_internet";
 
     this->w = parent;
     s = new QSettings("QuikTranslator", "config");
@@ -59,6 +60,7 @@ void Settings::Load(){
     similarWords    = s->value(TRANS_SIMILAR, true).toBool();
     updateCheck     = s->value(UPDATE_CHECK, true).toBool();
     nextCheckTime   = s->value(UPDATE_NEXTTIME, QDateTime::currentDateTime()).toDateTime();
+    notifUseInt     = s->value(NOTIF_INTERNETUSE, true).toBool();
 }
 
 
@@ -85,6 +87,7 @@ void Settings::Init(){
    w->translateToClipboard(copyToClipboard);
    w->translateSimilarWords(similarWords);
    w->configUpdates(QVariant(updateCheck), nextCheckTime);
+   w->readNotifUseInternet(notifUseInt);
 }
 
 

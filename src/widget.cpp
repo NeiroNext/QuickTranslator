@@ -59,6 +59,9 @@ Widget::Widget(QMainWindow *parent) :
 
    needElementsResize();
 
+   if(notifUseInternet)
+       showNotifAppUseInt();
+
 
    // Connects
    connect(&hotkey,              SIGNAL(activated()),                           SLOT(startProcess()));
@@ -396,7 +399,7 @@ void Widget::trayMenuSlot(QAction *act){
     if(act == trayActions[1]){                                         // About
         about();
     }
-    if(act == trayActions[2]){                                        // Exit
+    if(act == trayActions[2]){                                         // Exit
         trayMenu->hide();
         qApp->quit();
     }
@@ -709,6 +712,28 @@ void Widget::geometrySaveEvent(){
 
 
 
+// Show Message Box notification about internet use of this app
+void Widget::showNotifAppUseInt() {
+    QMessageBox *ms = new QMessageBox(
+                   tr("Please note"),
+                   tr("This program uses the internet for translation"
+                      " so you should have its presence on your computer, and, if necessary,"
+                      " should be given permission to use the Internet of this program on your firewall."),
+                   QMessageBox::Information,
+                   QMessageBox::Ok,
+                   QMessageBox::Cancel | QMessageBox::Escape,
+                   QMessageBox::NoButton);
+    ms->setDefaultButton(QMessageBox::Ok);
+    int btn = ms->exec();
+    if(btn == QMessageBox::Ok)
+        readNotifUseInternet(false);
+    delete ms;
+}
+
+
+
+
+
 
 // Timer events
 void Widget::timerEvent(QTimerEvent *ev){
@@ -855,6 +880,15 @@ void Widget::checkUpdates() {
 // Change check updates slot
 void Widget::changeCheckUpdates(bool val) {
     configUpdates(QVariant(val), QDateTime());
+}
+
+
+
+
+// Change state that user read notification aboute internet used of this app
+void Widget::readNotifUseInternet(bool iRead) {
+    this->notifUseInternet = iRead;
+    settings->Update(settings->NOTIF_INTERNETUSE, iRead);
 }
 
 
