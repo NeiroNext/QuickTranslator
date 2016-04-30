@@ -21,6 +21,16 @@ DefaultTranslator::DefaultTranslator(QWidget *parent, QWidget *options, Widget *
     this->btnAbout= ui->btnAbout;
 
     autoTranslate = new QBasicTimer();
+    transparentWgt= new QWidget(this);
+
+    transparentWgt->setStyleSheet("background-color: black");
+    transparentWgt->setGeometry(0, 0, this->width(), this->height());
+    transparentWgt->hide();
+
+    blur     = new QGraphicsBlurEffect(this);
+    optWgtPA = new QPropertyAnimation(options, "pos");
+    trnWgtPA = new QPropertyAnimation(transparentWgt, "windowOpacity");
+    defWgtPA = new QPropertyAnimation(blur, "blurRadius");
 
     connect(ui->btnOptions, SIGNAL(clicked(bool)),       SLOT(toggleOptionsShow(bool)));
     connect(ui->cbFrom,     SIGNAL(activated(int)), wgt, SLOT(setFromLanguage(int)));
@@ -47,34 +57,30 @@ DefaultTranslator::~DefaultTranslator() {
 
 void DefaultTranslator::toggleOptionsShow(bool arg) {
 
-    int needMargin = ui->header->layout()->contentsMargins().left();
-
     if (arg) {  // Show options
-        int footerHeight       = ui->footer->height();
-        int translateBtnHeight = ui->translate->height();
-        int needMarginBottom   = footerHeight- translateBtnHeight - 1;
+        disconnect(optWgtPA, SIGNAL(finished()), options, SLOT(hide()));
+        ui->btnOptions->setChecked(false);
 
-        ui->header->layout()->setContentsMargins(QMargins(needMargin, 0, 0, 0));
-        ui->footer->layout()->setContentsMargins(QMargins(needMargin, 0, 0, needMarginBottom));
-        ui->mainVLayout->setContentsMargins(QMargins(needMargin, 0, 0, 0));
+        transparentWgt->show();
+        options->show();
 
-        int ii1 = this->width() - (ui->frHide1->pos().x() + ui->frHide1->width());
-        int ii2 = this->width() - (ui->frHide2->pos().x() + ui->frHide2->width());
+        optWgtPA->setDuration(1000);
+        optWgtPA->setStartValue(QPoint(width(), 0));
+        optWgtPA->setEndValue(QPoint(width() - options->width(), 0));
+        optWgtPA->start();
 
-        if(ii1 <= options->width() || ii2 <= options->width()) {
-            ui->frHide1->hide();
-            ui->frHide2->hide();
-        }
     } else {    // Hide options
-        ui->header->layout()->setContentsMargins(QMargins(needMargin, 0, needMargin, 0));
-        ui->footer->layout()->setContentsMargins(QMargins(needMargin, 0, needMargin, 0));
-        ui->mainVLayout->setContentsMargins(QMargins(needMargin, 0, needMargin, 0));
+        connect(optWgtPA, SIGNAL(finished()), options, SLOT(hide()));
 
-        ui->frHide1->show();
-        ui->frHide2->show();
+        if(optWgtPA->state() == QPropertyAnimation::Running)
+            optWgtPA->stop();
+        optWgtPA->setDuration(1000);
+        optWgtPA->setEndValue(QPoint(width(), 0));
+        optWgtPA->setStartValue(QPoint(width() - options->width(), 0));
+        optWgtPA->start();
+
+        transparentWgt->hide();
     }
-
-    options->setVisible(arg);
 
 }
 
@@ -155,6 +161,24 @@ void DefaultTranslator::timerEvent(QTimerEvent *ev) {
         emit ui->translate->click();
         autoTranslate->stop();
     }
+}
+
+
+
+
+
+// Mouse press event
+void DefaultTranslator::mousePressEvent(QMouseEvent *ev) {
+    toggleOptionsShow(false);
+}
+
+
+
+
+
+// Resize event
+void DefaultTranslator::resizeEvent(QResizeEvent *ev) {
+     transparentWgt->setGeometry(0, 0, this->width(), this->height());
 }
 
 

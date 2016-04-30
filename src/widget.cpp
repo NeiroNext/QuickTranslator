@@ -1,6 +1,8 @@
 #include "widget.h"
 #include "ui_widget.h"
 #include <QDebug>
+#include <QGraphicsColorizeEffect>
+#include <QGraphicsBlurEffect>
 
 
 // Constructor
@@ -58,6 +60,11 @@ Widget::Widget(QMainWindow *parent) :
    autoLang          = "";
 
    needElementsResize();
+
+   // Unstick options window and move
+   ui->MainWidget->layout()->removeWidget(ui->options);
+   ui->options->setGeometry(this->width()- ui->options->width(), 0, ui->options->width(), this->height());
+
 
    if(notifUseInternet)
        showNotifAppUseInt();
@@ -683,6 +690,9 @@ void Widget::translateSimilarWords(bool val) {
 // Main application's window resize
 void Widget::resizeEvent(QResizeEvent *ev){
     geometrySaveEvent();
+
+    // Move options window to new coordinates
+    ui->options->setGeometry(this->width()- ui->options->width(), 0, ui->options->width(), this->height());
 }
 
 
@@ -693,7 +703,6 @@ void Widget::resizeEvent(QResizeEvent *ev){
 void Widget::moveEvent(QMoveEvent *ev){
     geometrySaveEvent();
 }
-
 
 
 

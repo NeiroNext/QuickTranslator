@@ -9,6 +9,8 @@
 #include <QFrame>
 #include <QPushButton>
 #include <QBasicTimer>
+#include <QPropertyAnimation>
+#include <QGraphicsBlurEffect>
 #include "translate.h"
 #include "gettranslate.h"
 
@@ -38,6 +40,8 @@ public:
 
     void getTranslate(QString translate, QString origin, QString autoLng);
     void timerEvent(QTimerEvent *ev);
+    void mousePressEvent(QMouseEvent *ev);
+    void resizeEvent(QResizeEvent *ev);
 
 
 private:
@@ -45,7 +49,12 @@ private:
     QBasicTimer           *autoTranslate;
     int                    autoTranslateId;
 
-    QWidget               *options;
+    QWidget               *options,
+                          *transparentWgt;
+    QPropertyAnimation    *optWgtPA,    // options widget PropertyAnimation
+                          *trnWgtPA,    // transparent widget PropertyAnimation
+                          *defWgtPA;    // default widget PropertyAnimation
+    QGraphicsBlurEffect   *blur;        // Blur effect for this widget
     Widget                *wgt;
     Translate             *trans;
 
