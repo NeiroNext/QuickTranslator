@@ -27,10 +27,17 @@ DefaultTranslator::DefaultTranslator(QWidget *parent, QWidget *options, Widget *
     transparentWgt->setGeometry(0, 0, this->width(), this->height());
     transparentWgt->hide();
 
-    blur     = new QGraphicsBlurEffect(this);
+    blurGE   = new QGraphicsBlurEffect(this);
+    opacityGE= new QGraphicsOpacityEffect(transparentWgt);
     optWgtPA = new QPropertyAnimation(options, "pos");
-    trnWgtPA = new QPropertyAnimation(transparentWgt, "windowOpacity");
-    defWgtPA = new QPropertyAnimation(blur, "blurRadius");
+    trnWgtPA = new QPropertyAnimation(opacityGE, "opacity");
+    defWgtPA = new QPropertyAnimation(blurGE, "blurRadius");
+
+    blurGE->setBlurRadius(1);
+    blurGE->setBlurHints(QGraphicsBlurEffect::AnimationHint);
+    opacityGE->setOpacity(0.5);
+    this->setGraphicsEffect(blurGE);
+    transparentWgt->setGraphicsEffect(opacityGE);
 
     connect(ui->btnOptions, SIGNAL(clicked(bool)),       SLOT(toggleOptionsShow(bool)));
     connect(ui->cbFrom,     SIGNAL(activated(int)), wgt, SLOT(setFromLanguage(int)));
@@ -39,7 +46,7 @@ DefaultTranslator::DefaultTranslator(QWidget *parent, QWidget *options, Widget *
     connect(ui->tbFrom,     SIGNAL(textChanged()),       SLOT(textChange()));
     connect(ui->reverse,    SIGNAL(clicked(bool)),  wgt, SLOT(languageReverse()));
 
-    toggleOptionsShow(false);
+   // toggleOptionsShow(false);
 
 }
 
@@ -55,31 +62,68 @@ DefaultTranslator::~DefaultTranslator() {
 
 
 
+// Show/Hide options window
 void DefaultTranslator::toggleOptionsShow(bool arg) {
+    int duration = 800;
+    optWgtPA->setDuration(duration);
+    trnWgtPA->setDuration(duration);
+    defWgtPA->setDuration(duration);
 
-    if (arg) {  // Show options
+    if (arg) {                                                  // Show options
         disconnect(optWgtPA, SIGNAL(finished()), options, SLOT(hide()));
+        disconnect(trnWgtPA, SIGNAL(finished()), transparentWgt, SLOT(hide()));
         ui->btnOptions->setChecked(false);
 
         transparentWgt->show();
         options->show();
 
-        optWgtPA->setDuration(1000);
         optWgtPA->setStartValue(QPoint(width(), 0));
         optWgtPA->setEndValue(QPoint(width() - options->width(), 0));
+
+        trnWgtPA->setStartValue(0);
+        trnWgtPA->setEndValue(0.4);
+
+        defWgtPA->setStartValue(1);
+        defWgtPA->setEndValue(10);
+
         optWgtPA->start();
+        trnWgtPA->start();
+        defWgtPA->start();
 
-    } else {    // Hide options
-        connect(optWgtPA, SIGNAL(finished()), options, SLOT(hide()));
+    } else {                                                    // Hide options
+        connect(optWgtPA, SIGNAL(finished()), options,          SLOT(hide()));
+        connect(trnWgtPA, SIGNAL(finished()), transparentWgt,   SLOT(hide()));
 
-        if(optWgtPA->state() == QPropertyAnimation::Running)
+        if(optWgtPA->state() == QPropertyAnimation::Running) {  // Fine cancel first effect
             optWgtPA->stop();
-        optWgtPA->setDuration(1000);
-        optWgtPA->setEndValue(QPoint(width(), 0));
-        optWgtPA->setStartValue(QPoint(width() - options->width(), 0));
-        optWgtPA->start();
+            trnWgtPA->stop();
+            defWgtPA->stop();
 
-        transparentWgt->hide();
+            QVariant v[3];                                      // After stop value changes still, maybe qt bug
+            v[0] = optWgtPA->currentValue();
+            v[1] = trnWgtPA->currentValue();
+            v[2] = defWgtPA->currentValue();
+
+            optWgtPA->setDuration(optWgtPA->currentTime());
+            trnWgtPA->setDuration(trnWgtPA->currentTime());
+            defWgtPA->setDuration(defWgtPA->currentTime());
+
+            optWgtPA->setStartValue(v[0]);
+            trnWgtPA->setStartValue(v[1]);
+            defWgtPA->setStartValue(v[2]);
+        } else {
+            optWgtPA->setStartValue(QPoint(width() - options->width(), 0));
+            trnWgtPA->setStartValue(0.4);
+            defWgtPA->setStartValue(10);
+        }
+
+        optWgtPA->setEndValue(QPoint(width(), 0));
+        trnWgtPA->setEndValue(0);
+        defWgtPA->setEndValue(1);
+
+        optWgtPA->start();
+        trnWgtPA->start();
+        defWgtPA->start();
     }
 
 }

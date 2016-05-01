@@ -11,6 +11,7 @@
 #include <QBasicTimer>
 #include <QPropertyAnimation>
 #include <QGraphicsBlurEffect>
+#include <QGraphicsOpacityEffect>
 #include "translate.h"
 #include "gettranslate.h"
 
@@ -54,7 +55,8 @@ private:
     QPropertyAnimation    *optWgtPA,    // options widget PropertyAnimation
                           *trnWgtPA,    // transparent widget PropertyAnimation
                           *defWgtPA;    // default widget PropertyAnimation
-    QGraphicsBlurEffect   *blur;        // Blur effect for this widget
+    QGraphicsBlurEffect   *blurGE;      // Blur effect for this widget
+    QGraphicsOpacityEffect *opacityGE;  // Opacity graphics effect
     Widget                *wgt;
     Translate             *trans;
 
