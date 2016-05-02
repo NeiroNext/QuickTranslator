@@ -576,8 +576,11 @@ void Widget::changeTheme(QString thName){
     qApp->setStyleSheet(f.readAll());
     f.close();
 
+    defTrans->changeTheme(iName);
+
     settings->Update(settings->APP_THEME, themeName);
     needElementsResize();
+
 }
 
 

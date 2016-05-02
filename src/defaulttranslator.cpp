@@ -46,8 +46,6 @@ DefaultTranslator::DefaultTranslator(QWidget *parent, QWidget *options, Widget *
     connect(ui->tbFrom,     SIGNAL(textChanged()),       SLOT(textChange()));
     connect(ui->reverse,    SIGNAL(clicked(bool)),  wgt, SLOT(languageReverse()));
 
-   // toggleOptionsShow(false);
-
 }
 
 
@@ -64,7 +62,7 @@ DefaultTranslator::~DefaultTranslator() {
 
 // Show/Hide options window
 void DefaultTranslator::toggleOptionsShow(bool arg) {
-    int duration = 800;
+    int duration = 500;
     optWgtPA->setDuration(duration);
     trnWgtPA->setDuration(duration);
     defWgtPA->setDuration(duration);
@@ -90,7 +88,7 @@ void DefaultTranslator::toggleOptionsShow(bool arg) {
         trnWgtPA->start();
         defWgtPA->start();
 
-    } else {                                                    // Hide options
+    } else if(options->isVisible()) {                           // Hide options
         connect(optWgtPA, SIGNAL(finished()), options,          SLOT(hide()));
         connect(trnWgtPA, SIGNAL(finished()), transparentWgt,   SLOT(hide()));
 
@@ -180,6 +178,18 @@ void DefaultTranslator::getTranslate(QString translate, QString origin, QString 
     ui->tbTo->setPlainText(translate);
 
     setAutoLang(autoLng);
+}
+
+
+
+
+
+// Necessary to change specific elements when the theme is changed
+void DefaultTranslator::changeTheme(QString color) {
+    QString prefix = color;
+    if(color == "color")
+        prefix = "black";
+    ui->btnOptions->setIcon(QIcon(":/files/imgs/options-" + prefix + ".svg"));
 }
 
 

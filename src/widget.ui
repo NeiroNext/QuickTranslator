@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>614</width>
+    <width>550</width>
     <height>508</height>
    </rect>
   </property>
@@ -30,9 +30,6 @@
    <string notr="true"/>
   </property>
   <widget class="QWidget" name="MainWidget">
-   <property name="styleSheet">
-    <string notr="true"/>
-   </property>
    <layout class="QHBoxLayout" name="horizontalLayout_11">
     <property name="spacing">
      <number>0</number>

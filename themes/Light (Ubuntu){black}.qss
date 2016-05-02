@@ -1,4 +1,4 @@
- QWidget[objectName="MainWidget"] {
+QWidget[objectName="MainWidget"] {
 	background-repeat: no-repeat; 
 	background-image: url(:/files/imgs/planet-background.png);
 	background-position: right bottom;

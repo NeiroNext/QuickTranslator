@@ -14,6 +14,7 @@
 #include <QGraphicsOpacityEffect>
 #include "translate.h"
 #include "gettranslate.h"
+#include "needthemechange.h"
 
 class Widget;
 
@@ -21,7 +22,7 @@ namespace Ui {
     class DefaultTranslator;
 }
 
-class DefaultTranslator : public QWidget, public GetTranslate
+class DefaultTranslator : public QWidget, public GetTranslate, public NeedThemeChange
 {
     Q_OBJECT
 
@@ -40,6 +41,7 @@ public:
                 *btnAbout;
 
     void getTranslate(QString translate, QString origin, QString autoLng);
+    void changeTheme(QString color);
     void timerEvent(QTimerEvent *ev);
     void mousePressEvent(QMouseEvent *ev);
     void resizeEvent(QResizeEvent *ev);

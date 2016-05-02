@@ -1,11 +1,11 @@
- QWidget[objectName="MainWidget"] {
+QWidget[objectName="MainWidget"] {
 	background-repeat: no-repeat; 
 	background-image: url(:/files/imgs/planet-background.png);
 	background-position: right bottom;
 	/*background-color: #55534b;*/
 }
 
-QWidget[objectName=defTrans] {
+QWidget[objectName="defTrans"] {
 	background-color: rgba(0, 0, 0, 60);
 }
 
@@ -152,7 +152,7 @@ QPlainTextEdit {
 	border-radius: 0px;
 }
 
-QWidget[objectName=defTrans] , QPlainTextEdit {
+QWidget[objectName=defTrans] QPlainTextEdit {
 	border: 1px solid #e3dcd4;
 	border-radius: 2px;
 }
