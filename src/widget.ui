@@ -216,7 +216,7 @@
          <property name="minimumSize">
           <size>
            <width>0</width>
-           <height>0</height>
+           <height>20</height>
           </size>
          </property>
          <property name="baseSize">
@@ -247,35 +247,6 @@
           <property name="bottomMargin">
            <number>0</number>
           </property>
-          <item>
-           <spacer name="horizontalSpacer">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>313</width>
-              <height>20</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-          <item>
-           <widget class="QPushButton" name="showOptions">
-            <property name="enabled">
-             <bool>true</bool>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>150</width>
-              <height>24</height>
-             </size>
-            </property>
-            <property name="text">
-             <string>More options</string>
-            </property>
-           </widget>
-          </item>
          </layout>
         </widget>
        </item>

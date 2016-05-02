@@ -32,7 +32,6 @@ public:
 
     void loadLanguages(QList<QListWidgetItem*> itemsFrom);
     void loadLanguages(QStringList items);
-    void setItemsHeights(QFrame *frHeader, QFrame *frFooter1, QFrame *frFooter2);
     void setAutoLang(QString lng);
 
     QComboBox   *fromLng,

@@ -34,7 +34,6 @@ Widget::Widget(QMainWindow *parent) :
    help     = new Help();
    pb       = new QProgressBar();
    gsTimer  = new QBasicTimer();
-   shTimer  = new QBasicTimer();
    aboutMB  = NULL;
    setWindowFlags(Crossplatform::_WindowCloseButtonHint());
 
@@ -54,12 +53,7 @@ Widget::Widget(QMainWindow *parent) :
    ui->horizontalLayout_smart->addWidget(lineEditSmart);
    delete ui->hotkey_le_smart;
 
-   ui->hideFrame->setMaximumHeight(0);
-   hideOptionsHeight = ui->hideFrame->sizeHint().height();
-   showStep          = 10;
    autoLang          = "";
-
-   needElementsResize();
 
    // Unstick options window and move
    ui->MainWidget->layout()->removeWidget(ui->options);
@@ -93,7 +87,6 @@ Widget::Widget(QMainWindow *parent) :
    connect(ui->autorun_cb,       SIGNAL(toggled(bool)),                         SLOT(changeAutorun(bool)));
    connect(ui->cpToClipboard_cb, SIGNAL(toggled(bool)),                         SLOT(translateToClipboard(bool)));
    connect(ui->infoWin_ch,       SIGNAL(activated(int)),                        SLOT(changeInfoType(int)));
-   connect(ui->showOptions,      SIGNAL(clicked()),                             SLOT(showHideOptions()));
    connect(ui->appLanguage,      SIGNAL(activated(int)),                        SLOT(applicationLanguageChange(int)));
    connect(ui->similar_cb,       SIGNAL(toggled(bool)),                         SLOT(translateSimilarWords(bool)));
    connect(defTrans->btnHelp,    SIGNAL(clicked(bool)), help,                   SLOT(show()));
@@ -127,7 +120,6 @@ Widget::~Widget(){
     delete lineEditSmart;
     delete pb;
     delete gsTimer;
-    delete shTimer;
     delete trayIcon;
     delete trayMenu;
     delete help;
@@ -147,7 +139,6 @@ void Widget::startProcess(){
         box->hide();
     }
 #endif
-//    process.start(qApp->applicationDirPath()+"/xsel");
     process.start(Crossplatform::_GetSelectedProcessName());
 }
 
@@ -579,7 +570,6 @@ void Widget::changeTheme(QString thName){
     defTrans->changeTheme(iName);
 
     settings->Update(settings->APP_THEME, themeName);
-    needElementsResize();
 
 }
 
@@ -753,22 +743,6 @@ void Widget::timerEvent(QTimerEvent *ev){
         settings->Update(settings->APP_GEOMETRY, geometry());
         gsTimer->stop();
     }
-    else
-    if(ev->timerId() == shTimerId) {        // hider options timer
-        if((showStep > 0 && ui->hideFrame->height() < hideOptionsHeight) ||
-           (showStep < 0 && ui->hideFrame->height() > -showStep) ) {
-            ui->hideFrame->setMinimumHeight(ui->hideFrame->height() + showStep);
-            ui->hideFrame->setMaximumHeight(ui->hideFrame->height() + showStep);
-        } else if((showStep > 0 && ui->hideFrame->height() >= hideOptionsHeight) ||
-                  (showStep < 0 && ui->hideFrame->height() <= -showStep)) {
-            shTimer->stop();
-            if(showStep < 0) {
-                ui->hideFrame->setMinimumHeight(0);
-                ui->hideFrame->setMaximumHeight(0);
-            }
-            showStep = (showStep == 10) ? -10 : 10;
-        }
-    }
 }
 
 
@@ -780,28 +754,6 @@ void Widget::changeInfoType(int index){
     translateWindowType = index;
     ui->infoWin_ch->setCurrentIndex(index);
     settings->Update(settings->APP_INFOWINTYPE, index);
-}
-
-
-
-
-
-// Show hide options
-void Widget::showHideOptions(){
-    if(!shTimer->isActive()){
-        shTimer->start(30, this);
-        shTimerId = shTimer->timerId();
-    }
-}
-
-
-
-
-
-// Resize some elements where it's need
-void Widget::needElementsResize() {
-    // Resize footer of default translator window
-    defTrans->setItemsHeights(ui->header, ui->footer, ui->frameButton);
 }
 
 

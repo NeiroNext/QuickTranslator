@@ -50,7 +50,6 @@ public:
     void setToLanguage(QString str);
     void langListInit(QString url, bool initList = true);
     void langListFlagsInit();
-    void needElementsResize();
     void appLngChange(QString lng);
     void checkUpdates();
     void configUpdates(QVariant check, QDateTime time);
@@ -117,12 +116,7 @@ private:
    Update            *update;
 
    QBasicTimer       *gsTimer;          // GeometrySaveTimer
-   QBasicTimer       *shTimer;          // ShowHideTimer
-   int               gsTimerId,
-                     shTimerId;
-
-   int               hideOptionsHeight;
-   int               showStep;
+   int               gsTimerId;
 
    bool              smartMode;
 
@@ -153,7 +147,6 @@ public slots:
    void changeAutorun(bool status);
    void showTranslate(QString translate, QString origin, QString autoLang);
    void changeInfoType(int index);
-   void showHideOptions();
    void translateText(QString str);
    void smartTranslateCount(int count);
    void applicationLanguageChange(int index);

@@ -130,17 +130,6 @@ void DefaultTranslator::toggleOptionsShow(bool arg) {
 
 
 
-void DefaultTranslator::setItemsHeights(QFrame *frHeader, QFrame *frFooter1, QFrame *frFooter2) {
-    ui->header->setMinimumHeight(frHeader->height());
-    int height = frFooter1->minimumSizeHint().height() + frFooter2->minimumSizeHint().height();
-    ui->footer->setMinimumHeight(height - 0);
-    ui->footer->setMaximumHeight(height - 0);
-}
-
-
-
-
-
 void DefaultTranslator::loadLanguages(QList<QListWidgetItem*> items) {
     for(int i=0; i<items.size(); i++) {
         ui->cbFrom->addItem(items[i]->icon(), items[i]->text());
