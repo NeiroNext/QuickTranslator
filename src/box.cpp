@@ -55,7 +55,7 @@ Box::~Box(){
     delete ui;
     delete copyAll;
     delete copySel;
-    delete menu;
+    //delete menu;
     delete timerShow;
     delete timerHide;
     delete fromLngList;

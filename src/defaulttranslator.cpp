@@ -54,6 +54,11 @@ DefaultTranslator::DefaultTranslator(QWidget *parent, QWidget *options, Widget *
 
 DefaultTranslator::~DefaultTranslator() {
     delete ui;
+    delete autoTranslate;
+    delete optWgtPA;
+    delete trnWgtPA;
+    delete defWgtPA;
+
 }
 
 
@@ -70,7 +75,6 @@ void DefaultTranslator::toggleOptionsShow(bool arg) {
     if (arg) {                                                  // Show options
         disconnect(optWgtPA, SIGNAL(finished()), options, SLOT(hide()));
         disconnect(trnWgtPA, SIGNAL(finished()), transparentWgt, SLOT(hide()));
-        ui->btnOptions->setChecked(false);
 
         transparentWgt->show();
         options->show();
@@ -91,6 +95,8 @@ void DefaultTranslator::toggleOptionsShow(bool arg) {
     } else if(options->isVisible()) {                           // Hide options
         connect(optWgtPA, SIGNAL(finished()), options,          SLOT(hide()));
         connect(trnWgtPA, SIGNAL(finished()), transparentWgt,   SLOT(hide()));
+
+        ui->btnOptions->setChecked(false);                      // Uncheck options button
 
         if(optWgtPA->state() == QPropertyAnimation::Running) {  // Fine cancel first effect
             optWgtPA->stop();

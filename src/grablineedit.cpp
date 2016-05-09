@@ -10,6 +10,8 @@
 GrabLineEdit::GrabLineEdit(QLineEdit *parent) :
     QLineEdit(parent)
 {
+    infoShow = false;
+
     this->setMinimumSize( parent->minimumSize() );
     this->setMaximumSize( parent->maximumSize() );
     this->setGeometry   ( parent->geometry()    );
@@ -18,7 +20,6 @@ GrabLineEdit::GrabLineEdit(QLineEdit *parent) :
 
     this->setReadOnly(true);
     this->setContextMenuPolicy(Qt::CustomContextMenu); // Disable standart menu
-    infoShow = false;
 }
 
 

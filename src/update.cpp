@@ -9,6 +9,7 @@
 // Constructor
 Update::Update(Widget *wgt) : QObject() {
     this->wgt = wgt;
+    this->isCheked = false;
 
     url     = new QUrl("http://bimusoft.tk/projects/updates/");
     manager = new QNetworkAccessManager();
@@ -24,6 +25,9 @@ Update::Update(Widget *wgt) : QObject() {
 // Destructor
 Update::~Update() {
     delete url;
+
+    if(!isCheked)
+        delete manager;
 }
 
 
@@ -32,6 +36,7 @@ Update::~Update() {
 
 // Check for updates
 void Update::check() {
+    isCheked = true;
     QByteArray post;
     post.append("name="+QApplication::applicationName());
     post.append("&version="+QApplication::applicationVersion());
