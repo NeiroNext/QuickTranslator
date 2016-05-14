@@ -60,7 +60,8 @@ Qt::WindowFlags Crossplatform::_WindowCloseButtonHint(){
 // GetSelectedProcessName constant
 QString Crossplatform::_GetSelectedProcessName(){
 #ifdef Q_OS_LINUX
-    return "xsel";
+//    return "./unix_xsel";                   // For Release
+    return "./unix_xsel/unix_xsel";         // For Debug
 #endif
 
 #ifdef Q_OS_WIN
