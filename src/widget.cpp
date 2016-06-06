@@ -799,7 +799,7 @@ void Widget::about() {
                     "<li> translate not only words but also phrases;</li>"
                     "<li> living translation;</li>"
                     "<li> quick reverse translation languages;</li>"
-                    "<li> translation into 90 languages.</li>"
+                    "<li> translation into 103 languages.</li>"
                     "</ul>"
                     "The program is absolutely free and allowed to free distribution.<br><br>"
                     "If you like the program, you can support the further development of the program"

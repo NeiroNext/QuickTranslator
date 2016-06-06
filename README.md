@@ -12,7 +12,7 @@ Features:
  - translate not only words but also phrases;
  - living translation;
  - quick reverse translation languages;
- - translation into 90 languages.
+ - translation into 103 languages.
 
 The program is absolutely free and allowed to free distribution.
 
@@ -20,7 +20,7 @@ The program is absolutely free and allowed to free distribution.
 # Instalation
 
 Linux:
-You must have to be installed the following packages: xsel, libqxt-core0, libqxt-gui0, libqtgui4, libqt4-network, libqtcore4, libfontconfig1 and libxrender1
+You must have to be installed the following packages: libqxt-core0, libqxt-gui0, libqtgui4, libqt4-network, libqtcore4, libfontconfig1 and libxrender1
 For Linux, just run make commant in the root folder, or download project to QtCreator.
 
 Windows:
