@@ -41,7 +41,7 @@ namespace Ui {
 class Widget : public QMainWindow
 {
    Q_OBJECT
-   
+
 public:
    explicit Widget(QMainWindow *parent = 0);
    ~Widget();
@@ -50,7 +50,6 @@ public:
     void setToLanguage(QString str);
     void langListInit(QString url, bool initList = true);
     void langListFlagsInit();
-    void needElementsResize();
     void appLngChange(QString lng);
     void checkUpdates();
     void configUpdates(QVariant check, QDateTime time);
@@ -70,7 +69,7 @@ public:
               toLang,
               autoLang;
     QPair<QStringList,QStringList> lngs;
-   
+
 
 
 private:
@@ -80,6 +79,7 @@ private:
 
    void geometrySaveEvent();
    void appLanguageInit();
+   void showNotifAppUseInt();
 
    Ui::Widget        *ui;
    QProcess          process;
@@ -116,14 +116,11 @@ private:
    Update            *update;
 
    QBasicTimer       *gsTimer;          // GeometrySaveTimer
-   QBasicTimer       *shTimer;          // ShowHideTimer
-   int               gsTimerId,
-                     shTimerId;
-
-   int               hideOptionsHeight;
-   int               showStep;
+   int               gsTimerId;
 
    bool              smartMode;
+
+   bool              notifUseInternet;
 
    bool              isCheckUpdates;
    QDateTime         nextUpdatesCheckTime;
@@ -150,7 +147,6 @@ public slots:
    void changeAutorun(bool status);
    void showTranslate(QString translate, QString origin, QString autoLang);
    void changeInfoType(int index);
-   void showHideOptions();
    void translateText(QString str);
    void smartTranslateCount(int count);
    void applicationLanguageChange(int index);
@@ -161,6 +157,7 @@ public slots:
    void languageReverse();
    void about();
    void changeCheckUpdates(bool val);
+   void readNotifUseInternet(bool iRead);
 
 };
 

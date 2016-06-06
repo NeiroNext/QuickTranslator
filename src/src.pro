@@ -24,10 +24,10 @@ SOURCES  +=  main.cpp           \
              autorun.cpp        \
              textfield.cpp      \
              smarttranslate.cpp \
-             crossplatform.cpp \
-    help.cpp \
-    defaulttranslator.cpp \
-    update.cpp
+             crossplatform.cpp  \
+             help.cpp           \
+             defaulttranslator.cpp \
+             update.cpp
 
 HEADERS  +=  widget.h           \
              translate.h        \
@@ -37,17 +37,18 @@ HEADERS  +=  widget.h           \
              autorun.h          \
              textfield.h        \
              smarttranslate.h   \
-             crossplatform.h \
-    help.h \
-    defaulttranslator.h \
-    gettranslate.h \
-    update.h
+             crossplatform.h    \
+             help.h             \
+             defaulttranslator.h\
+             gettranslate.h     \
+             update.h           \
+             needthemechange.h
 
 FORMS    +=  widget.ui          \
              box.ui             \
-             textfield.ui \
-    help.ui \
-    defaulttranslator.ui
+             textfield.ui       \
+             help.ui            \
+             defaulttranslator.ui
 
 RESOURCES += main.qrc
 

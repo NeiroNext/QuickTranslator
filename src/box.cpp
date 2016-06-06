@@ -36,9 +36,9 @@ Box::Box(Widget *wgt, QWidget *parent) :
 
     connect(menu,       SIGNAL(triggered(QAction*)),        SLOT(copyToBuffer(QAction*)));
     connect(ui->close,  SIGNAL(clicked()),                  SLOT(hide()));
-    connect(ui->reverse,SIGNAL(clicked()), wgt,             SLOT(languageReverse()));
     connect(ui->from,   SIGNAL(clicked(bool)),              SLOT(showFromMenu()));
     connect(ui->to,     SIGNAL(clicked(bool)),              SLOT(showToMenu()));
+    connect(ui->reverse,SIGNAL(clicked()),            wgt,  SLOT(languageReverse()));
     connect(fromLngList,SIGNAL(clicked(QModelIndex)), wgt,  SLOT(setFromLanguage(QModelIndex)));
     connect(toLngList,  SIGNAL(clicked(QModelIndex)), wgt,  SLOT(setToLanguage(QModelIndex)));
 
@@ -55,7 +55,7 @@ Box::~Box(){
     delete ui;
     delete copyAll;
     delete copySel;
-    delete menu;
+    //delete menu;
     delete timerShow;
     delete timerHide;
     delete fromLngList;
@@ -211,6 +211,13 @@ void Box::timerEvent(QTimerEvent *ev){
 
 // Events
 bool Box::event(QEvent *ev){
+    // Hide languages selector
+    if(ev->type() == QEvent::UpdateRequest && QPoint(this->cursor().pos() - this->pos()).y() > 22) {
+        fromLngList->hide();
+        toLngList->hide();
+    }
+
+
     if(ev->type() == QEvent::WindowDeactivate && fly)
         hide();
     return QWidget::event(ev);

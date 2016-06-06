@@ -6,13 +6,13 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>870</width>
-    <height>583</height>
+    <width>635</width>
+    <height>441</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>870</width>
+    <width>550</width>
     <height>400</height>
    </size>
   </property>
@@ -30,9 +30,6 @@
    <string notr="true"/>
   </property>
   <widget class="QWidget" name="MainWidget">
-   <property name="styleSheet">
-    <string notr="true"/>
-   </property>
    <layout class="QHBoxLayout" name="horizontalLayout_11">
     <property name="spacing">
      <number>0</number>
@@ -219,7 +216,7 @@
          <property name="minimumSize">
           <size>
            <width>0</width>
-           <height>0</height>
+           <height>20</height>
           </size>
          </property>
          <property name="baseSize">
@@ -250,35 +247,6 @@
           <property name="bottomMargin">
            <number>0</number>
           </property>
-          <item>
-           <spacer name="horizontalSpacer">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>313</width>
-              <height>20</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-          <item>
-           <widget class="QPushButton" name="showOptions">
-            <property name="enabled">
-             <bool>true</bool>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>150</width>
-              <height>24</height>
-             </size>
-            </property>
-            <property name="text">
-             <string>More options</string>
-            </property>
-           </widget>
-          </item>
          </layout>
         </widget>
        </item>

@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>627</width>
+    <width>550</width>
     <height>476</height>
    </rect>
   </property>
@@ -45,7 +45,7 @@
        <number>0</number>
       </property>
       <property name="rightMargin">
-       <number>0</number>
+       <number>20</number>
       </property>
       <property name="bottomMargin">
        <number>0</number>
@@ -176,6 +176,9 @@
      <property name="leftMargin">
       <number>20</number>
      </property>
+     <property name="rightMargin">
+      <number>20</number>
+     </property>
      <item>
       <widget class="QPlainTextEdit" name="tbFrom"/>
      </item>
@@ -289,6 +292,12 @@
    </item>
    <item>
     <widget class="QFrame" name="footer">
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>40</height>
+      </size>
+     </property>
      <property name="frameShape">
       <enum>QFrame::NoFrame</enum>
      </property>
@@ -309,7 +318,7 @@
        <number>0</number>
       </property>
       <property name="rightMargin">
-       <number>0</number>
+       <number>20</number>
       </property>
       <property name="bottomMargin">
        <number>0</number>

@@ -9,8 +9,12 @@
 #include <QFrame>
 #include <QPushButton>
 #include <QBasicTimer>
+#include <QPropertyAnimation>
+#include <QGraphicsBlurEffect>
+#include <QGraphicsOpacityEffect>
 #include "translate.h"
 #include "gettranslate.h"
+#include "needthemechange.h"
 
 class Widget;
 
@@ -18,7 +22,7 @@ namespace Ui {
     class DefaultTranslator;
 }
 
-class DefaultTranslator : public QWidget, public GetTranslate
+class DefaultTranslator : public QWidget, public GetTranslate, public NeedThemeChange
 {
     Q_OBJECT
 
@@ -28,7 +32,6 @@ public:
 
     void loadLanguages(QList<QListWidgetItem*> itemsFrom);
     void loadLanguages(QStringList items);
-    void setItemsHeights(QFrame *frHeader, QFrame *frFooter1, QFrame *frFooter2);
     void setAutoLang(QString lng);
 
     QComboBox   *fromLng,
@@ -37,7 +40,10 @@ public:
                 *btnAbout;
 
     void getTranslate(QString translate, QString origin, QString autoLng);
+    void changeTheme(QString color);
     void timerEvent(QTimerEvent *ev);
+    void mousePressEvent(QMouseEvent *ev);
+    void resizeEvent(QResizeEvent *ev);
 
 
 private:
@@ -45,7 +51,13 @@ private:
     QBasicTimer           *autoTranslate;
     int                    autoTranslateId;
 
-    QWidget               *options;
+    QWidget               *options,
+                          *transparentWgt;
+    QPropertyAnimation    *optWgtPA,    // options widget PropertyAnimation
+                          *trnWgtPA,    // transparent widget PropertyAnimation
+                          *defWgtPA;    // default widget PropertyAnimation
+    QGraphicsBlurEffect   *blurGE;      // Blur effect for this widget
+    QGraphicsOpacityEffect *opacityGE;  // Opacity graphics effect
     Widget                *wgt;
     Translate             *trans;
 

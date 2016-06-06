@@ -30,6 +30,7 @@ private:
     QNetworkAccessManager *manager;
 
     Widget *wgt;
+    bool isCheked;
 
 
 

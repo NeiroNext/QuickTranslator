@@ -5,7 +5,10 @@
 SUBDIRS += src
 
 win32 {
-   SUBDIRS += src/win_xsel
+    SUBDIRS += src/win_xsel
+}
+unix {
+    SUBDIRS += src/unix_xsel
 }
 
 TEMPLATE =  subdirs
