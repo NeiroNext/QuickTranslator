@@ -2,7 +2,8 @@
 #include "widget.h"
 #include <QDebug>
 
-#define VERSION "1.2.0"
+#define VERSION "1.2.3"
+#define APPNAME "QuickTranslator"
 
 
 int main(int argc, char *argv[])
@@ -11,6 +12,7 @@ int main(int argc, char *argv[])
 
     QtSingleApplication::setQuitOnLastWindowClosed(false);
     QtSingleApplication::setApplicationVersion(VERSION);
+    QtSingleApplication::setApplicationName(APPNAME);
 
     if(app.isRunning() && !app.arguments().contains("--restart"))
         return !app.sendMessage("Something");
