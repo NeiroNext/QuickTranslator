@@ -143,10 +143,11 @@ void Crossplatform::setFocus(QWidget *window){
 QString Crossplatform::clipboard(){
     QString ret = "";
 #ifdef Q_OS_WIN
-    QTextCodec *tc = QTextCodec::codecForName("Windows-1251");
-    QByteArray ba;
-    ba.append(QApplication::clipboard()->mimeData()->data("text/html"));
-    ret = tc->toUnicode(ba);
+//    QTextCodec *tc = QTextCodec::codecForName("Windows-1251");
+//    QByteArray ba;
+//    ba.append(QApplication::clipboard()->mimeData()->data("text/html"));
+//    ret = tc->toUnicode(ba);
+    ret = QString::fromUtf8(QApplication::clipboard()->mimeData()->data("text/html"));
 #endif
 #ifdef Q_OS_LINUX
     ret = QString::fromUtf8(QApplication::clipboard()->mimeData()->data("text/html"));
