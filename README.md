@@ -30,6 +30,5 @@ In Windows only possible until loading project QtCreator (or VisualStudio)
 
 # Contacts
 
-Author: Mihail Rozshko [http://vk.com/rozshko]
 
 Email: mihail.rozshko@gmail.com
